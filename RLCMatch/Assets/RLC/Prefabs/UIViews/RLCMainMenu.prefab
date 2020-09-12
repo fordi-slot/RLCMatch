@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.019607844, g: 0.019607844, b: 0.04705883, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -137,10 +137,13 @@ MonoBehaviour:
   m_contentRoot: {fileID: 2835370072960988146}
   m_menuItem: {fileID: 0}
   m_title: {fileID: 0}
+  m_closeButton: {fileID: 0}
+  m_okButton: {fileID: 0}
   m_backButton: {fileID: 0}
   m_refreshButton: {fileID: 0}
   m_preview: {fileID: 0}
   m_description: {fileID: 0}
+  m_synchronizedElements: []
   m_loader: {fileID: 631101039297762514}
   m_standaloneMenu: {fileID: 0}
   m_blocker: {fileID: 8030177464729056606}
@@ -280,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a94c9827ec8086459d1bada874a223e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ba811c7080d93147a8f104eaef58453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &357939414045753012

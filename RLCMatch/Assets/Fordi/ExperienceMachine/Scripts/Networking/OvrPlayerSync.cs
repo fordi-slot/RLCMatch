@@ -90,15 +90,22 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (Input.GetMouseButton(1))
+            Debug.LogError("PointerClick");
+            if (Input.GetMouseButtonDown(1))
             {
-                m_uiEngine.OpenContextUI(new MenuArgs()
+                Debug.LogError("MousueDown");
+            }
+
+           
+            //if (Input.GetMouseButton(1))
+            //{
+            m_uiEngine.OpenContextUI(new MenuArgs()
                 {
                     Persist = false,
                     Position = new Vector2(eventData.position.x, eventData.position.y),
                     Items = CreateContextMenu()
                 });
-            }
+            //}
         }
 
         MenuItemInfo[] CreateContextMenu()
