@@ -93,7 +93,7 @@ namespace Fordi.Networking
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber + " " + playerId);
-            if (PhotonNetwork.LocalPlayer.ActorNumber != playerId && Input.GetMouseButton(1))
+            if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {

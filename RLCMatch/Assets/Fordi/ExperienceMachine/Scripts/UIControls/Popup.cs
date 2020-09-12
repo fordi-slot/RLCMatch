@@ -41,7 +41,6 @@ namespace Fordi.UI
 
         private Action m_closed = null;
         private Action m_ok = null;
-        private IUserInterface m_vrMenu;
 
         public GameObject Gameobject { get { return gameObject; } }
 
@@ -55,9 +54,11 @@ namespace Fordi.UI
 
         private Action<PopupInfo.PopupAction> m_onPopupClck;
 
+        private IUIEngine m_uiEngine;
+
         private void Awake()
         {
-            m_vrMenu = IOCCore.Resolve<IUserInterface>();
+            m_uiEngine = IOCCore.Resolve<IUIEngine>();
             if (m_localScale == Vector3.zero)
                 m_localScale = transform.localScale;
 
@@ -93,9 +94,9 @@ namespace Fordi.UI
             else if(m_icon != null)
                 m_icon.transform.parent.gameObject.SetActive(false);
             if (m_okButton != null)
-                m_okButton.onClick.AddListener(() => m_vrMenu.CloseLastScreen());
+                m_okButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
             if (m_closeButton != null)
-                m_closeButton.onClick.AddListener(() => m_vrMenu.CloseLastScreen());
+                m_closeButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
         }
 
         public void Close()
@@ -171,17 +172,19 @@ namespace Fordi.UI
 
         public void AcceptClick()
         {
+            m_uiEngine.CloseLastScreen();
             m_onPopupClck?.Invoke(PopupInfo.PopupAction.ACCEPT);
-            IOCCore.Resolve<IUIEngine>().CloseLastScreen();
         }
 
         public void RejectClick()
         {
+            m_uiEngine.CloseLastScreen();
             m_onPopupClck?.Invoke(PopupInfo.PopupAction.REJECT);
         }
 
         public void CancelClick()
         {
+            m_uiEngine.CloseLastScreen();
             m_onPopupClck?.Invoke(PopupInfo.PopupAction.CANCEL);
         }
     }
