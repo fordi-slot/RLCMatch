@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17897303, g: 0.22410153, b: 0.30593404, a: 1}
+  m_IndirectSpecularColor: {r: 0.46012652, g: 0.51072377, b: 0.58906645, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,12 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa53029e0a62304caf81173265515b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  undoProRecords: []
-  undoState:
-    redoRecords: []
-    undoRecords:
-    - Selection Change
-    - Add RTSLIgnore
 --- !u!4 &473745863
 Transform:
   m_ObjectHideFlags: 3
@@ -357,6 +351,11 @@ PrefabInstance:
       propertyPath: m_teleportAnchors.Array.data[9]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3887542207293391516, guid: 2a7e3c1abf054f745bb1480314b29966,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 95602350606921892, guid: 2a7e3c1abf054f745bb1480314b29966,
         type: 3}
       propertyPath: m_IsActive
@@ -377,6 +376,11 @@ PrefabInstance:
     - target: {fileID: 8094136904859359820, guid: 2a7e3c1abf054f745bb1480314b29966,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185353054603885762, guid: 2a7e3c1abf054f745bb1480314b29966,
+        type: 3}
+      propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
