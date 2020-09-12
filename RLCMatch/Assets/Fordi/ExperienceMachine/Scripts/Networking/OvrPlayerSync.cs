@@ -3,11 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Fordi.Networking
 {
     [RequireComponent(typeof(PhotonTransformView))]
-    public class OvrPlayerSync : MonoBehaviour, ISyncHelper, IPunObservable
+    public class OvrPlayerSync : MonoBehaviour, ISyncHelper, IPunObservable, IPointerClickHandler
     {
 
         public bool avatarSet = false;
@@ -62,11 +63,6 @@ namespace Fordi.Networking
         //    //fChild.rotation = Quaternion.identity;
         //}
 
-        public void OnMouseDown()
-        {
-            Debug.LogError("OnMouseDown");
-        }
-
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
           
@@ -80,6 +76,11 @@ namespace Fordi.Networking
         public void ResumeSync()
         {
 
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Debug.LogError("OnPointerClick");
         }
     }
 }
