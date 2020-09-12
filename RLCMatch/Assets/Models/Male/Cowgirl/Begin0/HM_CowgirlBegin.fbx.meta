@@ -1,14 +1,89 @@
 fileFormatVersion: 2
 guid: 6b82294cb3344634a98fa628ead7952e
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 25
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
     second: HM_CowgirlBegin0
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body 1
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body 2
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes 1
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes 2
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes 3
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lashes
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lashes 1
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lashes 2
+    second: {fileID: 2100000, guid: f67e9037c321557448853430ee5af1b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #39'
+    second: {fileID: 2100000, guid: b42bb13a4a8ba424593a6938f3fd5d75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reflection
+    second: {fileID: 2100000, guid: b1c6a69e9c421be429b647fb8b5c7c01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reflection 1
+    second: {fileID: 2100000, guid: 5e78d5bef0fdf9e41807751907f24681, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reflection 2
+    second: {fileID: 2100000, guid: 815eec83fcc30244399605b64b9442f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Reflection 3
+    second: {fileID: 2100000, guid: f5cd540ba9bc0f3468f1c159744a6ee3, type: 2}
   materials:
-    materialImportMode: 1
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -26,7 +101,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -37,7 +112,7 @@ ModelImporter:
     - serializedVersion: 16
       name: HM_CowgirlBegin0
       takeName: Take 001
-      internalID: 0
+      internalID: 1827226128182048838
       firstFrame: 0
       lastFrame: 170
       wrapMode: 0
@@ -70,12 +145,10 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
-    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
@@ -102,6 +175,7 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 3
     human: []
@@ -119,10 +193,8 @@ ModelImporter:
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 1
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
