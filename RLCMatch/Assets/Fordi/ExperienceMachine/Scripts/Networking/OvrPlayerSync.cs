@@ -159,7 +159,7 @@ namespace Fordi.Networking
                  Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + senderId,
                  Action = (val) => 
                  {
-                     if (menuCommand == MenuCommandType.INVITE_FOR_SEX)
+                     if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
                      {
                          Selection.Location = "PrivateMeeting";
                          Selection.ExperienceType = ExperienceType.MEETING;
