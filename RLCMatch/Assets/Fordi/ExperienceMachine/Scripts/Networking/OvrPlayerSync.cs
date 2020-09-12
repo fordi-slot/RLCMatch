@@ -161,8 +161,7 @@ namespace Fordi.Networking
                      {
                          Selection.Location = "PrivateMeeting";
                          Selection.ExperienceType = ExperienceType.MEETING;
-                         if (PhotonNetwork.IsMasterClient)
-                             m_experienceMachine.LoadExperience();
+                         m_experienceMachine.LoadExperience();
                      }
                  }
             });
