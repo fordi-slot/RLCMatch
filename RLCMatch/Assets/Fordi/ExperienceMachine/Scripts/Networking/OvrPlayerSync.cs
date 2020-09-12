@@ -92,15 +92,15 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //if (Input.GetMouseButton(1))
-            //{
-            m_uiEngine.OpenContextUI(new MenuArgs()
+            if (isRemotePlayer && Input.GetMouseButton(1))
+            {
+                m_uiEngine.OpenContextUI(new MenuArgs()
                 {
                     Persist = false,
                     Position = new Vector2(eventData.position.x, eventData.position.y),
                     Items = CreateContextMenu()
                 });
-            //}
+            }
         }
 
         MenuItemInfo[] CreateContextMenu()
