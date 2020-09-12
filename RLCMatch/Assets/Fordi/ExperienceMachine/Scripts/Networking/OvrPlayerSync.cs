@@ -29,6 +29,7 @@ namespace Fordi.Networking
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
+            m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
             m_photonView = GetComponent<PhotonView>();
         }
 
