@@ -134,7 +134,7 @@ namespace Fordi.Networking
 
         private void OnContextItemClick(MenuClickArgs arg0)
         {
-            Debug.LogError(arg0.CommandType.ToString());
+            Debug.LogError(playerId + " " + PhotonNetwork.LocalPlayer.ActorNumber + " " + arg0.CommandType.ToString());
             var targetPlayerId = (int)arg0.Data;
             m_uiEngine.CloseLastScreen();
             var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == targetPlayerId);
