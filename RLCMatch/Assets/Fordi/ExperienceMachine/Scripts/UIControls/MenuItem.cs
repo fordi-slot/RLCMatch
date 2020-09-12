@@ -126,7 +126,8 @@ namespace Fordi.UI.MenuControl
 
                 if (!(m_item.Data is ColorResource))
                 {
-                    m_item.Action = new MenuItemEvent();
+                    if (m_item.Action == null)
+                        m_item.Action = new MenuItemEvent();
                     m_item.Action.AddListener(m_experienceMachine.ExecuteMenuCommand);
                     ((Button)selectable).onClick.AddListener(() => m_item.Action.Invoke(new MenuClickArgs(m_item.Path, m_item.Text, m_item.Command, m_item.CommandType, m_item.Data)));
                 }
@@ -237,7 +238,8 @@ namespace Fordi.UI.MenuControl
                     }
                 }
 
-                m_item.Action = new MenuItemEvent();
+                if (m_item.Action == null)
+                    m_item.Action = new MenuItemEvent();
 
                 if (!(m_item.Data is ColorResource))
                     m_item.Action.AddListener(m_experienceMachine.ExecuteMenuCommand);

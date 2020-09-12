@@ -14,8 +14,15 @@ namespace Fordi.Core
     {
         public override void ExecuteMenuCommand(MenuClickArgs args)
         {
-            if (args.Data != null && ((ResourceComponent)args.Data).ResourceType == ResourceType.ANIMATION)
-                return;
+            try
+            {
+                if (args.Data != null && ((ResourceComponent)args.Data).ResourceType == ResourceType.ANIMATION)
+                    return;
+            }
+            catch
+            {
+
+            }
 
             base.ExecuteMenuCommand(args);
 

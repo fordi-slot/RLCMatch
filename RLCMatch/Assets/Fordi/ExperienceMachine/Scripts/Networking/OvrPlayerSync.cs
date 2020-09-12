@@ -22,10 +22,12 @@ namespace Fordi.Networking
         private Transform camRig = null;
 
         private IUIEngine m_uiEngine = null;
+        private PhotonView m_photonView;
 
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
+            m_photonView = GetComponent<PhotonView>();
         }
 
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
@@ -90,13 +92,6 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.LogError("PointerClick");
-            if (Input.GetMouseButtonDown(1))
-            {
-                Debug.LogError("MousueDown");
-            }
-
-           
             //if (Input.GetMouseButton(1))
             //{
             m_uiEngine.OpenContextUI(new MenuArgs()
@@ -117,16 +112,40 @@ namespace Fordi.Networking
                 CommandType = MenuCommandType.SEND_FRIEND_REQUEST,
                 Command = "Send Friend Request",
                 Text = "Send Friend Request",
+                Action = new MenuItemEvent(),
+                Data = playerId
             };
+
+            items[0].Action.AddListener(OnContextItemClick);
 
             items[1] = new MenuItemInfo()
             {
                  CommandType = MenuCommandType.INVITE_FOR_SEX,
                  Command = "Invite For Sex",
                  Text = "Invite For Sex",
+                Action = new MenuItemEvent(),
             };
 
+            items[1].Action.AddListener(OnContextItemClick);
+
+
             return items;
+        }
+
+        private void OnContextItemClick(MenuClickArgs arg0)
+        {
+            Debug.LogError(arg0.CommandType.ToString());
+            var targetPlayerId = (int)arg0.Data;
+            m_uiEngine.CloseLastScreen();
+            var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == targetPlayerId);
+            m_photonView.RPC("RPC_Request", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, (int)arg0.CommandType);
+        }
+
+        [PunRPC]
+        private void RPC_Request(int senderId, int commandType)
+        {
+            MenuCommandType menuCommand = (MenuCommandType)commandType;
+            Debug.LogError(senderId + " " + menuCommand.ToString());
         }
     }
 }
