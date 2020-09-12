@@ -92,6 +92,8 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            Debug.LogError(playerId + " " + PhotonNetwork.LocalPlayer.ActorNumber);
+
             if (isRemotePlayer && Input.GetMouseButton(1))
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
