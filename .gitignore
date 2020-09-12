@@ -1,0 +1,15 @@
+*.csproj
+*.sln
+.vs
+*.zip
+Library/
+Builds/
+obj/
+Temp/
+Logs/
+VRLMS-*/
+*.log
+VMeet/uDesktopDuplication.log
+LocalWorkbench/
+LocalWorkbench.meta
+*.log
