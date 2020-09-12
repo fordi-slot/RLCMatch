@@ -1,4 +1,5 @@
 ﻿using Fordi.Common;
+using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
 using Photon.Pun;
@@ -22,6 +23,7 @@ namespace Fordi.Networking
         private Transform camRig = null;
 
         private IUIEngine m_uiEngine = null;
+        private IExperienceMachine m_experienceMachine = null;
         private PhotonView m_photonView;
 
         private void Awake()
@@ -151,11 +153,17 @@ namespace Fordi.Networking
 
             m_uiEngine.Popup(new PopupInfo()
             {
-                Title = "REQUEST",
+                 Title = "REQUEST",
                  Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + senderId,
                  Action = (val) => 
                  {
-                     Debug.LogError(val.ToString());
+                     if (menuCommand == MenuCommandType.INVITE_FOR_SEX)
+                     {
+                         Selection.Location = "PrivateMeeting";
+                         Selection.ExperienceType = ExperienceType.MEETING;
+                         if (PhotonNetwork.IsMasterClient)
+                             m_experienceMachine.LoadExperience();
+                     }
                  }
             });
 
