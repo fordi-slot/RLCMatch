@@ -26,6 +26,7 @@ namespace Fordi.UI
         public bool Block = false;
         public bool BackEnabled = true;
         public bool Persist = true;
+        public Vector2? Position = Vector2.zero;
     }
 
     public class GridArgs : MenuArgs
@@ -68,6 +69,7 @@ namespace Fordi.UI
         IScreen OpenMeetingForm(FormArgs args);
         IScreen OpenSignupPage(MenuArgs args);
         IScreen OpenLoginPage(MenuArgs args);
+        IScreen OpenContextUI(MenuArgs args);
         IScreen Popup(PopupInfo popupInfo);
         IScreen OpenForm(FormArgs args);
         IScreen DisplayResult(Error error, bool freshScreen = false);
@@ -94,6 +96,8 @@ namespace Fordi.UI
         protected Platform m_platform;
         [SerializeField]
         protected MenuScreen m_mainMenuPrefab, m_gridMenuPrefab, m_inventoryMenuPrefab, m_textBoxPrefab, m_formPrefab, m_annotationInterface;
+        [SerializeField]
+        protected MenuScreen m_contextMenuPrefab;
         [SerializeField]
         protected MeetingPage m_meetingPagePrefab;
         [SerializeField]
@@ -248,6 +252,23 @@ namespace Fordi.UI
             var popup = (Popup)SpawnScreen(m_popupPrefab);
             popup.Show(popupInfo, null);
             return popup;
+        }
+
+        public IScreen OpenContextUI(MenuArgs args)
+        {
+            if (!args.Position.HasValue)
+                args.Position = new Vector2(Screen.width/2, -Screen.height/2);
+
+            m_screensRoot.gameObject.SetActive(true);
+            PrepareForNewScreen();
+            var menu = Instantiate(m_contextMenuPrefab, m_screensRoot).GetComponent<IScreen>();
+            var screen = menu as MenuScreen;
+            var rectTransform = screen.transform as RectTransform;
+            screen.transform.position = new Vector3(args.Position.Value.x, args.Position.Value.y -rectTransform.sizeDelta.y, screen.transform.position.z);
+            m_screenStack.Push(menu);
+            ((MenuScreen)menu).OpenMenu(this, args);
+            m_menuOn = true;
+            return menu;
         }
 
         public virtual void CloseLastScreen()
@@ -567,5 +588,7 @@ namespace Fordi.UI
                 return menu;
             }
         }
+
+      
     }
 }

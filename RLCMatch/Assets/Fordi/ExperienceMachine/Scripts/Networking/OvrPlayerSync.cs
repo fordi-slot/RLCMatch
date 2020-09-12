@@ -1,4 +1,6 @@
-﻿using Photon.Pun;
+﻿using Fordi.Common;
+using Fordi.UI;
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +19,13 @@ namespace Fordi.Networking
         public bool isRemotePlayer = false;
         private Transform fChild = null;
         private Transform camRig = null;
+
+        private IUIEngine m_uiEngine = null;
+
+        private void Awake()
+        {
+            m_uiEngine = IOCCore.Resolve<IUIEngine>();
+        }
 
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
         {
@@ -80,7 +89,12 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.LogError("OnPointerClick");
+            m_uiEngine.OpenContextUI(new MenuArgs()
+            {
+                Persist = false,
+                Position = new Vector2(eventData.position.x, eventData.position.y)
+            });
+
         }
     }
 }
