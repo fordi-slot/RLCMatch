@@ -126,7 +126,8 @@ namespace Fordi.Networking
                  CommandType = MenuCommandType.INVITE_FOR_SEX,
                  Command = "Invite For Sex",
                  Text = "Invite For Sex",
-                Action = new MenuItemEvent(),
+                 Action = new MenuItemEvent(),
+                 Data = playerId
             };
 
             items[1].Action.AddListener(OnContextItemClick);
