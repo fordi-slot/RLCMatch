@@ -1,5 +1,6 @@
 ﻿using Fordi.Common;
 using Fordi.UI;
+using Fordi.UI.MenuControl;
 using Photon.Pun;
 using System;
 using System.Collections;
@@ -92,9 +93,31 @@ namespace Fordi.Networking
             m_uiEngine.OpenContextUI(new MenuArgs()
             {
                 Persist = false,
-                Position = new Vector2(eventData.position.x, eventData.position.y)
+                Position = new Vector2(eventData.position.x, eventData.position.y),
+                Items = CreateContextMenu()
             });
 
+        }
+
+        MenuItemInfo[] CreateContextMenu()
+        {
+            MenuItemInfo[] items = new MenuItemInfo[2];
+
+            items[0] = new MenuItemInfo()
+            {
+                CommandType = MenuCommandType.SEND_FRIEND_REQUEST,
+                Command = "Send Friend Request",
+                Text = "Send Friend Request",
+            };
+
+            items[1] = new MenuItemInfo()
+            {
+                 CommandType = MenuCommandType.INVITE_FOR_SEX,
+                 Command = "Invite For Sex",
+                 Text = "Invite For Sex",
+            };
+
+            return items;
         }
     }
 }

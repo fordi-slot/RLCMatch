@@ -66,7 +66,13 @@ namespace Fordi.UI.MenuControl
         LOGOUT,
         VIDEO_CONFERENCE,
         CONTROLS,
-        SIMULATION
+        SIMULATION,
+
+        SEND_FRIEND_REQUEST = 40,
+        ACCEPT_FRIEND_REQUEST = 41,
+        REJECT_FEIDN_REQUEST = 42,
+
+        INVITE_FOR_SEX = 50
     }
 
     [Serializable]
