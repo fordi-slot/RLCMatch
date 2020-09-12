@@ -26,6 +26,18 @@ namespace Fordi.Core
     }
 
     [Serializable]
+    public class AnimationGroup : ResourceComponent
+    {
+        public AnimationResource[] Resources;
+    }
+
+    [Serializable]
+    public class AnimationResource : ExperienceResource
+    {
+        public AnimationClip clip;
+    }
+
+    [Serializable]
     public class ExperienceGroup : ResourceComponent
     {
         public ExperienceResource[] Resources;
@@ -80,6 +92,7 @@ namespace Fordi.Core
         public const string SampleResource = "Sample";
 
         private IExperienceMachine m_experienceMachine;
+        private AnimationGroup[] m_animations;
 
         private string GuideCategory
         {
@@ -104,6 +117,7 @@ namespace Fordi.Core
             m_controlGuideVO = m_assetDb.GuideAudioGroups;
             m_objects = m_assetDb.ObjectGroups;
             m_colors = m_assetDb.ColorGroups;
+            m_animations = m_assetDb.Animations;
         }
 
         public ResourceComponent[] GetCategories(ResourceType type)
@@ -116,6 +130,8 @@ namespace Fordi.Core
                     return m_objects;
                 case ResourceType.COLOR:
                     return m_colors;
+                case ResourceType.ANIMATION:
+                    return m_animations;
                 default:
                     return null;
             }

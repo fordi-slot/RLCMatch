@@ -35,5 +35,10 @@ namespace Fordi.Core
         [Header("Vectors")]
         public ExperienceGroup Vectors;
         #endregion
+
+        [Header("Others")]
+        #region ANIMATIONS
+        public AnimationGroup[] Animations;
+        #endregion
     }
 }

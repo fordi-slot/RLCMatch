@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 44f9ccbb1fd421b4ba775d6fd8e8ebea
+    m_Address: Assets/RLC/AnimationEngine.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 4aeaaaa06aac90a46b04b9292599328c
     m_Address: Assets/Fordi/ExperienceMachine/Models/Room.prefab
     m_ReadOnly: 0

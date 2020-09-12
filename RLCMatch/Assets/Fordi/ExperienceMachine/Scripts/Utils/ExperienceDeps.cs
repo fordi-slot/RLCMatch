@@ -10,6 +10,7 @@ using Network = Fordi.Networking.Network;
 using Fordi.UI;
 using Fordi.AssetManagement;
 using Fordi.Plugins;
+using RLC.Animation;
 
 namespace Fordi.Core
 {
@@ -28,6 +29,25 @@ namespace Fordi.Core
                     experienceMachine = gameObject.AddComponent<ExperienceMachine>();
                 }
                 return experienceMachine;
+            }
+        }
+
+
+        private IAnimationEngine m_animationEngine;
+
+        protected virtual IAnimationEngine AnimationEngine
+        {
+            get
+            {
+                AnimationEngine dep = FindObjectOfType<AnimationEngine>();
+                if (dep == null)
+                {
+                    var obj = new GameObject("AnimationEngine");
+                    dep = obj.AddComponent<AnimationEngine>();
+                    dep.transform.parent = m_modulesRoot;
+                    dep.transform.localPosition = Vector3.zero;
+                }
+                return dep;
             }
         }
 
@@ -292,6 +312,7 @@ namespace Fordi.Core
             m_assetLoader = AssetLoader;
             m_pluginHook = PluginHook;
             m_permissions = Permissions;
+            m_animationEngine = AnimationEngine;
         }
 
         private void OnDestroy()
@@ -363,6 +384,7 @@ namespace Fordi.Core
             //IOCCore.RegisterFallback(() => Instance.m_annotation);
             IOCCore.RegisterFallback(() => Instance.m_uiEngine);
             IOCCore.RegisterFallback(() => Instance.m_permissions);
+            IOCCore.RegisterFallback(() => Instance.m_animationEngine);
 
             if (IOCCore.Resolve<ControlConfigurations>() == null)
                 IOCCore.Register(new ControlConfigurations());

@@ -53,7 +53,7 @@ namespace RLC.Animation
             {
                 var observable = Observable.TimerFrame(20).Subscribe(_ =>
                 {
-                    m_cameraControl.SwitchMode(CameraMode.INDEPENDENT);
+                    //m_cameraControl.SwitchMode(CameraMode.INDEPENDENT);
                     var subject = m_poses[state];
                     if (m_currentSubject != null)
                         m_currentSubject.Stop();
@@ -70,7 +70,7 @@ namespace RLC.Animation
             if (m_currentSubject != null)
                 m_currentSubject.Stop();
             m_currentSubject = null;
-            m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
+            //m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
         }
     }
 }

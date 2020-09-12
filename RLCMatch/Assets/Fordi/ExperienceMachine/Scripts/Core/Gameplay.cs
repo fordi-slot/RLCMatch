@@ -14,6 +14,9 @@ namespace Fordi.Core
     {
         public override void ExecuteMenuCommand(MenuClickArgs args)
         {
+            if (args.Data != null && ((ResourceComponent)args.Data).ResourceType == ResourceType.ANIMATION)
+                return;
+
             base.ExecuteMenuCommand(args);
 
             if (args.CommandType == MenuCommandType.LOGOUT)
@@ -27,6 +30,7 @@ namespace Fordi.Core
             if (args.CommandType == MenuCommandType.CATEGORY_SELECTION)
             {
                 var resourceType = ((ResourceComponent)args.Data).ResourceType;
+                Debug.LogError(resourceType.ToString());
                 m_uiEngine.OpenGridMenu(new GridArgs()
                 {
                     Items = ResourceToMenuItems(GetResource(resourceType, args.Command)),

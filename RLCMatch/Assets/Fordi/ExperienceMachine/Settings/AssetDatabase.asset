@@ -391,21 +391,7 @@ MonoBehaviour:
       LargePreview: {fileID: 21300000, guid: 13dc08963eedac4408d111f655e54ac6, type: 3}
       SpecialCommand: 
       Clip: {fileID: 8300000, guid: add1942e270958b418068ea7438ba25a, type: 3}
-  HomeMusic:
-  - Name: Zen
-    Description: 
-    ResourceType: 0
-    Preview: {fileID: 0}
-    LargePreview: {fileID: 0}
-    SpecialCommand: 
-    Resources:
-    - Name: Zen_3_YBC 3599
-      Description: 
-      ResourceType: 0
-      Preview: {fileID: 0}
-      LargePreview: {fileID: 0}
-      SpecialCommand: 
-      Clip: {fileID: 8300000, guid: d150e2ec9ffe871489d6e6c63503d28f, type: 3}
+  HomeMusic: []
   MandalaMusic:
   - Name: Relax
     Description: 
@@ -911,16 +897,7 @@ MonoBehaviour:
         type: 3}
   Thoughts:
   - "Copyright \xA9 2020 Telecomatics Pvt. Ltd., India. All rights reserved."
-  Credits: 'Welcome to VMeet!
-
-    It is a virtual reality collaboration app designed for corporates.
-
-    This is your one stop solution for all your meeting and conferences need.
-
-    With highest quality video and audio, screen sharing and 3d annotation, this app
-    will revolutionise your long distance team work.
-
-    Meet, share and collaborate!'
+  Credits: 
   Vectors:
     Name: 
     Description: 
@@ -929,3 +906,53 @@ MonoBehaviour:
     LargePreview: {fileID: 0}
     SpecialCommand: 
     Resources: []
+  Animations:
+  - Name: CowGirl
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Cowgirl1
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      clip: {fileID: 0}
+    - Name: Cowgirl2
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      clip: {fileID: 0}
+  - Name: Doggy Anal
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: DoggyAnal0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      clip: {fileID: 0}
+    - Name: DoggyAnal1
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      clip: {fileID: 0}
+    - Name: DoggyAnal2
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      clip: {fileID: 0}

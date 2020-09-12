@@ -53,6 +53,8 @@ namespace Fordi.UI
         void Close();
         void GoBack();
 
+        IUserInterface GetInterface(Platform platform = Platform.DESKTOP);
+
         void ActivateInterface(Platform platform);
         void RegisterInterface(IUserInterface userInterface);
     }
@@ -368,6 +370,14 @@ namespace Fordi.UI
                 return m_vrInterface.RootCanvas;
             else
                 throw new InvalidOperationException("VR Module not available");
+        }
+
+        public IUserInterface GetInterface(Platform platform = Platform.DESKTOP)
+        {
+            if (platform == Platform.DESKTOP)
+                return m_standaloneInterface;
+            else
+                throw new NotImplementedException();
         }
 
         #region GUIDE_CONDITIONS

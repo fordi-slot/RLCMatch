@@ -27,6 +27,7 @@ namespace Fordi.UI
         public bool BackEnabled = true;
         public bool Persist = true;
         public Vector2? Position = Vector2.zero;
+        public object Data = null;
     }
 
     public class GridArgs : MenuArgs

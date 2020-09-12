@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Fordi.Core;
+using Fordi.Networking;
+using Photon.Pun;
 
 namespace RLC.UI
 {
@@ -60,11 +63,16 @@ namespace RLC.UI
 
         public void Quit()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
-#else
-                Application.Quit();
-#endif
+            Selection.Location = Fordi.Networking.Network.MeetingRoom;
+            Selection.ExperienceType = ExperienceType.MEETING;
+            if (PhotonNetwork.IsMasterClient)
+                m_experienceMachine.LoadExperience();
+
+//#if UNITY_EDITOR
+//            UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
+//#else
+//                Application.Quit();
+//#endif
             return;
         }
     }

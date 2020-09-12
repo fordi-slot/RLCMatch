@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4803836337162783251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93dbbe5e304126740ab91b3a2b926241, type: 3}
+  m_Script: {fileID: 11500000, guid: e1c148bd595c4da4b9fdd1c25c962be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_root: {fileID: 4803836337162783252}
+  m_root: {fileID: 0}
   m_platform: 0
   shadow: {fileID: 0}
   m_solidBackground: {fileID: 0}
@@ -25,27 +25,12 @@ MonoBehaviour:
   overriddenHighlight: {r: 1, g: 1, b: 1, a: 1}
   overrideColor: 0
   m_icon: {fileID: 6138554966664578877}
-  m_page: {fileID: 0}
-  m_description: {fileID: 0}
   m_skin: {fileID: 11400000, guid: a7403e277f90a004aa968e822bd15be3, type: 2}
   m_onImage: {fileID: 0}
   m_offImage: {fileID: 0}
-  m_subTabs:
-  - Path: 
-    Text: 
-    Icon: {fileID: 0}
-    Command: 
-    CommandType: 0
-    Action:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: Fordi.UI.MenuControl.MenuItemEvent, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    Validate:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: Fordi.UI.MenuControl.MenuItemValidationEvent, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+  m_page: {fileID: 0}
+  m_description: {fileID: 0}
+  m_subTabs: []
   m_menuItem: {fileID: 6138554965584585728, guid: 5235780a4b5eabf4eabaa147ca820859,
     type: 3}
   m_contentRoot: {fileID: 0}
@@ -192,11 +177,6 @@ PrefabInstance:
       propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
-        type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 4803836337220213879}
     - target: {fileID: 3128378590984369853, guid: 1d175742cda26ae4abc16b11ff0aab23,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -248,18 +228,17 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 4803836337220213879}
     m_RemovedComponents:
     - {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1d175742cda26ae4abc16b11ff0aab23, type: 3}
 --- !u!1 &4803836337162783251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3128378590910161112, guid: 1d175742cda26ae4abc16b11ff0aab23,
-    type: 3}
-  m_PrefabInstance: {fileID: 7620262585259043531}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4803836337162783252 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3128378590910161119, guid: 1d175742cda26ae4abc16b11ff0aab23,
     type: 3}
   m_PrefabInstance: {fileID: 7620262585259043531}
   m_PrefabAsset: {fileID: 0}
