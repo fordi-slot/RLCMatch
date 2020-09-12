@@ -146,6 +146,17 @@ namespace Fordi.Networking
         {
             MenuCommandType menuCommand = (MenuCommandType)commandType;
             Debug.LogError(senderId + " " + menuCommand.ToString());
+
+
+            m_uiEngine.Popup(new PopupInfo()
+            {
+                 Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + senderId,
+                 Action = (val) => 
+                 {
+                     Debug.LogError(val.ToString());
+                 }
+            });
+
         }
     }
 }

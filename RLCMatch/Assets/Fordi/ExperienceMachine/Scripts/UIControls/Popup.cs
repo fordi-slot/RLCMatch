@@ -16,6 +16,13 @@ namespace Fordi.UI
     {
         public Sprite Preview;
         public string Content;
+        public Action<PopupAction> Action;
+        public enum PopupAction
+        {
+            ACCEPT,
+            REJECT,
+            CANCEL
+        }
     }
 
     public class Popup : MonoBehaviour, IScreen
@@ -46,6 +53,8 @@ namespace Fordi.UI
         [SerializeField]
         private List<SyncView> m_synchronizedElements = new List<SyncView>();
 
+        private Action<PopupInfo.PopupAction> m_onPopupClck;
+
         private void Awake()
         {
             m_vrMenu = IOCCore.Resolve<IUserInterface>();
@@ -60,6 +69,7 @@ namespace Fordi.UI
 
         public void Show(PopupInfo popupInfo, Action Ok  = null)
         {
+            m_onPopupClck = popupInfo.Action;
             gameObject.SetActive(true);
             m_ok = Ok;
 
@@ -157,6 +167,21 @@ namespace Fordi.UI
 
             if (Pair != null)
                 Pair.DisplayProgress(text);
+        }
+
+        public void AcceptClick()
+        {
+            m_onPopupClck?.Invoke(PopupInfo.PopupAction.ACCEPT);
+        }
+
+        public void RejectClick()
+        {
+            m_onPopupClck?.Invoke(PopupInfo.PopupAction.REJECT);
+        }
+
+        public void CancelClick()
+        {
+            m_onPopupClck?.Invoke(PopupInfo.PopupAction.CANCEL);
         }
     }
 }
