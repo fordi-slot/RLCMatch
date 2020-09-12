@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: VR
+  m_EditorClassIdentifier: 
+  m_GroupName: VR
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 238dd6e01c4b4ea4f83fbc2a6b2541c3
+  m_SerializeEntries:
+  - m_GUID: 05f3c417d190d39489e20a4eb27691cf
+    m_Address: Assets/Fordi/ExperienceMachine/Models/Table.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 23d25b2e2d4364dd4b92c52ef40cd36e
+    m_Address: Assets/FurnishedCabin/Prefabs/PFB_Building_Full.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 4aeaaaa06aac90a46b04b9292599328c
+    m_Address: Assets/Fordi/ExperienceMachine/Models/Room.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 675510cebd8075a4bb770c1b85ddafcf
+    m_Address: Assets/Fordi/ExperienceMachine/Demo/Scenes/LightingDone/Meeting/Laptops.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7723c6a301c4c404d99a27a6bf62a29e
+    m_Address: Assets/Fordi/PlatformModules/VR/Prefabs/VRDepsHome.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7cb9eefa04c2f5545b10e149baeb10cb
+    m_Address: Assets/Fordi/PlatformModules/VR/Prefabs/VRModule.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 7e361ea6e1d57a34cb89bbee994688b9
+    m_Address: Assets/Fordi/ExperienceMachine/Demo/Scenes/LightingDone/Meeting/Environment.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: a277535d6efd39243bd05ec7ab0a7bf0
+    m_Address: Assets/Fordi/ExperienceMachine/Models/Chairs.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c05fee30e5be7384ba058cac9776385a
+    m_Address: Assets/Fordi/PlatformModules/VR/Prefabs/VRDeps.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ca1c7454e304e984e909f8a2cc633268
+    m_Address: Assets/Gallery/Env_Gallery.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: de65dcbb0f07b4942b7d3498b7b05b4d
+    m_Address: Assets/Fordi/PlatformModules/VR/Prefabs/VRModuleHome.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 34d532655797d694cb01f097db831fc5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 04393b1344a0d6a4c9d8cc0d0488e371, type: 2}
+    - {fileID: 11400000, guid: 611ac1b00aa5a8e4c8d002d5f3e750dd, type: 2}
