@@ -70,12 +70,14 @@ namespace Fordi.Networking
                 PhotonNetwork.ConnectUsingSettings();
         }
 
+        private static bool m_playersSpawned = false;
         private void OnLevelWasLoaded(int level)
         {
-            if (PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom && !m_playersSpawned)
             {
                 Log("Level: " + level + " In room: " + PhotonNetwork.InRoom);
-                Observable.TimerFrame(20).Subscribe(_ => RaisePlayerSpawnEvent()); 
+                Observable.TimerFrame(20).Subscribe(_ => RaisePlayerSpawnEvent());
+                m_playersSpawned = true;
             }
             //    if (PhotonNetwork.InRoom)
             //        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Cube"), Vector3.one, Quaternion.identity, 0);
