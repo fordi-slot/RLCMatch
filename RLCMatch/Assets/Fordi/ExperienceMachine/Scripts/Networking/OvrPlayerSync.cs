@@ -62,6 +62,11 @@ namespace Fordi.Networking
         //    //fChild.rotation = Quaternion.identity;
         //}
 
+        public void OnMouseDown()
+        {
+            Debug.LogError("OnMouseDown");
+        }
+
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
           
