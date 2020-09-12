@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932cfa1ed18fdec45b9a2e16cfe3cd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_remotePlayerPrefab: {fileID: 6347688229099146209, guid: 6323204582c1aa345b6e7131a2d863ab,
+  m_remotePlayerPrefab: {fileID: 2423642244330050277, guid: 4b2b46dcd930931468abc63a857fbb50,
     type: 3}
 --- !u!114 &555243863067182530
 MonoBehaviour:
@@ -655,6 +655,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1850772632602514211, guid: d8099e17214c9b44fa885eecfba2b4df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5862238669824258256, guid: d8099e17214c9b44fa885eecfba2b4df,
         type: 3}
       propertyPath: m_deps.Array.size
@@ -676,6 +681,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1630390759950656632, guid: 8ac3e9dea9e9e57469f5f19958ad2e13,
         type: 3}
+    - target: {fileID: 1850772631684991805, guid: d8099e17214c9b44fa885eecfba2b4df,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3816516782802959818, guid: d8099e17214c9b44fa885eecfba2b4df,
         type: 3}
       propertyPath: viewIdField
@@ -684,11 +694,6 @@ PrefabInstance:
     - target: {fileID: 5166877835014511375, guid: d8099e17214c9b44fa885eecfba2b4df,
         type: 3}
       propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1850772631684991805, guid: d8099e17214c9b44fa885eecfba2b4df,
-        type: 3}
-      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

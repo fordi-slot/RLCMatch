@@ -1,0 +1,132 @@
+<linker>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.MonoBehaviour" preserve="all" />
+    <type fullname="UnityEngine.LineRenderer" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.ReflectionProbe" preserve="all" />
+    <type fullname="UnityEngine.LightProbeGroup" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rigidbody" preserve="all" />
+    <type fullname="UnityEngine.MeshCollider" preserve="all" />
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
+    <type fullname="UnityEngine.SphereCollider" preserve="all" />
+    <type fullname="UnityEngine.CapsuleCollider" preserve="all" />
+    <type fullname="UnityEngine.CharacterController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Avatar" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AudioSource" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.EventSystems.EventTrigger" preserve="all" />
+    <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.Outline" preserve="all" />
+    <type fullname="UnityEngine.UI.RectMask2D" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.Slider" preserve="all" />
+    <type fullname="UnityEngine.UI.Toggle" preserve="all" />
+    <type fullname="UnityEngine.UI.ToggleGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.Text" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TMP_InputField" preserve="all" />
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+  </assembly>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Fordi.UI.VRUIInteraction" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.VRMenu" preserve="all" />
+    <type fullname="Fordi.Platforms.PlatformModule" preserve="all" />
+    <type fullname="MoveObjectController" preserve="all" />
+    <type fullname="Fordi.UI.FordiDropdown" preserve="all" />
+    <type fullname="AL.UI.ButtonInteraction" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.MeetingForm" preserve="all" />
+    <type fullname="Fordi.UI.VRToggleInteraction" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.MenuItem" preserve="all" />
+    <type fullname="Fordi.Networking.OvrPlayerSync" preserve="all" />
+    <type fullname="MoveableObject" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.SettingsPanel" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.ResourceScreen" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.Form" preserve="all" />
+    <type fullname="Fordi.UI.VRDropdownInteraction" preserve="all" />
+    <type fullname="Fordi.UI.Popup" preserve="all" />
+    <type fullname="AL.UI.SearchbarInteraction" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.Blocker" preserve="all" />
+    <type fullname="Fordi.VR.Chair" preserve="all" />
+    <type fullname="DropdownBlocker" preserve="all" />
+    <type fullname="Fordi.Sync.SyncView" preserve="all" />
+    <type fullname="Fordi.Meeting.OrganizationMember" preserve="all" />
+    <type fullname="Fordi.Sync.UI.UISync" preserve="all" />
+    <type fullname="Fordi.UI.MessageScreen" preserve="all" />
+    <type fullname="CalendarController" preserve="all" />
+    <type fullname="Fordi.UI.TimeInputValidator" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.FormItem" preserve="all" />
+    <type fullname="CalendarDateItem" preserve="all" />
+    <type fullname="Fordi.UI.MenuControl.MenuScreen" preserve="all" />
+    <type fullname="UnityEngine.UI.Extensions.FlowLayoutGroup" preserve="all" />
+    <type fullname="FLScaleTween" preserve="all" />
+    <type fullname="Fordi.UI.ToggleGroupFix" preserve="all" />
+    <type fullname="Fordi.AssetManagement.PlatformDeps" preserve="all" />
+    <type fullname="PrefabLightmapData" preserve="all" />
+    <type fullname="Fordi.Meetings.UI.MeetingPage" preserve="all" />
+    <type fullname="AL.UI.InputFieldInteraction" preserve="all" />
+    <type fullname="Fordi.UI.VRTabInteraction" preserve="all" />
+  </assembly>
+  <assembly fullname="PhotonVoice, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Photon.Voice.Unity.Speaker" preserve="all" />
+  </assembly>
+  <assembly fullname="PhotonUnityNetworking, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Photon.Pun.PhotonTransformView" preserve="all" />
+    <type fullname="Photon.Pun.PhotonView" preserve="all" />
+  </assembly>
+  <assembly fullname="PhotonVoice.PUN, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Photon.Voice.PUN.PhotonVoiceView" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEditor.MonoScript" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+</linker>
