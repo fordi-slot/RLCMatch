@@ -172,6 +172,7 @@ namespace Fordi.UI
         public void AcceptClick()
         {
             m_onPopupClck?.Invoke(PopupInfo.PopupAction.ACCEPT);
+            IOCCore.Resolve<IUIEngine>().CloseLastScreen();
         }
 
         public void RejectClick()
