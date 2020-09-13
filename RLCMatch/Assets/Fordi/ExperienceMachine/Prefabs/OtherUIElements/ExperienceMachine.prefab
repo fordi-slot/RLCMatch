@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 932cfa1ed18fdec45b9a2e16cfe3cd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_remotePlayerPrefab: {fileID: 6347688229099146209, guid: 6323204582c1aa345b6e7131a2d863ab,
+  m_remotePlayerPrefab: {fileID: 2423642244330050277, guid: 4b2b46dcd930931468abc63a857fbb50,
     type: 3}
 --- !u!114 &555243863067182530
 MonoBehaviour:
