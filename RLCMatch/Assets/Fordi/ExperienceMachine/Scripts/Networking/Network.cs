@@ -105,6 +105,9 @@ namespace Fordi.Networking
         }
 
         private static bool m_autoJoined = true;
+
+        private Action m_joinedLobby = null;
+
         public override void OnJoinedLobby()
         {
             base.OnJoinedLobby();
@@ -116,12 +119,9 @@ namespace Fordi.Networking
             //PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
             //PhotonNetwork.LocalPlayer.NickName = m_webInterface.UserInfo.userName;
 
-           
 
-            //if (!m_autoJoined)
-            //{
-               
-            //}
+
+            m_joinedLobby?.Invoke();
         }
 
         public void EnterMeeting()
@@ -139,15 +139,26 @@ namespace Fordi.Networking
         {
             if (PhotonNetwork.InRoom)
             {
+                m_joinedLobby = () =>
+                {
+                    m_roomStatus = RoomStatus.PRIVATE;
+
+                    if (host)
+                        CreateRoom(roomName);
+                    else
+                        JoinRoom(roomName);
+                };
                 PhotonNetwork.LeaveRoom();
             }
-
-            m_roomStatus = RoomStatus.PRIVATE;
-
-            if (host)
-                CreateRoom(roomName);
             else
-                JoinRoom(roomName);
+            {
+                m_roomStatus = RoomStatus.PRIVATE;
+
+                if (host)
+                    CreateRoom(roomName);
+                else
+                    JoinRoom(roomName);
+            }
         }
 
         public void CreateRoom(string roomName)
