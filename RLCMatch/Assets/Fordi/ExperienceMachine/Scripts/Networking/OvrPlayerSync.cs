@@ -119,7 +119,7 @@ namespace Fordi.Networking
 
         MenuItemInfo[] CreateContextMenu()
         {
-            MenuItemInfo[] items = new MenuItemInfo[2];
+            MenuItemInfo[] items = new MenuItemInfo[3];
 
             items[0] = new MenuItemInfo()
             {
@@ -144,6 +144,17 @@ namespace Fordi.Networking
             items[1].Action.AddListener(OnContextItemClick);
 
 
+            items[2] = new MenuItemInfo()
+            {
+                CommandType = MenuCommandType.OTHER,
+                Command = "Cancel",
+                Text = "Cancel",
+                Action = new MenuItemEvent(),
+                Data = playerId
+            };
+
+            items[1].Action.AddListener(OnContextItemClick);
+
             return items;
         }
 
@@ -152,6 +163,10 @@ namespace Fordi.Networking
             Debug.LogError(playerId + " " + PhotonNetwork.LocalPlayer.ActorNumber + " " + arg0.CommandType.ToString());
             var targetPlayerId = (int)arg0.Data;
             m_uiEngine.CloseLastScreen();
+
+            if (arg0.CommandType == MenuCommandType.OTHER)
+                return;
+
             var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == targetPlayerId);
             m_photonView.RPC("RPC_Request", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, (int)arg0.CommandType);
         }
