@@ -152,6 +152,7 @@ namespace Fordi.Networking
 
         public void CreateRoom(string roomName)
         {
+            Debug.LogError("CreateRoom: " + PhotonNetwork.IsConnectedAndReady);
             if (!PhotonNetwork.IsConnectedAndReady)
             {
                 m_uiEngine.DisplayResult(new Error()
