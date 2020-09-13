@@ -35,6 +35,15 @@ namespace Fordi.Networking
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
 
+          
+        }
+
+        private IEnumerator Start()
+        {
+            yield return null;
+            yield return null;
+
+            Debug.LogError(Selection.Location);
             if (Selection.Location == "PrivateMeeting")
             {
                 var renderers = GetComponentsInChildren<Renderer>();
