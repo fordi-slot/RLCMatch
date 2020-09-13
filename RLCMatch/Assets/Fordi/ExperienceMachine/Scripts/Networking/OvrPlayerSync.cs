@@ -34,6 +34,13 @@ namespace Fordi.Networking
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
+
+            if (Selection.Location == "PrivateMeeting")
+            {
+                var renderers = GetComponentsInChildren<Renderer>();
+                foreach (var item in renderers)
+                    item.enabled = false;
+            }
         }
 
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
@@ -99,7 +106,7 @@ namespace Fordi.Networking
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber + " " + playerId);
-            if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
+            if (Input.GetMouseButton(1) && PhotonNetwork.LocalPlayer.ActorNumber != playerId)
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {
