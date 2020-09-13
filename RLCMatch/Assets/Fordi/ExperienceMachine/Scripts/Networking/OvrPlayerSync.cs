@@ -6,6 +6,7 @@ using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,12 +25,14 @@ namespace Fordi.Networking
 
         private IUIEngine m_uiEngine = null;
         private IExperienceMachine m_experienceMachine = null;
+        private INetwork m_network;
         private PhotonView m_photonView;
 
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
+            m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
         }
 
@@ -161,13 +164,27 @@ namespace Fordi.Networking
                  {
                      if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
                      {
-                         Selection.Location = "PrivateMeeting";
-                         Selection.ExperienceType = ExperienceType.MEETING;
-                         m_experienceMachine.LoadExperience();
+                         m_uiEngine.CloseLastScreen();
+                         var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
+                         m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, true, Guid.NewGuid().ToString().Substring(0, 4));
                      }
                  }
             });
 
+        }
+
+        [PunRPC]
+        private void RPC_PrivateRoom(int senderId, bool invitee, string roomName)
+        {
+            Debug.LogError("RPC_PrivateRoom: " + senderId + " " + invitee + " " + roomName);
+            if (invitee)
+                m_network.EnterPrivateRoom(roomName, true);
+            else
+                Observable.TimerFrame(240).Subscribe(_ =>
+                {
+                    if (Array.Find(Network.Rooms, item => item.Name == roomName) != null)
+                        m_network.EnterPrivateRoom(roomName, false);
+                });
         }
     }
 }
