@@ -180,10 +180,17 @@ namespace Fordi.Networking
         {
             Debug.LogError("RPC_PrivateRoom: " + senderId + " " + roomName);
             
-            Observable.TimerFrame(240).Subscribe(_ =>
+            Observable.TimerFrame(500).Subscribe(_ =>
             {
                 if (Array.Find(Network.Rooms, item => item.Name == roomName) != null)
+                {
+                    Debug.LogError("Room exists: " + roomName);
                     m_network.EnterPrivateRoom(roomName, false);
+                }
+                else
+                {
+                    Debug.LogError("Room doesn't exist: " + roomName);
+                }
             });
         }
     }
