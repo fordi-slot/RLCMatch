@@ -113,8 +113,8 @@ namespace Fordi.Networking
 
             ExitGames.Client.Photon.Hashtable playerCustomProperties = new ExitGames.Client.Photon.Hashtable();
             playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
-            PhotonNetwork.LocalPlayer.NickName = m_webInterface.UserInfo.userName;
+            //PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
+            //PhotonNetwork.LocalPlayer.NickName = m_webInterface.UserInfo.userName;
 
            
 
