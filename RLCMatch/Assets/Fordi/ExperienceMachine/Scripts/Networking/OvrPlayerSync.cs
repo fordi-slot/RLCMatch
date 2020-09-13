@@ -115,7 +115,7 @@ namespace Fordi.Networking
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber + " " + playerId);
-            if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
+            if (Selection.Location != "PrivateMeeting" && PhotonNetwork.LocalPlayer.ActorNumber != playerId)
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {
