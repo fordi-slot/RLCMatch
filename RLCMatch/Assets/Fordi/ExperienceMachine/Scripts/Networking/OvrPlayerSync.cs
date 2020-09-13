@@ -106,7 +106,7 @@ namespace Fordi.Networking
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber + " " + playerId);
-            if (Input.GetMouseButton(1) && PhotonNetwork.LocalPlayer.ActorNumber != playerId)
+            if (PhotonNetwork.LocalPlayer.ActorNumber != playerId)
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {
