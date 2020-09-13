@@ -166,7 +166,9 @@ namespace Fordi.Networking
                      {
                          m_uiEngine.CloseLastScreen();
                          var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
-                         m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, true, Guid.NewGuid().ToString().Substring(0, 4));
+                         var roomName = Guid.NewGuid().ToString().Substring(0, 4);
+                         m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, roomName);
+                         m_network.EnterPrivateRoom(roomName, true);
                      }
                  }
             });
@@ -174,17 +176,15 @@ namespace Fordi.Networking
         }
 
         [PunRPC]
-        private void RPC_PrivateRoom(int senderId, bool invitee, string roomName)
+        private void RPC_PrivateRoom(int senderId, string roomName)
         {
-            Debug.LogError("RPC_PrivateRoom: " + senderId + " " + invitee + " " + roomName);
-            if (invitee)
-                m_network.EnterPrivateRoom(roomName, true);
-            else
-                Observable.TimerFrame(240).Subscribe(_ =>
-                {
-                    if (Array.Find(Network.Rooms, item => item.Name == roomName) != null)
-                        m_network.EnterPrivateRoom(roomName, false);
-                });
+            Debug.LogError("RPC_PrivateRoom: " + senderId + " " + roomName);
+            
+            Observable.TimerFrame(240).Subscribe(_ =>
+            {
+                if (Array.Find(Network.Rooms, item => item.Name == roomName) != null)
+                    m_network.EnterPrivateRoom(roomName, false);
+            });
         }
     }
 }
