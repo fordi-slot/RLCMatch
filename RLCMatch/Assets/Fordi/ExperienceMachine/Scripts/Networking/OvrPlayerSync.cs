@@ -153,7 +153,7 @@ namespace Fordi.Networking
                 Data = playerId
             };
 
-            items[1].Action.AddListener(OnContextItemClick);
+            items[2].Action.AddListener(OnContextItemClick);
 
             return items;
         }
