@@ -22,6 +22,7 @@ namespace Fordi.Networking
     {
         [Obsolete("Temporary work for testing purpose")]
         void EnterMeeting();
+        void EnterPrivateRoom(string roomName, bool host);
         void CreateRoom(string roomName);
         void JoinRoom(string roomName);
         void LeaveRoom();
@@ -46,6 +47,14 @@ namespace Fordi.Networking
         public const string ActorNumberString = "ActorNumber";
         public const string OculusIDString = "OculusID";
 
+        public enum RoomStatus
+        {
+            NONE,
+            PUBLIC,
+            PRIVATE
+        }
+
+
         private IUIEngine m_uiEngine = null;
         private IExperienceMachine m_experienceMachine = null;
         private IWebInterface m_webInterface = null;
@@ -58,6 +67,8 @@ namespace Fordi.Networking
         private Dictionary<int, RemotePlayer> m_remotePlayers = new Dictionary<int, RemotePlayer>();
 
         private bool m_debug = false;
+
+        private static RoomStatus m_roomStatus = RoomStatus.NONE;
 
         #region INITIALIZATIONS
         private void Awake()
@@ -115,12 +126,28 @@ namespace Fordi.Networking
 
         public void EnterMeeting()
         {
+            m_roomStatus = RoomStatus.PUBLIC;
             if (PhotonNetwork.CountOfRooms > 0)
             {
                 JoinRoom("Match");
             }
             else
                 CreateRoom("Match");
+        }
+
+        public void EnterPrivateRoom(string roomName, bool host)
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+            }
+
+            m_roomStatus = RoomStatus.PRIVATE;
+
+            if (host)
+                CreateRoom(roomName);
+            else
+                JoinRoom(roomName);
         }
 
         public void CreateRoom(string roomName)
@@ -158,14 +185,26 @@ namespace Fordi.Networking
             base.OnJoinedRoom();
             Debug.LogError("OnJoinedRoom");
             m_autoJoined = true;
-            Selection.Location = MeetingRoom;
-            Selection.ExperienceType = ExperienceType.MEETING;
-            if (PhotonNetwork.IsMasterClient)
-                m_experienceMachine.LoadExperience();
+
+            if (m_roomStatus == RoomStatus.PUBLIC)
+            {
+                Selection.Location = MeetingRoom;
+                Selection.ExperienceType = ExperienceType.MEETING;
+                if (PhotonNetwork.IsMasterClient)
+                    m_experienceMachine.LoadExperience();
+            }
+            else
+            {
+                Selection.Location = "PrivateMeeting";
+                Selection.ExperienceType = ExperienceType.MEETING;
+                if (PhotonNetwork.IsMasterClient)
+                    m_experienceMachine.LoadExperience();
+            }
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
         {
+            m_roomStatus = RoomStatus.NONE;
             base.OnCreateRoomFailed(returnCode, message);
             Error error = new Error(Error.E_Exception);
             error.ErrorText = message;
@@ -236,10 +275,10 @@ namespace Fordi.Networking
         {
             base.OnLeftRoom();
             
-            Selection.Location = LobbyRoom;
-            Selection.ExperienceType = ExperienceType.LOBBY;
-            m_uiEngine.Close();
-            m_experienceMachine.LoadExperience();
+            //Selection.Location = LobbyRoom;
+            //Selection.ExperienceType = ExperienceType.LOBBY;
+            //m_uiEngine.Close();
+            //m_experienceMachine.LoadExperience();
         }
 
 

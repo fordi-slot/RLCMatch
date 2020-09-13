@@ -338,10 +338,10 @@ namespace Fordi.Core
                 }
                 else
                 {
-                    Selection.Location = args.Path;
-                    Selection.ExperienceType = ExperienceType.LOBBY;
-                    m_uiEngine.Close();
-                    m_experienceMachine.LoadExperience();
+                    //Selection.Location = args.Path;
+                    //Selection.ExperienceType = ExperienceType.LOBBY;
+                    //m_uiEngine.Close();
+                    //m_experienceMachine.LoadExperience();
                 }
             }
 
