@@ -122,6 +122,7 @@ namespace Fordi.Networking
 
 
             m_joinedLobby?.Invoke();
+            EnterMeeting();
         }
 
         public void EnterMeeting()
