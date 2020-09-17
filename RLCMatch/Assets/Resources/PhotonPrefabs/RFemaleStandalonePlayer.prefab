@@ -3095,7 +3095,7 @@ GameObject:
   - component: {fileID: 6696118844030927367}
   - component: {fileID: 4426669853089089819}
   m_Layer: 0
-  m_Name: RemotePlayerFemale
+  m_Name: RFemaleStandalonePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3130,9 +3130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5602a919ef355214baa6a8e55d0b2833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerSync: {fileID: 0}
-  m_playerPhotonView: {fileID: 0}
-  m_avatarPhotonView: {fileID: 0}
+  m_playerSync: {fileID: 7967963630832750033}
+  m_playerPhotonView: {fileID: 6042098851166364422}
+  m_avatarPhotonView: {fileID: 6042098851166364422}
 --- !u!1 &6696118844050181329
 GameObject:
   m_ObjectHideFlags: 0
