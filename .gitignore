@@ -7,7 +7,7 @@ Builds/
 obj/
 Temp/
 Logs/
-VRLMS-*/
+rlcmatch_*/
 *.log
 VMeet/uDesktopDuplication.log
 LocalWorkbench/
