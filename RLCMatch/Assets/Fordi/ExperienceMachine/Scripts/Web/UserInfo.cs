@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cornea.Web;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,4 +23,7 @@ public class UserInfo{
     public int[] organizationUnitIds;
     public int UserRoletype = 0;
     public bool hasValidLicense = false;
+
+    public string _id = "";
+    public Gender gender = Gender.MALE;
 }

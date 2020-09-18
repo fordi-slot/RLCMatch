@@ -17,7 +17,7 @@ using Fordi.UI.MenuControl;
 using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
-
+using Photon.Pun;
 
 namespace Cornea.Web
 {
@@ -513,7 +513,8 @@ namespace Cornea.Web
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
-                    Debug.Log(message);
+                    JsonData result = JsonMapper.ToObject(message);
+                    SetUserData(result);
                     done?.Invoke(isNetworkError, message);
                 }
             );
@@ -789,29 +790,37 @@ namespace Cornea.Web
 
         private void SetUserData(JsonData loginValidationData)
         {
-            //Coordinator.instance.authoringManager.ToggleAuthoring(true);
-            //print(loginValidationData["name"] + " " + loginValidationData["emailAddress"]);
-            m_userInfo.emailAddress = Convert.ToString(loginValidationData["emailAddress"]);
-            m_userInfo.id = Convert.ToInt32(Convert.ToString(loginValidationData["id"]));
-            m_userInfo.organizationId = Convert.ToInt32(Convert.ToString(loginValidationData["tenantId"]));
-            m_userInfo.name = Convert.ToString(loginValidationData["name"]);
-            m_userInfo.phoneNumber = Convert.ToString(loginValidationData["phoneNumber"]);
-            //userInfo.UserRoletype = (int)loginValidationData["UserRoletype"];
+            try
+            {
+                //Coordinator.instance.authoringManager.ToggleAuthoring(true);
+                //print(loginValidationData["name"] + " " + loginValidationData["emailAddress"]);
+                m_userInfo.emailAddress = Convert.ToString(loginValidationData["data"]["email"]);
+                m_userInfo._id = Convert.ToString(Convert.ToString(loginValidationData["data"]["_id"]));
+                m_userInfo.name = Convert.ToString(Convert.ToString(loginValidationData["data"]["displayName"]));
+                m_userInfo.gender = (Gender)Convert.ToInt32(Convert.ToString(loginValidationData["data"]["gender"]));
+                //userInfo.UserRoletype = (int)loginValidationData["UserRoletype"];
 
-            ZPlayerPrefs.SetString("name", m_userInfo.name);
-            ZPlayerPrefs.SetInt("id", m_userInfo.id);
-            ZPlayerPrefs.SetInt("organizationId", m_userInfo.organizationId);
-            ZPlayerPrefs.SetString("emailAddress", m_userInfo.emailAddress);
-            //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
+                ZPlayerPrefs.SetString("name", m_userInfo.name);
+                ZPlayerPrefs.SetInt("id", m_userInfo.id);
+                ZPlayerPrefs.SetInt("organizationId", m_userInfo.organizationId);
+                ZPlayerPrefs.SetString("emailAddress", m_userInfo.emailAddress);
 
-            //List<string> allowedFeatures = new List<string>();
-            //for (int i=0; i<loginValidationData["permissions"].Count; i++)  
-            //{
-            //    var permission = loginValidationData["permissions"][i];
-            //    allowedFeatures.Add(Convert.ToString(permission["displayName"]));
-            //    //Debug.LogError(Convert.ToString(permission["displayName"]));
-            //}
-            //Coordinator.instance.permissionHandler.RefreshPermissions(allowedFeatures);
+                PhotonNetwork.NickName = m_userInfo.name;
+                //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
+
+                //List<string> allowedFeatures = new List<string>();
+                //for (int i=0; i<loginValidationData["permissions"].Count; i++)  
+                //{
+                //    var permission = loginValidationData["permissions"][i];
+                //    allowedFeatures.Add(Convert.ToString(permission["displayName"]));
+                //    //Debug.LogError(Convert.ToString(permission["displayName"]));
+                //}
+                //Coordinator.instance.permissionHandler.RefreshPermissions(allowedFeatures);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         public string GetHtmlFromUri(string resource)
