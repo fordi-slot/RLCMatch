@@ -72,7 +72,7 @@ namespace Fordi.Networking
 
         private bool m_debug = false;
 
-        private static RoomStatus m_roomStatus = RoomStatus.NONE;
+        private static RoomStatus m_roomStatus = RoomStatus.PRIVATE;
 
         #region INITIALIZATIONS
         private void Awake()
