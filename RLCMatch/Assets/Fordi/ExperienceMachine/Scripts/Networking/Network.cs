@@ -329,7 +329,7 @@ namespace Fordi.Networking
             {
                 var customProperties = player.CustomProperties;
                 if (customProperties != null)
-                    customProperties.TryGetValue(OculusIDString, out gender);
+                    customProperties.TryGetValue(GenderKey, out gender);
             }
 
             var playerPrefab = (Gender)gender == Gender.MALE ? m_maleRemotePlayerPrefab : m_femaleRemotePlayerPrefab;
