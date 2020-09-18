@@ -143,7 +143,7 @@ namespace Fordi.Networking
 
         public void EnterMeeting()
         {
-            m_roomStatus = RoomStatus.PRIVATE;
+            m_roomStatus = RoomStatus.PUBLIC;
             if (PhotonNetwork.CountOfRooms > 0)
             {
                 JoinRoom("Lobby");
