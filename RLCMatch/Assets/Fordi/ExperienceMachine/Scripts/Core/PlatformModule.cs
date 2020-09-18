@@ -1,4 +1,5 @@
-﻿using Fordi.AssetManagement;
+﻿using Cornea.Web;
+using Fordi.AssetManagement;
 using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
@@ -19,6 +20,8 @@ namespace Fordi.Platforms
     {
         [SerializeField]
         private Platform m_platform;
+        [SerializeField]
+        private StandalonePlayer m_male, m_female;
 
         [SerializeField]
         protected List<AssetReferenceWrapper> m_deps;
@@ -31,13 +34,22 @@ namespace Fordi.Platforms
 
         private IExperienceMachine m_experienceMachine = null;
         private IAssetLoader m_assetLoader = null;
+        private IWebInterface m_webInterface = null;
 
         private void Awake()
         {
             m_assetLoader = IOCCore.Resolve<IAssetLoader>();
-            Player = GetComponentInChildren<IPlayer>(true);
             UserInterface = GetComponentInChildren<IUserInterface>(true);
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
+
+            if (m_webInterface.UserInfo == null)
+                Player = m_female.GetComponent<IPlayer>();
+            else if (m_webInterface.UserInfo.gender == Gender.MALE)
+                Player = m_male.GetComponent<IPlayer>();
+            else
+                Player = m_female.GetComponent <IPlayer>();
+
             m_experienceMachine.RegisterPlatform(this);
         }
 

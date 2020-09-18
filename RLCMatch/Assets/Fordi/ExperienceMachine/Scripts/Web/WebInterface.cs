@@ -485,6 +485,8 @@ namespace Cornea.Web
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
+                    JsonData data = JsonMapper.ToObject(message);
+                    SetUserData(data);
                     done?.Invoke(isNetworkError, message);
                 }
             );
@@ -806,6 +808,8 @@ namespace Cornea.Web
                 ZPlayerPrefs.SetString("emailAddress", m_userInfo.emailAddress);
 
                 PhotonNetwork.NickName = m_userInfo.name;
+
+                Debug.LogError(m_userInfo.gender.ToString());
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
 
                 //List<string> allowedFeatures = new List<string>();
@@ -822,6 +826,16 @@ namespace Cornea.Web
                 Debug.LogException(e);
             }
         }
+
+        //private void SetUserData(string email, string id, string displayName, Gender gender)
+        //{
+        //    if (m_userInfo == null)
+        //        m_userInfo = new UserInfo();
+        //    m_userInfo.emailAddress = email;
+        //    m_userInfo._id = id;
+        //    m_userInfo.name = displayName;
+        //    m_userInfo.gender = gender;
+        //}
 
         public string GetHtmlFromUri(string resource)
         {
