@@ -53,7 +53,7 @@ namespace Fordi.Core
 
             if (!InteractablelUI.PointerOnUI)
             {
-                m_zoomAmount += 4 * m_zoomSpeed * Input.GetAxis(ZoomInput);
+                m_zoomAmount += -m_zoomSpeed * Input.GetAxis(ZoomInput);
                 m_zoomAmount = Mathf.Clamp(m_zoomAmount, m_minimumZoom, m_maximumZoom);
                 tpCamera.defaultDistance = m_zoomAmount;
             }
