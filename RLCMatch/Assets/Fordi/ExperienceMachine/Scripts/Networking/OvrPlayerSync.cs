@@ -214,6 +214,7 @@ namespace Fordi.Networking
             Observable.TimerFrame(500).Subscribe(_ =>
             {
                 m_network.EnterPrivateRoom(roomName, false);
+                m_uiEngine.DisplayProgress("Loading: " + Selection.Location, true);
 
                 //if (Array.Find(Network.Rooms, item => item.Name == roomName) != null)
                 //{

@@ -131,10 +131,10 @@ namespace Fordi.Networking
             m_roomStatus = RoomStatus.PUBLIC;
             if (PhotonNetwork.CountOfRooms > 0)
             {
-                JoinRoom("Match");
+                JoinRoom("Lobby");
             }
             else
-                CreateRoom("Match");
+                CreateRoom("Lobby");
         }
 
         public void EnterPrivateRoom(string roomName, bool host)
