@@ -40,6 +40,7 @@ namespace Cornea.Web
         ExperienceResource[] GetResource(ResourceType resourceType, string category);
         void GetCategories(ResourceType type, UnityAction<ResourceComponent[]> done, bool requireWebRefresh = false);
         UserInfo UserInfo { get; }
+        EventHandler OnUserDataUpdate { get; set; }
     }
 
     public enum APIRequestType
@@ -310,6 +311,8 @@ namespace Cornea.Web
         public string AccessToken { get { return access_token; } }
 
         public UserInfo UserInfo { get { return m_userInfo; } }
+
+        public EventHandler OnUserDataUpdate { get; set; }
 
         private IUIEngine m_uiEngine = null;
 
@@ -807,7 +810,7 @@ namespace Cornea.Web
                 ZPlayerPrefs.SetInt("organizationId", m_userInfo.organizationId);
                 ZPlayerPrefs.SetString("emailAddress", m_userInfo.emailAddress);
 
-                PhotonNetwork.NickName = m_userInfo.name;
+                OnUserDataUpdate?.Invoke(this, EventArgs.Empty);
 
                 Debug.LogError(m_userInfo.gender.ToString());
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);

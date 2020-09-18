@@ -80,9 +80,23 @@ namespace Fordi.Networking
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
             m_webInterface = IOCCore.Resolve<IWebInterface>();
+            m_webInterface.OnUserDataUpdate += UserDataUpdate;
 
             if (!PhotonNetwork.IsConnectedAndReady)
                 PhotonNetwork.ConnectUsingSettings();
+        }
+
+        private void OnDestroy()
+        {
+            m_webInterface.OnUserDataUpdate -= UserDataUpdate;
+        }
+
+        private void UserDataUpdate(object sender, EventArgs e)
+        {
+            ExitGames.Client.Photon.Hashtable playerCustomProperties = new ExitGames.Client.Photon.Hashtable();
+            playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
+            playerCustomProperties.Add(GenderKey, m_webInterface.UserInfo.gender);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
         }
 
         private static bool m_playersSpawned = false;
@@ -118,10 +132,6 @@ namespace Fordi.Networking
             Log("OnJoinedLobby");
 
 
-            ExitGames.Client.Photon.Hashtable playerCustomProperties = new ExitGames.Client.Photon.Hashtable();
-            playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
-            playerCustomProperties.Add(GenderKey, m_webInterface.UserInfo.gender);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
             //PhotonNetwork.LocalPlayer.NickName = m_webInterface.UserInfo.userName;
 
 
@@ -330,12 +340,6 @@ namespace Fordi.Networking
                 var customProperties = player.CustomProperties;
                 if (customProperties != null)
                     customProperties.TryGetValue(GenderKey, out gender);
-                if (customProperties.ContainsKey(GenderKey))
-                {
-                    Debug.LogError("KeyPreset");
-                }
-                else
-                    Debug.LogError("Key not present");
             }
 
             var playerPrefab = (Gender)gender == Gender.MALE ? m_maleRemotePlayerPrefab : m_femaleRemotePlayerPrefab;
