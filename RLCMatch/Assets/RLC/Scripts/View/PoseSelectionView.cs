@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Fordi.Core;
 using Fordi.Networking;
 using Photon.Pun;
+using Fordi.UI;
 
 namespace RLC.UI
 {
@@ -17,6 +18,8 @@ namespace RLC.UI
     {
         [SerializeField]
         private Button m_expandButton, m_collapseButton;
+        [SerializeField]
+        private Button m_cumButton, m_quitButton;
 
         private bool m_expanded = true;
 
@@ -26,6 +29,16 @@ namespace RLC.UI
         {
             base.AwakeOverride();
             m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
+        }
+
+        public override void OpenMenu(IUserInterface userInterface, MenuArgs args)
+        {
+            base.OpenMenu(userInterface, args);
+            if (args.Items.Length == 0)
+            {
+                m_cumButton.gameObject.SetActive(false);
+                m_quitButton.gameObject.SetActive(false);
+            }
         }
 
         public void Expand()
