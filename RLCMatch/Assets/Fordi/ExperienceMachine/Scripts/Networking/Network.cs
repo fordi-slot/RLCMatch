@@ -97,6 +97,7 @@ namespace Fordi.Networking
             playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
             playerCustomProperties.Add(GenderKey, m_webInterface.UserInfo.gender);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
+            PhotonNetwork.NickName = m_webInterface.UserInfo.name;
         }
 
         private static bool m_playersSpawned = false;
