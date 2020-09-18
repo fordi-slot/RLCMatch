@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using Fordi.Networking;
 using Fordi.Common;
 using Fordi;
+using Photon.Pun;
 
 namespace RLC.View
 {
@@ -99,6 +100,7 @@ namespace RLC.View
 
                     if (response["status"].ToString() == "200")
                     {
+                        PhotonNetwork.NickName = m_displayeName.text;
                         m_network.EnterMeeting();
                         return;
                     }
