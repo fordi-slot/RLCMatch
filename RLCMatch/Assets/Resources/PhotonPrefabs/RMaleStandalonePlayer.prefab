@@ -2588,6 +2588,7 @@ MonoBehaviour:
   m_playerSync: {fileID: 6312723676464513789}
   m_playerPhotonView: {fileID: 7298704989860139303}
   m_avatarPhotonView: {fileID: 7298704989860139303}
+  m_playerName: {fileID: 4471443465795899224}
 --- !u!1 &7748779155853339795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,7 +3213,7 @@ GameObject:
   - component: {fileID: 2443227762770367979}
   - component: {fileID: 4471443465795899224}
   m_Layer: 0
-  m_Name: UserName
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
