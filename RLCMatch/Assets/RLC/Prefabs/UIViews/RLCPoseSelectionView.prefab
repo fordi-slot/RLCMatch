@@ -1066,7 +1066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4356120249215486632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1114,7 +1114,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8a6c421526102474e9d2c3e6b17f5e91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74ce29840f603824eaa43701097cba2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2179,6 +2179,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4543620497541896495, guid: b9ccfec6bfcb3d14caaccf37c15a45d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cf3e31ea8e74aa04b8d730b30e026a8f,
+        type: 3}
     - target: {fileID: 4543620497541896494, guid: b9ccfec6bfcb3d14caaccf37c15a45d0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2189,12 +2195,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4543620497541896495, guid: b9ccfec6bfcb3d14caaccf37c15a45d0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cf3e31ea8e74aa04b8d730b30e026a8f,
-        type: 3}
     - target: {fileID: 4543620495999118239, guid: b9ccfec6bfcb3d14caaccf37c15a45d0,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2393,12 +2393,12 @@ PrefabInstance:
     - target: {fileID: 375722917390870880, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 375722917390870880, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 6719967278932419118, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
@@ -2449,12 +2449,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_onImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 73466402604018686}
     - target: {fileID: 1166890797830212453, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
       propertyPath: m_offImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7824195302956381085}
     - target: {fileID: 1166890797830212453, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
       propertyPath: m_skin
@@ -2480,7 +2480,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3ffa76af039e3e94e8659ea5fec2c8b9,
+      objectReference: {fileID: 21300000, guid: 7856632816b09a74d8c68036a014d131,
         type: 3}
     - target: {fileID: 9082407283468276357, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
@@ -2544,8 +2544,19 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 9082407283468276357, guid: 0b83732475c96a54d88d0539cd6c9586,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 514
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b83732475c96a54d88d0539cd6c9586, type: 3}
+--- !u!1 &73466402604018686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6719967278932419118, guid: 0b83732475c96a54d88d0539cd6c9586,
+    type: 3}
+  m_PrefabInstance: {fileID: 6649318486950578640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2708191001747125380 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8778204729276333396, guid: 0b83732475c96a54d88d0539cd6c9586,

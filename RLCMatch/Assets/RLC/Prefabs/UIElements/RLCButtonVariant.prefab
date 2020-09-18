@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 452850195161837794, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
       propertyPath: m_Name
-      value: SiginupButton
+      value: RLCButtonVariant
       objectReference: {fileID: 0}
     - target: {fileID: 452850195161837799, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
@@ -213,12 +213,12 @@ PrefabInstance:
     - target: {fileID: 452850193483383382, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
       propertyPath: m_fontSize
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 452850193483383382, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 452850193483383382, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
@@ -233,6 +233,11 @@ PrefabInstance:
     - target: {fileID: 452850193483383382, guid: 8b6234676217e3d4cbd528ffad7a9632,
         type: 3}
       propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452850193483383382, guid: 8b6234676217e3d4cbd528ffad7a9632,
+        type: 3}
+      propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

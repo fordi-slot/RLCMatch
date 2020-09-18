@@ -257,7 +257,7 @@ namespace Cornea.Web
 
     public class WebInterface : MonoBehaviour, IWebInterface
     {
-        public static string rlcBaseUrl = "http://quytech.in:8081/api";
+        public static string rlcBaseUrl = "http://quytech.net:8081/api";
         //public const string vesApiBaseUrl = "http://vmeet.work";
         public const string isTenantAvailable = "/api/services/app/Account/IsTenantAvailable";
         public const string tokenAuth = "/api/TokenAuth/Authenticate";
