@@ -29,9 +29,14 @@ namespace RLC.UI
             Blocked = args.Block;
             Persist = args.Persist;
 
+            //Temp code:
+            MenuItemInfo[] items = new MenuItemInfo[] { };
+            if (Selection.Location == Fordi.Networking.Network.PrivateMeetingLocation)
+                items = Experience.GetCategoryMenu(m_commonResource.GetCategories(ResourceType.ANIMATION), ResourceType.ANIMATION);
+
             MenuArgs poseMenu = new MenuArgs()
             {
-                Items = Experience.GetCategoryMenu(m_commonResource.GetCategories(ResourceType.ANIMATION), ResourceType.ANIMATION),
+                Items = items
             };
             SpawnPage(m_poseSelectionViewPrefab, poseMenu);
         }

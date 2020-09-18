@@ -46,6 +46,7 @@ namespace Fordi.Networking
         public const string LobbyRoom = "Lobby";
         public const string ActorNumberString = "ActorNumber";
         public const string OculusIDString = "OculusID";
+        public const string PrivateMeetingLocation = "PrivateMeeting";
 
         public enum RoomStatus
         {
@@ -208,7 +209,7 @@ namespace Fordi.Networking
             }
             else
             {
-                Selection.Location = "PrivateMeeting";
+                Selection.Location = PrivateMeetingLocation;
                 Selection.ExperienceType = ExperienceType.MEETING;
                 if (PhotonNetwork.IsMasterClient)
                     m_experienceMachine.LoadExperience();
