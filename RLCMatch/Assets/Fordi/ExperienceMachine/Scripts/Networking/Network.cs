@@ -72,7 +72,7 @@ namespace Fordi.Networking
 
         private bool m_debug = false;
 
-        private static RoomStatus m_roomStatus = RoomStatus.PRIVATE;
+        private static RoomStatus m_roomStatus = RoomStatus.NONE;
 
         #region INITIALIZATIONS
         private void Awake()
@@ -143,7 +143,7 @@ namespace Fordi.Networking
 
         public void EnterMeeting()
         {
-            m_roomStatus = RoomStatus.PRIVATE;
+            m_roomStatus = RoomStatus.PUBLIC;
             if (PhotonNetwork.CountOfRooms > 0)
             {
                 JoinRoom("Lobby");

@@ -276,6 +276,7 @@ namespace Fordi.UI
 
         public void OpenLoginPage(MenuArgs args)
         {
+            Debug.LogError("OpenLoginPage");
             m_standaloneInterface.OpenLoginPage(args);
             m_vrInterface?.OpenLoginPage(args);
         }
