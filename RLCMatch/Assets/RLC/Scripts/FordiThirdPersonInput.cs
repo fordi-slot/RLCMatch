@@ -18,7 +18,7 @@ namespace Fordi.Core
         [Range(0, 1)]
         private float m_zoomSpeed = .7f;
         private float m_zoomAmount = 0;
-        private float m_maximumZoom = 8;
+        private float m_maximumZoom = 2;
         private float m_minimumZoom = .5f;
 
         //protected override void SprintInput()
