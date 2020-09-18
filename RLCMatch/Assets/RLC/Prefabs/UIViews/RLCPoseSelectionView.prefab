@@ -1693,6 +1693,11 @@ PrefabInstance:
       propertyPath: m_IsOn
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1675959700489463312, guid: 0b83732475c96a54d88d0539cd6c9586,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1166890797830212453, guid: 0b83732475c96a54d88d0539cd6c9586,
         type: 3}
       propertyPath: m_onImage
