@@ -60,13 +60,19 @@ namespace Fordi.Core
 
             if (InteractablelUI.PointerOnUI || (!CameraControl.FreeHand && !Input.GetMouseButton(0)))
             {
-                tpCamera.RotateCamera(0, 0);
+                cc.freeSpeed.rotateWithCamera = Input.GetAxis(horizontalInput) != 0;
+                tpCamera.RotateCamera(Input.GetAxis(horizontalInput), 0);
                 return;
             }
 
-            var Y = Input.GetAxis(rotateCameraYInput);
-            var X = Input.GetAxis(rotateCameraXInput);
-            tpCamera.RotateCamera(X, Y);
+            cc.freeSpeed.rotateWithCamera = !Input.GetMouseButton(0);
+
+            if (Input.GetMouseButton(0))
+            {
+                var Y = Input.GetAxis(rotateCameraYInput);
+                var X = Input.GetAxis(rotateCameraXInput);
+                tpCamera.RotateCamera(X, Y);
+            }
         }
 
         protected override void InitializeTpCamera()
@@ -86,6 +92,12 @@ namespace Fordi.Core
 
         public override void MoveInput()
         {
+            if (Input.GetAxis(horizontalInput) != 0)
+            {
+                cc.input.x = 0;
+                cc.input.z = 0;
+                return;
+            }
             cc.input.x = m_onRest ? 0 : Input.GetAxis(horizontalInput);
             cc.input.z = m_onRest ? 0 : Input.GetAxis(verticallInput);
         }
