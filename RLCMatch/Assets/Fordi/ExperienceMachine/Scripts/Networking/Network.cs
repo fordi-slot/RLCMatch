@@ -330,6 +330,12 @@ namespace Fordi.Networking
                 var customProperties = player.CustomProperties;
                 if (customProperties != null)
                     customProperties.TryGetValue(GenderKey, out gender);
+                if (customProperties.ContainsKey(GenderKey))
+                {
+                    Debug.LogError("KeyPreset");
+                }
+                else
+                    Debug.LogError("Key not present");
             }
 
             var playerPrefab = (Gender)gender == Gender.MALE ? m_maleRemotePlayerPrefab : m_femaleRemotePlayerPrefab;
