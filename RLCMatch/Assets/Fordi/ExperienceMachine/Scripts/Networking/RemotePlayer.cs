@@ -14,6 +14,8 @@ namespace Fordi.Networking
         private PhotonView m_playerPhotonView = null;
         [SerializeField]
         private PhotonView m_avatarPhotonView = null;
+        [SerializeField]
+        private TextMesh m_playerName;
 
         public int playerId { get; private set; }
         public Transform RightHand { get { return m_rightHand; } }
@@ -34,6 +36,7 @@ namespace Fordi.Networking
             m_playerPhotonView.ViewID = playerViewId;
 
             m_photonPlayer = Array.Find(PhotonNetwork.PlayerListOthers, item => item.ActorNumber == senderId);
+            m_playerName.text = m_photonPlayer.NickName;
         }
     }
 }
