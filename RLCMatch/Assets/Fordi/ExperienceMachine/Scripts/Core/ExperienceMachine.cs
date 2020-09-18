@@ -154,7 +154,7 @@ namespace Fordi.Core
             m_settings = IOCCore.Resolve<ISettings>();
             m_pluginHook = IOCCore.Resolve<IPluginHook>();
 
-            if (SceneManager.GetActiveScene().name == Networking.Network.MeetingRoom)
+            if (SceneManager.GetActiveScene().name == Networking.Network.MeetingRoom || SceneManager.GetActiveScene().name == Networking.Network.PrivateMeetingLocation)
             {
                 Selection.Location = Networking.Network.MeetingRoom;
                 Selection.ExperienceType = ExperienceType.MEETING;
