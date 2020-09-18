@@ -156,7 +156,7 @@ namespace Fordi.Core
 
             if (SceneManager.GetActiveScene().name == Networking.Network.MeetingRoom || SceneManager.GetActiveScene().name == Networking.Network.PrivateMeetingLocation)
             {
-                Selection.Location = Networking.Network.MeetingRoom;
+                Selection.Location = SceneManager.GetActiveScene().name;
                 Selection.ExperienceType = ExperienceType.MEETING;
             }
 
