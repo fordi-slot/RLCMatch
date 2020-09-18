@@ -34,7 +34,9 @@ namespace Fordi.Networking
     public class Network : MonoBehaviourPunCallbacks, INetwork, IOnEventCallback
     {
         [SerializeField]
-        private RemotePlayer m_remotePlayerPrefab = null;
+        private RemotePlayer m_maleRemotePlayerPrefab = null;
+        [SerializeField]
+        private RemotePlayer m_femaleRemotePlayerPrefab = null;
 
         public const byte trailBegin = 137;
         public const byte trailFinish = 138;
@@ -45,6 +47,7 @@ namespace Fordi.Networking
         public const string MeetingRoom = "Meeting";
         public const string LobbyRoom = "Lobby";
         public const string ActorNumberString = "ActorNumber";
+        public const string GenderKey = "Gender";
         public const string OculusIDString = "OculusID";
         public const string PrivateMeetingLocation = "PrivateMeeting";
 
@@ -117,7 +120,8 @@ namespace Fordi.Networking
 
             ExitGames.Client.Photon.Hashtable playerCustomProperties = new ExitGames.Client.Photon.Hashtable();
             playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
-            //PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
+            playerCustomProperties.Add(GenderKey, m_webInterface.UserInfo.gender);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
             //PhotonNetwork.LocalPlayer.NickName = m_webInterface.UserInfo.userName;
 
 
@@ -316,18 +320,22 @@ namespace Fordi.Networking
         private void RPC_SpawnPlayer(int senderId, int playerViewId, bool firstHand)
         {
             Debug.LogError("RPC_SpawnPlayer: " + senderId + " " + firstHand);
-            var remotePlayer = Instantiate(m_remotePlayerPrefab);
 
             var player = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
 
-            object oculusId = "";
+            object gender = Gender.MALE;
 
             if (player != null)
             {
                 var customProperties = player.CustomProperties;
                 if (customProperties != null)
-                    customProperties.TryGetValue(OculusIDString, out oculusId);
+                    customProperties.TryGetValue(OculusIDString, out gender);
             }
+
+            var playerPrefab = (Gender)gender == Gender.MALE ? m_maleRemotePlayerPrefab : m_femaleRemotePlayerPrefab;
+
+            var remotePlayer = Instantiate(playerPrefab);
+
 
             remotePlayer.Setup(senderId, playerViewId);
             m_remotePlayers[senderId] = remotePlayer;
