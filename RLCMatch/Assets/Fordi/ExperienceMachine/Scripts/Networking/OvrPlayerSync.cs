@@ -104,8 +104,7 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.LogError(IsRemotePlayer);
-            if (Selection.Location != "PrivateMeeting" && IsRemotePlayer)
+            if (Selection.Location != "PrivateMeeting" && IsRemotePlayer && Input.GetMouseButtonUp(1))
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {
