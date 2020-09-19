@@ -35,7 +35,7 @@ namespace RLC.UI
         {
             foreach (var item in args.Items)
             {
-                item.IsValid = PhotonNetwork.IsMasterClient;
+                item.IsValid = !PhotonNetwork.IsMasterClient;
             }
 
             base.OpenMenu(userInterface, args);
