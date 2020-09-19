@@ -31,7 +31,7 @@ namespace Fordi.Networking
         {
             Debug.LogError(senderId + " " + playerViewId);
             name = "RemotePlayer: " + senderId; 
-            m_playerSync.isRemotePlayer = true;
+            m_playerSync.IsRemotePlayer = true;
             m_playerSync.playerId = senderId;
             m_playerPhotonView.ViewID = playerViewId;
 

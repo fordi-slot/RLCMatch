@@ -15,11 +15,9 @@ namespace Fordi.Networking
     [RequireComponent(typeof(PhotonTransformView))]
     public class OvrPlayerSync : MonoBehaviour, ISyncHelper, IPunObservable, IPointerClickHandler
     {
-
         public bool avatarSet = false;
         public int playerId;
         PhotonTransformView pView;
-        public bool isRemotePlayer = false;
         private Transform fChild = null;
         private Transform camRig = null;
 
@@ -27,6 +25,8 @@ namespace Fordi.Networking
         private IExperienceMachine m_experienceMachine = null;
         private INetwork m_network;
         private PhotonView m_photonView;
+
+        public bool IsRemotePlayer { get; set; } = false;
 
         private void Awake()
         {
@@ -55,7 +55,7 @@ namespace Fordi.Networking
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
         {
             avatarSet = _avatarSet;
-            isRemotePlayer = _isRemotePlayer;
+            IsRemotePlayer = _isRemotePlayer;
             playerId = _playerId;
         }
 
@@ -104,8 +104,8 @@ namespace Fordi.Networking
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber + " " + playerId);
-            if (Selection.Location != "PrivateMeeting" && PhotonNetwork.LocalPlayer.ActorNumber != playerId)
+            Debug.LogError(IsRemotePlayer);
+            if (Selection.Location != "PrivateMeeting" && IsRemotePlayer)
             {
                 m_uiEngine.OpenContextUI(new MenuArgs()
                 {
