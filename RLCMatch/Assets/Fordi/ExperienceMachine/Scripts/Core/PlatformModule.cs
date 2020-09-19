@@ -63,9 +63,6 @@ namespace Fordi.Platforms
             int index = 0;
             if (m_deps.Count > 1)
                 index = Random.Range(0, m_deps.Count);
-
-            index = 1;
-
             m_assetLoader.LoadAndSpawn<GameObject>(new AssetArgs(m_deps[index].AssetReference.RuntimeKey.ToString(), m_deps[index].UnloadOnDestroy));
 
             //foreach (var item in m_deps)

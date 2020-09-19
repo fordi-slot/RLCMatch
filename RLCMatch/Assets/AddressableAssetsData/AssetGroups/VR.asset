@@ -71,6 +71,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: c7d432bccfac1534b9c27005bf6fca79
+    m_Address: Assets/Rooms/Room.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: ca1c7454e304e984e909f8a2cc633268
     m_Address: Assets/Gallery/Env_Gallery.prefab
     m_ReadOnly: 0
