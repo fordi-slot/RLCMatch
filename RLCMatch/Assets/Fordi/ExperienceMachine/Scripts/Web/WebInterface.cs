@@ -518,6 +518,7 @@ namespace Cornea.Web
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
+                    Debug.LogError(message);
                     JsonData result = JsonMapper.ToObject(message);
                     SetUserData(result);
                     done?.Invoke(isNetworkError, message);
