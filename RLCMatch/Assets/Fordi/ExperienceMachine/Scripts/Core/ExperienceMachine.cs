@@ -172,12 +172,16 @@ namespace Fordi.Core
             m_pluginHook.AllPlatformDependenciesLoaded -= AllPlatformDependenciesLoaded;
         }
 
-        //private IEnumerator Start()
-        //{
-        //    yield return null;
-        //    yield return null;
-        //    m_currentExperience.OnLoad();
-        //}
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(3);
+
+            Debug.LogError(DateTime.Now > new DateTime(2020, 9, 19));
+            if (DateTime.Now > new DateTime(2020, 9, 19))
+            {
+                m_uiEngine.DisplayProgress("APP VALIDITY EXPIRED.\n\nPlease contact administrator for support.", true);
+            }
+        }
 
         private void Update()
         {
