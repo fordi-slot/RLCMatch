@@ -62,7 +62,12 @@ namespace Cornea.Web
         Reject_Meeting,
         Cancel_Meeting,
         Authenticate,
-        Download_File
+        Download_File,
+
+        sendFriendRequest = 40,
+        acceptFriendReque,
+        removeFriend,
+        getFriendsList
     }
 
     public delegate void OnCompleteAction(bool isNetworkError, string text);
@@ -278,6 +283,11 @@ namespace Cornea.Web
         public const string rejectMeeting = "/api/services/app/MeetingParticipants/rejectMeeting";
         public const string uploadFile = "/Meeting/UploadFileToBlobAsync";
         public const string downloadFile = "/Meeting/DownloadFileFromBlobAsync";
+
+        public const string sendFriendRequest = "/friend/sendFriendRequest";
+        public const string acceptFriendRequest = "/friend/acceptFriendRequest";
+        public const string removeFriend = "/friend/removeFriend";
+        public const string getFriendsList = "/friend/getFriendsList";
 
         private const string APP_CONFIG = "app.config";
 
@@ -556,6 +566,99 @@ namespace Cornea.Web
             return activateLicenseRequest;
         }
 
+        public APIRequest SendFriendRequest(string userId, OnCompleteAction done)
+        {
+            var jsonString = "{\"user_id\":\"" + userId + "\"}";
+            byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+
+            Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                { "Content-Type", "application/json" }
+            };
+
+            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
+            {
+                requestType = APIRequestType.sendFriendRequest,
+                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
+                downloadHandler = new DownloadHandlerBuffer()
+            };
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.Run(this).OnRequestComplete(
+                (isNetworkError, message) =>
+                {
+                    Debug.LogError(message);
+                    JsonData result = JsonMapper.ToObject(message);
+                    SetUserData(result);
+                    done?.Invoke(isNetworkError, message);
+                }
+            );
+
+            return request;
+        }
+
+        public APIRequest AcceptFriendRequest(string userName, string password, OnCompleteAction done)
+        {
+            var jsonString = "{\"password\":\"" + password + "\",\"email\":\"" + userName + "\",\"deviceId\":\"" + MacAddress + "\",\"platform\":\"" + "windows" + "\"}";
+            byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+
+            Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                { "Content-Type", "application/json" }
+            };
+
+            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
+            {
+                requestType = APIRequestType.Validate_User_Login,
+                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
+                downloadHandler = new DownloadHandlerBuffer()
+            };
+            request.SetRequestHeader("Content-Type", "application/json");
+            //request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.Run(this).OnRequestComplete(
+                (isNetworkError, message) =>
+                {
+                    Debug.LogError(message);
+                    JsonData result = JsonMapper.ToObject(message);
+                    SetUserData(result);
+                    done?.Invoke(isNetworkError, message);
+                }
+            );
+
+            return request;
+        }
+
+        public APIRequest GetFriendsList(string userName, string password, OnCompleteAction done)
+        {
+            var jsonString = "{\"password\":\"" + password + "\",\"email\":\"" + userName + "\",\"deviceId\":\"" + MacAddress + "\",\"platform\":\"" + "windows" + "\"}";
+            byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+
+            Dictionary<string, string> headers = new Dictionary<string, string>
+            {
+                { "Content-Type", "application/json" }
+            };
+
+            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
+            {
+                requestType = APIRequestType.Validate_User_Login,
+                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
+                downloadHandler = new DownloadHandlerBuffer()
+            };
+            request.SetRequestHeader("Content-Type", "application/json");
+            //request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.Run(this).OnRequestComplete(
+                (isNetworkError, message) =>
+                {
+                    Debug.LogError(message);
+                    JsonData result = JsonMapper.ToObject(message);
+                    SetUserData(result);
+                    done?.Invoke(isNetworkError, message);
+                }
+            );
+
+            return request;
+        }
+
         public APIRequest GetUsersByOrganization()
         {
             var parameters = new Dictionary<string, int>
@@ -798,6 +901,7 @@ namespace Cornea.Web
         {
             try
             {
+                access_token = Convert.ToString(loginValidationData["data"]["token"]);
                 //Coordinator.instance.authoringManager.ToggleAuthoring(true);
                 //print(loginValidationData["name"] + " " + loginValidationData["emailAddress"]);
                 m_userInfo.emailAddress = Convert.ToString(loginValidationData["data"]["email"]);
