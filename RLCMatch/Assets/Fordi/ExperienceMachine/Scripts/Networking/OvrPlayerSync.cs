@@ -36,17 +36,14 @@ namespace Fordi.Networking
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
-            if (m_animationEngine != null)
-            {
-                Debug.LogError("Subscribed: m_animationEngine.InteractionStateChange");
-                m_animationEngine.InteractionStateChange += PlayerInteractionStateChange;
-            }
+            m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
+            Debug.LogError("Subscribed: m_animationEngine.InteractionStateChange");
+            m_animationEngine.InteractionStateChange += PlayerInteractionStateChange;
         }
 
         private void OnDestroy()
         {
-            if (m_animationEngine != null)
-                m_animationEngine.InteractionStateChange -= PlayerInteractionStateChange;
+            m_animationEngine.InteractionStateChange -= PlayerInteractionStateChange;
         }
 
         private IEnumerator Start()
