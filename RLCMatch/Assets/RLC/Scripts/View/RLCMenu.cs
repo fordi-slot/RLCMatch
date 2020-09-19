@@ -48,6 +48,8 @@ namespace RLC.UI
                 if (m_friendsList != null && m_friendsList.Gameobject != null)
                 {
                     m_friendsList.Close();
+                    if (m_animationView != null)
+                        m_animationView.Reopen();
                     return;
                 }
                 else
@@ -98,7 +100,7 @@ namespace RLC.UI
             {
                 if (m_screensStack.Count > 0 && m_screensStack.Peek().Persist)
                 {
-                    m_screensStack.Peek().Close();
+                    m_screensStack.Peek().Deactivate();
                 }
             }
             catch
