@@ -86,7 +86,7 @@ namespace Fordi.Networking
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 int number = UnityEngine.Random.Range(0, 10);
-                m_photonView.RPC("RPC_Request", RpcTarget.Others, PhotonNetwork.LocalPlayer.ActorNumber, number);
+                m_photonView.RPC("RPC_Ping", RpcTarget.Others, PhotonNetwork.LocalPlayer.ActorNumber, number);
                 Debug.LogError("Sending RPC_Ping: " + PhotonNetwork.LocalPlayer.ActorNumber + " : " + number);
             }
         }
