@@ -33,6 +33,11 @@ namespace RLC.UI
 
         public override void OpenMenu(IUserInterface userInterface, MenuArgs args)
         {
+            foreach (var item in args.Items)
+            {
+                item.IsValid = PhotonNetwork.IsMasterClient;
+            }
+
             base.OpenMenu(userInterface, args);
             if (args.Items.Length == 0)
             {
