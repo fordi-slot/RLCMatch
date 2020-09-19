@@ -37,7 +37,10 @@ namespace Fordi.Networking
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
             if (m_animationEngine != null)
+            {
+                Debug.LogError("Subscribed: m_animationEngine.InteractionStateChange");
                 m_animationEngine.InteractionStateChange += PlayerInteractionStateChange;
+            }
         }
 
         private void OnDestroy()
