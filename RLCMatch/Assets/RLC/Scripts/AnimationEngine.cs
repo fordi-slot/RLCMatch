@@ -60,8 +60,14 @@ namespace RLC.Animation
 
         private IObservable<long> m_observable = null;
 
+        private string m_lastState = "";
+
         public void SwitchToState(string state)
         {
+            if (m_lastState == state)
+                return;
+
+            m_lastState = state;
             Debug.LogError("FiringStateChange: Active");
             State = PlayerState.ACTIVE;
             InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
