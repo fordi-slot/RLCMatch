@@ -81,17 +81,11 @@ namespace RLC.UI
 
         public void Quit()
         {
-            Selection.Location = Fordi.Networking.Network.MeetingRoom;
-            Selection.ExperienceType = ExperienceType.MEETING;
-            if (PhotonNetwork.IsMasterClient)
-                m_experienceMachine.LoadExperience();
-
-//#if UNITY_EDITOR
-//            UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
-//#else
-//                Application.Quit();
-//#endif
-            return;
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
+#else
+            Application.Quit();
+#endif
         }
     }
 }

@@ -411,5 +411,14 @@ namespace Fordi.UI.MenuControl
                 Pair.DisplayProgress(text);
         }
 
+        public void Quit()
+        {
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
+            #else
+                Application.Quit();
+            #endif
+        }
+
     }
 }
