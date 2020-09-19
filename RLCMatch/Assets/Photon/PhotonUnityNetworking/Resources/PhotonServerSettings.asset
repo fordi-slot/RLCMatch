@@ -51,6 +51,7 @@ MonoBehaviour:
   - RPC_Request
   - RPC_PrivateRoom
   - RPC_Ping
+  - RPC_SwitchToState
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
