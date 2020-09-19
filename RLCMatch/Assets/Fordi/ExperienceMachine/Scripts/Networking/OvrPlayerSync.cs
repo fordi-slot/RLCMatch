@@ -200,6 +200,14 @@ namespace Fordi.Networking
         private void RPC_PrivateRoom(int senderId, string roomName)
         {
             Debug.LogError("RPC_PrivateRoom: " + senderId + " " + roomName);
+            m_uiEngine.DisplayMessage(new MessageArgs()
+            {
+                Persist = false,
+                Block = true,
+                Text = "Invited accepted.",
+                BackEnabled = false,
+                OkEnabled = true,
+            });
             
             Observable.TimerFrame(500).Subscribe(_ =>
             {

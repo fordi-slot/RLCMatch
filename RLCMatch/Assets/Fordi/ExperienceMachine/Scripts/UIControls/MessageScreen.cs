@@ -14,6 +14,7 @@ namespace Fordi.UI
 {
     public class MessageArgs : MenuArgs
     {
+        public bool OkEnabled = false;
         public Action OkClick = null;
         public string Text;
     }
@@ -37,6 +38,9 @@ namespace Fordi.UI
 
         [SerializeField]
         private GameObject m_header = null;
+
+        [SerializeField]
+        private GameObject m_okButton = null;
 
         public bool Blocked { get; private set; }
 
@@ -108,6 +112,8 @@ namespace Fordi.UI
             if (args.OkClick != null && m_button != null)
                 m_button.onClick.AddListener(() => args.OkClick.Invoke());
             m_header.SetActive(args.BackEnabled);
+            if (m_okButton != null)
+                m_okButton.SetActive(args.OkEnabled);
         }
 
         public void BackClick()

@@ -73,6 +73,7 @@ namespace Fordi.UI
         IScreen OpenContextUI(MenuArgs args);
         IScreen Popup(PopupInfo popupInfo);
         IScreen OpenForm(FormArgs args);
+        IScreen DisplayMessage(MessageArgs args);
         IScreen DisplayResult(Error error, bool freshScreen = false);
         IScreen DisplayProgress(string text, bool freshScreen = false);
         IScreen Block(string message, bool includeRoot = false);
@@ -110,7 +111,7 @@ namespace Fordi.UI
         [SerializeField]
         protected SettingsPanel m_settingsInterfacePrefab;
         [SerializeField]
-        protected MessageScreen m_genericLoader;
+        protected MessageScreen m_genericLoader, m_messageBoxPrefab;
         [SerializeField]
         protected CalendarController m_calendarPrefab;
         [SerializeField]
@@ -220,7 +221,7 @@ namespace Fordi.UI
 
         public IScreen DisplayMessage(MessageArgs args)
         {
-            var menu = (MessageScreen)SpawnScreen(m_genericLoader);
+            var menu = (MessageScreen)SpawnScreen(m_messageBoxPrefab);
             menu.Init(this, args);
             return menu;
         }
