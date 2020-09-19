@@ -150,6 +150,8 @@ MonoBehaviour:
   m_blocker: {fileID: 8030177464729056606}
   m_poseSelectionViewPrefab: {fileID: 156737244524805225, guid: 7cc63b279d6cef04494df687b277546c,
     type: 3}
+  m_friendsListPrefab: {fileID: 6993100849292925569, guid: 4b7427d7188d43f48b7414aa3af2a285,
+    type: 3}
 --- !u!1001 &251453849518805241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,6 +530,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1630390759950656632}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenFridnsList
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e7f97c620bcc7a48a248625cb4c2562, type: 3}
