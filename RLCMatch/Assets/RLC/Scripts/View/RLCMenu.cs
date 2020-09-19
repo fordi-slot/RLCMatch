@@ -1,9 +1,11 @@
-﻿using Fordi.Common;
+﻿using Cornea.Web;
+using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RLC.UI
@@ -47,7 +49,7 @@ namespace RLC.UI
                 return;
             }
 
-            MenuItemInfo[] items = Experience.GetCategoryMenu(m_commonResource.GetCategories(ResourceType.ANIMATION), ResourceType.ANIMATION);
+            MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
 
             //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
 
