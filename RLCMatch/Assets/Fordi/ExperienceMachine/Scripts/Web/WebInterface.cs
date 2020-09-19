@@ -18,6 +18,7 @@ using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
 using Photon.Pun;
+using Fordi.Networking;
 
 namespace Cornea.Web
 {
@@ -303,6 +304,8 @@ namespace Cornea.Web
         private List<UserGroup> m_users = new List<UserGroup>();
         public UserGroup[] Users { get { return m_users.ToArray(); } }
 
+        [Obsolete("Temp")]
+        public static HashSet<Friend> s_friends = new HashSet<Friend>();
 
         [HideInInspector]
         private static string access_token = "";

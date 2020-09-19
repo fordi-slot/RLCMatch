@@ -1,4 +1,5 @@
-﻿using Fordi.Common;
+﻿using Cornea.Web;
+using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
@@ -13,6 +14,14 @@ using UnityEngine.EventSystems;
 
 namespace Fordi.Networking
 {
+    [Obsolete("Temp")]
+    public struct Friend
+    {
+        public int PlayerId;
+        public string NickName;
+    }
+
+
     [RequireComponent(typeof(PhotonTransformView))]
     public class OvrPlayerSync : MonoBehaviour, ISyncHelper, IPunObservable, IPointerClickHandler
     {
@@ -205,6 +214,17 @@ namespace Fordi.Networking
                  Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
                  Action = (val) => 
                  {
+                     if (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST && val == PopupInfo.PopupAction.ACCEPT)
+                     {
+                         m_uiEngine.CloseLastScreen();
+                         var friend = new Friend()
+                         {
+                              PlayerId = senderId,
+                              NickName = targetPlayer.NickName
+                         };
+                         WebInterface.s_friends.Add(friend);
+                     }
+
                      if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
                      {
                          m_uiEngine.CloseLastScreen();
@@ -215,6 +235,33 @@ namespace Fordi.Networking
                  }
             });
 
+        }
+
+        [PunRPC]
+        private void RPC_InviteResponse(int senderId, bool accepted)
+        {
+            Debug.LogError("RPC_InviteResponse: " + senderId + " " + accepted);
+
+            var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
+
+            if (accepted)
+            {
+                var friend = new Friend()
+                {
+                    PlayerId = senderId,
+                    NickName = targetPlayer.NickName
+                };
+                WebInterface.s_friends.Add(friend);
+            }
+
+            m_uiEngine.DisplayMessage(new MessageArgs()
+            {
+                Persist = false,
+                Block = true,
+                Text = "Invite " + (accepted ? "accepted" : "rejected"),
+                BackEnabled = false,
+                OkEnabled = true,
+            });
         }
 
         [PunRPC]
