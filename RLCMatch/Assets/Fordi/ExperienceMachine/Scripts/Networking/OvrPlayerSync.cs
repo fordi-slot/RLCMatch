@@ -214,15 +214,19 @@ namespace Fordi.Networking
                  Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
                  Action = (val) => 
                  {
-                     if (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST && val == PopupInfo.PopupAction.ACCEPT)
+                     if (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST)
                      {
                          m_uiEngine.CloseLastScreen();
-                         var friend = new Friend()
+                         if (val == PopupInfo.PopupAction.ACCEPT)
                          {
-                              PlayerId = senderId,
-                              Name = targetPlayer.NickName
-                         };
-                         WebInterface.s_friends.Add(friend);
+                             var friend = new Friend()
+                             {
+                                 PlayerId = senderId,
+                                 Name = targetPlayer.NickName
+                             };
+                             WebInterface.s_friends.Add(friend);
+                         }
+                         m_photonView.RPC("RPC_InviteResponse", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, val == PopupInfo.PopupAction.ACCEPT);
                      }
 
                      if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
