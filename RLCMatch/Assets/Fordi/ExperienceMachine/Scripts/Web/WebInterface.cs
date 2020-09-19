@@ -65,7 +65,7 @@ namespace Cornea.Web
         Download_File,
 
         sendFriendRequest = 40,
-        acceptFriendReque,
+        acceptFriendRequest,
         removeFriend,
         getFriendsList
     }
@@ -568,7 +568,7 @@ namespace Cornea.Web
 
         public APIRequest SendFriendRequest(string userId, OnCompleteAction done)
         {
-            var jsonString = "{\"user_id\":\"" + userId + "\"}";
+            var jsonString = "{\"user_id\":\"" + "5f646460decf0762a2890984" + "\"}";
             byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
             Dictionary<string, string> headers = new Dictionary<string, string>
@@ -576,7 +576,7 @@ namespace Cornea.Web
                 { "Content-Type", "application/json" }
             };
 
-            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
+            APIRequest request = new APIRequest(rlcBaseUrl + sendFriendRequest, UnityWebRequest.kHttpVerbPOST)
             {
                 requestType = APIRequestType.sendFriendRequest,
                 uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
@@ -589,7 +589,6 @@ namespace Cornea.Web
                 {
                     Debug.LogError(message);
                     JsonData result = JsonMapper.ToObject(message);
-                    SetUserData(result);
                     done?.Invoke(isNetworkError, message);
                 }
             );
@@ -597,9 +596,9 @@ namespace Cornea.Web
             return request;
         }
 
-        public APIRequest AcceptFriendRequest(string userName, string password, OnCompleteAction done)
+        public APIRequest AcceptFriendRequest(string userId, OnCompleteAction done)
         {
-            var jsonString = "{\"password\":\"" + password + "\",\"email\":\"" + userName + "\",\"deviceId\":\"" + MacAddress + "\",\"platform\":\"" + "windows" + "\"}";
+            var jsonString = "{\"user_id\":\"" + "5f646460decf0762a2890984" + "\"}";
             byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
             Dictionary<string, string> headers = new Dictionary<string, string>
@@ -607,20 +606,19 @@ namespace Cornea.Web
                 { "Content-Type", "application/json" }
             };
 
-            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
+            APIRequest request = new APIRequest(rlcBaseUrl + acceptFriendRequest, UnityWebRequest.kHttpVerbPOST)
             {
-                requestType = APIRequestType.Validate_User_Login,
+                requestType = APIRequestType.acceptFriendRequest,
                 uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
                 downloadHandler = new DownloadHandlerBuffer()
             };
             request.SetRequestHeader("Content-Type", "application/json");
-            //request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.SetRequestHeader("Authorization", "Bearer " + access_token);
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
                     Debug.LogError(message);
                     JsonData result = JsonMapper.ToObject(message);
-                    SetUserData(result);
                     done?.Invoke(isNetworkError, message);
                 }
             );
@@ -918,6 +916,7 @@ namespace Cornea.Web
                 OnUserDataUpdate?.Invoke(this, EventArgs.Empty);
 
                 Debug.LogError(m_userInfo.gender.ToString());
+
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
 
                 //List<string> allowedFeatures = new List<string>();
