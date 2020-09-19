@@ -339,14 +339,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5370893327149152715, guid: 4cbc943bfcfd3a64a89369209a080873,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3340611439428060766, guid: 4cbc943bfcfd3a64a89369209a080873,
         type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370893327149152715, guid: 4cbc943bfcfd3a64a89369209a080873,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 7748779155831874903, guid: 474bc0ac08ba8b24dbefbfe8c42d0aa8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7748779155831874903, guid: 474bc0ac08ba8b24dbefbfe8c42d0aa8,
         type: 3}
