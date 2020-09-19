@@ -41,7 +41,7 @@ namespace RLC.UI
                 OpenAnimationsList();
         }
 
-        public void OpenFridnsList(bool val)
+        public void ToggleFriendsListView()
         {
             try
             {
@@ -49,6 +49,19 @@ namespace RLC.UI
                 {
                     m_friendsList.Close();
                     return;
+                }
+                else
+                {
+                    MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
+
+                    //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
+
+
+                    MenuArgs args = new MenuArgs()
+                    {
+                        Items = items
+                    };
+                    m_friendsList = SpawnPage(m_friendsListPrefab, args);
                 }
             }
             catch
