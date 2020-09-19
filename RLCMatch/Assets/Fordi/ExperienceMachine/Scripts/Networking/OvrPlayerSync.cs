@@ -175,18 +175,18 @@ namespace Fordi.Networking
         {
             MenuCommandType menuCommand = (MenuCommandType)commandType;
             Debug.LogError(senderId + " " + menuCommand.ToString());
-
+            var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
+            var inviterName = targetPlayer == null ? senderId.ToString() : targetPlayer.NickName;
 
             m_uiEngine.Popup(new PopupInfo()
             {
                  Title = "REQUEST",
-                 Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + senderId,
+                 Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
                  Action = (val) => 
                  {
                      if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
                      {
                          m_uiEngine.CloseLastScreen();
-                         var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
                          var roomName = Guid.NewGuid().ToString().Substring(0, 4);
                          m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, roomName);
                          m_network.EnterPrivateRoom(roomName, true);
