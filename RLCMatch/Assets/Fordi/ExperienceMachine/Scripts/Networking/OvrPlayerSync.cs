@@ -39,6 +39,8 @@ namespace Fordi.Networking
 
         public bool IsRemotePlayer { get; set; } = false;
 
+        private Renderer[] m_renderers = null;
+
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
@@ -68,8 +70,9 @@ namespace Fordi.Networking
 
         private void Hide(bool val)
         {
-            var renderers = GetComponentsInChildren<Renderer>();
-            foreach (var item in renderers)
+            if (m_renderers == null)
+                m_renderers = GetComponentsInChildren<Renderer>();
+            foreach (var item in m_renderers)
                 item.enabled = val;
         }
 
