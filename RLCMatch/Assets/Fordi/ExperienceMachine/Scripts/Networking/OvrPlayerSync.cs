@@ -15,10 +15,10 @@ using UnityEngine.EventSystems;
 namespace Fordi.Networking
 {
     [Obsolete("Temp")]
-    public struct Friend
+    [Serializable]
+    public class Friend : ExperienceResource
     {
         public int PlayerId;
-        public string NickName;
     }
 
 
@@ -220,7 +220,7 @@ namespace Fordi.Networking
                          var friend = new Friend()
                          {
                               PlayerId = senderId,
-                              NickName = targetPlayer.NickName
+                              Name = targetPlayer.NickName
                          };
                          WebInterface.s_friends.Add(friend);
                      }
@@ -249,7 +249,7 @@ namespace Fordi.Networking
                 var friend = new Friend()
                 {
                     PlayerId = senderId,
-                    NickName = targetPlayer.NickName
+                    Name = targetPlayer.NickName
                 };
                 WebInterface.s_friends.Add(friend);
             }
