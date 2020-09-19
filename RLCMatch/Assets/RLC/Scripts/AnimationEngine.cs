@@ -62,6 +62,7 @@ namespace RLC.Animation
 
         public void SwitchToState(string state)
         {
+            Debug.LogError("FiringStateChange: Active");
             State = PlayerState.ACTIVE;
             InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
             m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
