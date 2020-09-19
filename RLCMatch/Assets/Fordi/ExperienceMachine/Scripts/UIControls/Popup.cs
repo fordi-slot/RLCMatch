@@ -8,7 +8,7 @@ using Fordi.Common;
 using Fordi.UI.MenuControl;
 using Fordi.Sync;
 using Fordi.Core;
-
+using UniRx;
 
 namespace Fordi.UI
 {
@@ -17,6 +17,7 @@ namespace Fordi.UI
         public Sprite Preview;
         public string Content;
         public Action<PopupAction> Action;
+        public int? TimeInSeconds = null;
         public enum PopupAction
         {
             ACCEPT,
@@ -56,6 +57,8 @@ namespace Fordi.UI
 
         private IUIEngine m_uiEngine;
 
+        private PopupInfo m_info;
+
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
@@ -70,6 +73,7 @@ namespace Fordi.UI
 
         public void Show(PopupInfo popupInfo, Action Ok  = null)
         {
+            m_info = popupInfo;
             m_onPopupClck = popupInfo.Action;
             gameObject.SetActive(true);
             m_ok = Ok;
@@ -97,6 +101,15 @@ namespace Fordi.UI
                 m_okButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
             if (m_closeButton != null)
                 m_closeButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
+
+            if (m_info.TimeInSeconds.HasValue)
+            {
+                Observable.Timer(new TimeSpan(0, 0, m_info.TimeInSeconds.Value)).Subscribe(_ =>
+                {
+                    if (this != null && this.gameObject != null)
+                        m_uiEngine.CloseLastScreen();
+                });
+            }
         }
 
         public void Close()

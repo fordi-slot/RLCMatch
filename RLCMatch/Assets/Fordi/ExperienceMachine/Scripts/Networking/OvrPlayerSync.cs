@@ -180,6 +180,7 @@ namespace Fordi.Networking
             m_uiEngine.Popup(new PopupInfo()
             {
                  Title = "REQUEST",
+                 TimeInSeconds = 10,
                  Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
                  Action = (val) => 
                  {
