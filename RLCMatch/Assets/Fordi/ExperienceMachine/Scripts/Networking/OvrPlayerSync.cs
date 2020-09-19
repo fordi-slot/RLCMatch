@@ -81,21 +81,21 @@ namespace Fordi.Networking
             //pView.m_PositionModel.TeleportEnabled = true;
         }
 
-        //private void Update()
-        //{
-        //    if (!isRemotePlayer)
-        //        return;
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                int number = UnityEngine.Random.Range(0, 10);
+                m_photonView.RPC("RPC_Request", RpcTarget.Others, PhotonNetwork.LocalPlayer.ActorNumber, number);
+                Debug.LogError("Sending RPC_Ping: " + PhotonNetwork.LocalPlayer.ActorNumber + " : " + number);
+            }
+        }
 
-        //    if (fChild == null)
-        //    {
-        //        if (transform.childCount > 0)
-        //            fChild = transform.GetChild(0);
-        //        return;
-        //    }
-
-        //    fChild.localPosition = new Vector3(0, -1, 0);
-        //    //fChild.rotation = Quaternion.identity;
-        //}
+        [PunRPC]
+        void RPC_Ping(int senderId, int number)
+        {
+            Debug.LogError("RPC_Ping: " + senderId + " : " + number);
+        }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
