@@ -3,6 +3,7 @@ using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
 using Photon.Pun;
+using RLC.Animation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Fordi.Networking
         private IExperienceMachine m_experienceMachine = null;
         private INetwork m_network;
         private PhotonView m_photonView;
+        private IAnimationEngine m_animationEngine = null;
 
         public bool IsRemotePlayer { get; set; } = false;
 
@@ -34,8 +36,12 @@ namespace Fordi.Networking
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
+            m_animationEngine.InteractionStateChange += PlayerInteractionStateChange;
+        }
 
-          
+        private void OnDestroy()
+        {
+            m_animationEngine.InteractionStateChange -= PlayerInteractionStateChange;
         }
 
         private IEnumerator Start()
@@ -43,13 +49,17 @@ namespace Fordi.Networking
             yield return null;
             yield return null;
 
-            Debug.LogError(Selection.Location);
-            if (Selection.Location == "PrivateMeeting")
-            {
-                var renderers = GetComponentsInChildren<Renderer>();
-                foreach (var item in renderers)
-                    item.enabled = false;
-            }
+            //if (Selection.Location == "PrivateMeeting")
+            //{
+            //    Hide(true);
+            //}
+        }
+
+        private void Hide(bool val)
+        {
+            var renderers = GetComponentsInChildren<Renderer>();
+            foreach (var item in renderers)
+                item.enabled = val;
         }
 
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
@@ -79,6 +89,15 @@ namespace Fordi.Networking
             //pView.m_SynchronizeRotation = true;
 
             //pView.m_PositionModel.TeleportEnabled = true;
+        }
+
+
+        private void PlayerInteractionStateChange(object sender, InteractionMode mode)
+        {
+            if (mode == InteractionMode.ACTIVE)
+                Hide(true);
+            else
+                Hide(false);
         }
 
         [PunRPC]
