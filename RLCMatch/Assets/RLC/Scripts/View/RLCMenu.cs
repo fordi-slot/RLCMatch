@@ -94,9 +94,16 @@ namespace RLC.UI
 
         protected virtual IScreen SpawnPage(IScreen screenPrefab, MenuArgs args)
         {
-            if (m_screensStack.Count > 0 && m_screensStack.Peek().Persist)
+            try
             {
-                m_screensStack.Peek().Close();
+                if (m_screensStack.Count > 0 && m_screensStack.Peek().Persist)
+                {
+                    m_screensStack.Peek().Close();
+                }
+            }
+            catch
+            {
+
             }
 
             m_contentRoot.gameObject.SetActive(true);
