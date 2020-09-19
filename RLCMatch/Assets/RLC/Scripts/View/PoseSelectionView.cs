@@ -76,7 +76,7 @@ namespace RLC.UI
             var activeTab = m_toggleGroup.ActiveToggles().FirstOrDefault();
             if (activeTab != null)
                 activeTab.isOn = false;
-            //m_animationEngine.StopAll();
+            m_animationEngine.StopAll();
         }
 
         public void Quit()
