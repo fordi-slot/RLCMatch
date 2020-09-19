@@ -43,22 +43,27 @@ namespace RLC.UI
 
         public void OpenFridnsList(bool val)
         {
-            if (m_friendsList != null)
+            try
             {
-                m_friendsList.Close();
-                return;
+                if (m_friendsList != null && m_friendsList.Gameobject != null)
+                {
+                    m_friendsList.Close();
+                    return;
+                }
             }
-
-            MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
-
-            //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
-
-
-            MenuArgs args = new MenuArgs()
+            catch
             {
-                Items = items
-            };
-            m_friendsList = SpawnPage(m_friendsListPrefab, args);
+                MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
+
+                //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
+
+
+                MenuArgs args = new MenuArgs()
+                {
+                    Items = items
+                };
+                m_friendsList = SpawnPage(m_friendsListPrefab, args);
+            }
         }
 
         private void OpenAnimationsList()
