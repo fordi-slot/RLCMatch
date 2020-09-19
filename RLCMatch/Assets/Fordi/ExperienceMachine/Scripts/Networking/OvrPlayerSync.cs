@@ -51,10 +51,10 @@ namespace Fordi.Networking
             yield return null;
             yield return null;
 
-            //if (Selection.Location == "PrivateMeeting")
-            //{
-            //    Hide(true);
-            //}
+            if (Selection.Location == "PrivateMeeting")
+            {
+                Hide(true);
+            }
         }
 
         private void Hide(bool val)
