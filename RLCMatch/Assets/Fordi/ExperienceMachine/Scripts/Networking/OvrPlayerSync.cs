@@ -73,7 +73,7 @@ namespace Fordi.Networking
             if (m_renderers == null)
                 m_renderers = GetComponentsInChildren<Renderer>();
             foreach (var item in m_renderers)
-                item.enabled = val;
+                item.enabled = !val;
         }
 
         public void Init(bool _avatarSet, bool _isRemotePlayer, int _playerId)
