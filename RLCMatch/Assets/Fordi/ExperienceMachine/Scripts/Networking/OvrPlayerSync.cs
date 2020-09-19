@@ -222,7 +222,7 @@ namespace Fordi.Networking
                               PlayerId = senderId,
                               Name = targetPlayer.NickName
                          };
-                         WebInterface.s_friends.Add(friend);
+                         IOCCore.Resolve<IWebInterface>().s_friends.Add(friend);
                      }
 
                      if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)

@@ -305,7 +305,7 @@ namespace Cornea.Web
         public UserGroup[] Users { get { return m_users.ToArray(); } }
 
         [Obsolete("Temp")]
-        public HashSet<Friend> s_friends = new HashSet<Friend>();
+        public static HashSet<Friend> s_friends = new HashSet<Friend>();
 
         [HideInInspector]
         private static string access_token = "";
