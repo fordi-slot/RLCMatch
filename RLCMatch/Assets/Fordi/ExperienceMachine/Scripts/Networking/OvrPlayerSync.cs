@@ -97,9 +97,9 @@ namespace Fordi.Networking
         }
 
 
-        private void PlayerInteractionStateChange(object sender, InteractionMode mode)
+        private void PlayerInteractionStateChange(object sender, PlayerState mode)
         {
-            if (mode == InteractionMode.ACTIVE)
+            if (mode == PlayerState.ACTIVE)
                 Hide(true);
             else
                 Hide(false);

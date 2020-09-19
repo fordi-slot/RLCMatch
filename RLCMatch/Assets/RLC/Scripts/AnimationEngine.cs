@@ -12,14 +12,15 @@ namespace RLC.Animation
 {
     public interface IAnimationEngine
     {
-        EventHandler<InteractionMode> InteractionStateChange { get; set; }
+        PlayerState State { get; }
+        EventHandler<PlayerState> InteractionStateChange { get; set; }
         void RegisterSubject(IAnimationSubject subject);
         void DeregisterSubject(IAnimationSubject subject);
         void SwitchToState(string state);
         void StopAll();
     }
 
-    public enum InteractionMode
+    public enum PlayerState
     {
         IDLE,
         ACTIVE
@@ -35,7 +36,9 @@ namespace RLC.Animation
         private IUIEngine m_uiEngine;
         private PhotonView m_photonView;
 
-        public EventHandler<InteractionMode> InteractionStateChange { get; set; }
+        public EventHandler<PlayerState> InteractionStateChange { get; set; }
+
+        public PlayerState State { get; private set; }
 
         private void Awake()
         {
@@ -59,7 +62,8 @@ namespace RLC.Animation
 
         public void SwitchToState(string state)
         {
-            InteractionStateChange?.Invoke(this, InteractionMode.ACTIVE);
+            State = PlayerState.ACTIVE;
+            InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
             m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
         }
 
@@ -86,10 +90,11 @@ namespace RLC.Animation
 
         public void StopAll()
         {
+            State = PlayerState.IDLE;
             if (m_currentSubject != null)
                 m_currentSubject.Stop();
             m_currentSubject = null;
-            InteractionStateChange?.Invoke(this, InteractionMode.IDLE);
+            InteractionStateChange?.Invoke(this, PlayerState.IDLE);
             //m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
         }
 
