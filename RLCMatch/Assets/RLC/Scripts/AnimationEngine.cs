@@ -1,5 +1,6 @@
 ﻿using Fordi.Common;
 using Fordi.UI;
+using Photon.Pun;
 using RLC.Core;
 using System;
 using System.Collections;
@@ -24,11 +25,13 @@ namespace RLC.Animation
         private IAnimationSubject m_currentSubject = null;
         private ICameraControl m_cameraControl;
         private IUIEngine m_uiEngine;
+        private PhotonView m_photonView;
 
         private void Awake()
         {
             m_cameraControl = IOCCore.Resolve<ICameraControl>();
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
+            m_photonView = GetComponent<PhotonView>();
         }
 
         public void RegisterSubject(IAnimationSubject subject)
@@ -45,6 +48,11 @@ namespace RLC.Animation
         private IObservable<long> m_observable = null;
 
         public void SwitchToState(string state)
+        {
+            m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
+        }
+
+        private void ChangeState(string state)
         {
             if (m_observable != null)
                 return;
@@ -72,5 +80,14 @@ namespace RLC.Animation
             m_currentSubject = null;
             //m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
         }
+
+        #region NETWORK_EVENTS
+        
+        [PunRPC]
+        void RPC_SwitchToState(int senderId, string state)
+        {
+            ChangeState(state);
+        }
+        #endregion
     }
 }

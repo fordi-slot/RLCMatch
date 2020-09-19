@@ -50,6 +50,7 @@ MonoBehaviour:
   - SetLaserEndPos
   - RPC_Request
   - RPC_PrivateRoom
+  - RPC_Ping
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
