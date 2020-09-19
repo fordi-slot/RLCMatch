@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: 73818871317768745a32111f0e1ff21f
   - enabled: 1
     path: Assets/Fordi/ExperienceMachine/Demo/Scenes/PrivateMeeting.unity
-    guid: b6f62b3e56a8eb344b6e466e9c23c7fa
+    guid: 1e0e3de990260bc4ca0330ae2327ca83
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 045fef28552c4f341b492c093483e2dc,
       type: 2}
