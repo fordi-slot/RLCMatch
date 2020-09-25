@@ -55,6 +55,8 @@ namespace Fordi.ChatEngine
         private TextMeshProUGUI m_description = null;
         [SerializeField]
         private GameObject m_networkInterface = null;
+        [SerializeField]
+        private GameObject m_chatTabPrefab;
 
         public string[] FriendsList;
 

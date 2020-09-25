@@ -152,6 +152,8 @@ MonoBehaviour:
     type: 3}
   m_friendsListPrefab: {fileID: 6993100849292925569, guid: 4b7427d7188d43f48b7414aa3af2a285,
     type: 3}
+  m_chatPrefab: {fileID: 5962577781153714164, guid: dd8b232454063734fad21ec38b9273d0,
+    type: 3}
 --- !u!1001 &251453849518805241
 PrefabInstance:
   m_ObjectHideFlags: 0

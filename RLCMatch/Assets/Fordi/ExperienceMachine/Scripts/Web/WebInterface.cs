@@ -338,6 +338,7 @@ namespace Cornea.Web
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_experienceMachine = IOCCore.Resolve<IExperienceMachine>();
 
+
             //var configFilePath = Path.Combine(Application.persistentDataPath, APP_CONFIG);
             //if (File.Exists(configFilePath))
             //{
@@ -572,6 +573,7 @@ namespace Cornea.Web
         public APIRequest SendFriendRequest(string userId, OnCompleteAction done)
         {
             var jsonString = "{\"user_id\":\"" + "5f646460decf0762a2890984" + "\"}";
+            //var jsonString = "{\r\n  \"user_id\": \"5f64a96f48d58b115eab6dbf\"\r\n}";
             byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
             Dictionary<string, string> headers = new Dictionary<string, string>
@@ -586,7 +588,8 @@ namespace Cornea.Web
                 downloadHandler = new DownloadHandlerBuffer()
             };
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.SetRequestHeader("Authorization", access_token);
+            Debug.LogError("SendFriendRequest: " + access_token);
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
@@ -616,7 +619,7 @@ namespace Cornea.Web
                 downloadHandler = new DownloadHandlerBuffer()
             };
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Authorization", "Bearer " + access_token);
+            request.SetRequestHeader("Authorization", access_token);
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
@@ -919,6 +922,8 @@ namespace Cornea.Web
                 OnUserDataUpdate?.Invoke(this, EventArgs.Empty);
 
                 Debug.LogError(m_userInfo.gender.ToString());
+
+                SendFriendRequest("", null);
 
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
 

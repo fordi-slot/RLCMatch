@@ -23,6 +23,8 @@ namespace Fordi.Standalone.UI
         private GameObject m_page;
         [SerializeField]
         private TextMeshProUGUI m_description;
+        [SerializeField]
+        private Canvas m_canvas;
 
         protected MenuItemInfo m_item;
         public MenuItemInfo Item
@@ -76,6 +78,8 @@ namespace Fordi.Standalone.UI
             base.OnValueChange(val);
             if (m_page != null)
                 m_page.SetActive(val);
+            if (m_canvas != null)
+                m_canvas.overrideSorting = val;
         }
 
         public virtual void DataBind(IUserInterface userInterface, MenuItemInfo item)

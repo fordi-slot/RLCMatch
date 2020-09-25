@@ -57,9 +57,9 @@ namespace AL.UI
         public override void ToggleBackgroundHighlight(bool val)
         {
             //Debug.LogError(name + " ToggleBackgroundHighlight: " + val);
-            if (val && selectable.interactable)
+            if (val && selectable.interactable && image != null)
                 image.color = m_appTheme.GetSelectedTheme(m_platform).InputFieldSelection;
-            else if (!((TMPro.TMP_InputField)selectable).isFocused)
+            else if (!((TMPro.TMP_InputField)selectable).isFocused && image != null)
                 image.color = m_appTheme.GetSelectedTheme(m_platform).InputFieldNormalColor;
         }
 
@@ -73,9 +73,9 @@ namespace AL.UI
         public override void ToggleOutlineHighlight(bool val)
         {
             //Debug.LogError(name +  " ToggleOutlineHighlight: " + val);
-            if (val && selectable.interactable)
+            if (val && selectable.interactable && shadow != null)
                 shadow.effectColor = m_appTheme.GetSelectedTheme(m_platform).colorMix2;
-            else if (!((TMPro.TMP_InputField)selectable).isFocused)
+            else if (!((TMPro.TMP_InputField)selectable).isFocused && shadow != null)
                 shadow.effectColor = m_appTheme.GetSelectedTheme(m_platform).panelInteractionOutline;
         }
 

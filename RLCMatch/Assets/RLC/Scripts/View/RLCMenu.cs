@@ -1,4 +1,5 @@
 ﻿using Cornea.Web;
+using Fordi.ChatEngine;
 using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
@@ -17,12 +18,15 @@ namespace RLC.UI
         private MenuScreen m_poseSelectionViewPrefab;
         [SerializeField]
         private MenuScreen m_friendsListPrefab;
+        [SerializeField]
+        Chat m_chatPrefab;
 
         private ICommonResource m_commonResource = null;
 
         private Stack<IScreen> m_screensStack = new Stack<IScreen>();
 
         private IScreen m_friendsList, m_animationView;
+        private Chat m_chat;
 
         protected override void AwakeOverride()
         {
@@ -39,6 +43,7 @@ namespace RLC.UI
 
             if (Selection.Location == Fordi.Networking.Network.PrivateMeetingLocation)
                 OpenAnimationsList();
+            ToggleChat(true);
         }
 
         public void ToggleFriendsListView()
@@ -98,6 +103,20 @@ namespace RLC.UI
                 Items = items
             };
             m_animationView = SpawnPage(m_poseSelectionViewPrefab, poseMenu);
+        }
+
+        public void ToggleChat(bool val)
+        {
+            if (!val)
+            {
+                if (m_chat != null)
+                    m_chat.gameObject.SetActive(false);
+                return;
+            }
+            if (m_chat == null)
+                m_chat = Instantiate(m_chatPrefab, transform);
+            else
+                m_chat.gameObject.SetActive(true);
         }
 
         protected virtual IScreen SpawnPage(IScreen screenPrefab, MenuArgs args)
