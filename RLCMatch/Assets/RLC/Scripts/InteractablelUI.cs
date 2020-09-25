@@ -12,9 +12,9 @@ public class InteractablelUI : MonoBehaviour
     {
         if (m_rectTransform == null)
             m_rectTransform = (RectTransform)transform;
-
+        
+        //PointerOnUI = RectTransformUtility.RectangleContainsScreenPoint(m_rectTransform, Input.mousePosition) && EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.transform.IsChildOf(transform);
         PointerOnUI = RectTransformUtility.RectangleContainsScreenPoint(m_rectTransform, Input.mousePosition);
-
-        //PointerOnUI = m_rectTransform.rect.Contains(Input.mousePosition);
+        //PointerOnU;I = m_rectTransform.rect.Contains(Input.mousePosition);
     }
 }
