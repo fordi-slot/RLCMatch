@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RLC.UI
 {
@@ -41,7 +42,7 @@ namespace RLC.UI
             Blocked = args.Block;
             Persist = args.Persist;
 
-            if (Selection.Location == Fordi.Networking.Network.PrivateMeetingLocation)
+            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation)
                 OpenAnimationsList();
             ToggleChat(true);
         }

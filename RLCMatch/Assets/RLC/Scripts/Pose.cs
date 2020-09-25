@@ -64,14 +64,26 @@ namespace RLC.Animation
 
         public void Begin(bool fade = true)
         {
+            if (m_fadeMats == null)
+            {
+                m_fadeMats = new List<Material>();
+                m_maleRenderer = m_male.GetComponentInChildren<SkinnedMeshRenderer>();
+                m_femaleRenderer = m_female.GetComponentInChildren<SkinnedMeshRenderer>();
+                m_fadeMats.AddRange(m_maleFade.GetComponentInChildren<SkinnedMeshRenderer>().materials);
+                m_fadeMats.AddRange(m_femaleFade.GetComponentInChildren<SkinnedMeshRenderer>().materials);
+            }
+
             if (!fade)
             {
+                gameObject.SetActive(true);
                 m_maleFade.SetActive(false);
                 m_femaleFade.SetActive(false);
                 m_maleRenderer.enabled = true;
                 m_femaleRenderer.enabled = true;
                 m_maleHead.SetActive(true);
                 m_femaleHead.SetActive(true);
+                m_male.SetActive(true);
+                m_female.SetActive(true);
                 return;
             }
 
@@ -82,15 +94,6 @@ namespace RLC.Animation
             m_female.SetActive(true);
             m_maleHead.SetActive(false);
             m_femaleHead.SetActive(false);
-
-            if (m_fadeMats == null)
-            {
-                m_fadeMats = new List<Material>();
-                m_maleRenderer = m_male.GetComponentInChildren<SkinnedMeshRenderer>();
-                m_femaleRenderer = m_female.GetComponentInChildren<SkinnedMeshRenderer>();
-                m_fadeMats.AddRange(m_maleFade.GetComponentInChildren<SkinnedMeshRenderer>().materials);
-                m_fadeMats.AddRange(m_femaleFade.GetComponentInChildren<SkinnedMeshRenderer>().materials);
-            }
 
             m_maleRenderer.enabled = false;
             m_femaleRenderer.enabled = false;

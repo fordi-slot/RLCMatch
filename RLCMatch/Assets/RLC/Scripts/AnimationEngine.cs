@@ -88,9 +88,15 @@ namespace RLC.Animation
                     var subject = m_poses[state];
                     if (m_currentSubject != null)
                         m_currentSubject.Stop();
-                    bool fade = subject.GroupName != m_currentSubject.GroupName;
+
+                    if (m_currentSubject != null)
+                        Debug.LogError(m_currentSubject.GroupName);
+                    if (subject != null)
+                        Debug.LogError(subject.GroupName);
+
+                    bool fade = m_currentSubject == null || subject.GroupName != m_currentSubject.GroupName;
                     m_currentSubject = subject;
-                    m_currentSubject.Begin();
+                    m_currentSubject.Begin(fade);
                     m_observable = null;
                 });
                 //m_uiEngine.Fade();
