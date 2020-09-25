@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -822,6 +822,9 @@ MonoBehaviour:
   m_description: {fileID: 5980022110900589925}
   m_networkInterface: {fileID: 666103150674552407}
   m_chatTabPrefab: {fileID: 0}
+  m_sizeDownButton: {fileID: 6303438477988081468}
+  m_sizeUpButton: {fileID: 7063723665420123901}
+  m_screenRoot: {fileID: 9217646183497545703}
   FriendsList:
   - Joe
   - Jane
@@ -1899,8 +1902,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Collapse
+      - m_Target: {fileID: 5962577781153714164}
+        m_MethodName: SizeDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2121,8 +2124,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Collapse
+      - m_Target: {fileID: 5962577781153714164}
+        m_MethodName: SizeUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2520,17 +2523,17 @@ PrefabInstance:
     - target: {fileID: 1859438883186362326, guid: da185ee630c102f45ba82d92cd8f14a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1859438883275714003, guid: da185ee630c102f45ba82d92cd8f14a0,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1859438883275714003, guid: da185ee630c102f45ba82d92cd8f14a0,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da185ee630c102f45ba82d92cd8f14a0, type: 3}

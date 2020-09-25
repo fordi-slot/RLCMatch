@@ -57,6 +57,10 @@ namespace Fordi.ChatEngine
         private GameObject m_networkInterface = null;
         [SerializeField]
         private GameObject m_chatTabPrefab;
+        [SerializeField]
+        private GameObject m_sizeDownButton, m_sizeUpButton;
+        [SerializeField]
+        private RectTransform m_screenRoot;
 
         public string[] FriendsList;
 
@@ -735,6 +739,22 @@ namespace Fordi.ChatEngine
             m_blocker.gameObject.SetActive(true);
             m_description.text = text.Style(ExperienceMachine.ProgressTextColorStyle);
         }
+
+        #region UI
+        public void SizeDown()
+        {
+            m_screenRoot.sizeDelta = new Vector2(600, 400);
+            m_sizeDownButton.SetActive(false);
+            m_sizeUpButton.SetActive(true);
+        }
+
+        public void SizeUp()
+        {
+            m_screenRoot.sizeDelta = new Vector2(900, 600);
+            m_sizeDownButton.SetActive(true);
+            m_sizeUpButton.SetActive(false);
+        }
+        #endregion
 
     }
 
