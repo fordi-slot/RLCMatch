@@ -1,4 +1,5 @@
-﻿using Invector.vCharacterController;
+﻿using Fordi.UI;
+using Invector.vCharacterController;
 using RLC.Core;
 using System;
 using UnityEngine;
@@ -90,6 +91,13 @@ namespace Fordi.Core
             }
         }
 
+        protected override void JumpInput()
+        {
+            if (UIEngine.s_InputSelectedFlag)
+                return;
+            base.JumpInput();
+        }
+
         public override void MoveInput()
         {
             if (Input.GetAxis(horizontalInput) != 0)
@@ -98,6 +106,14 @@ namespace Fordi.Core
                 cc.input.z = 0;
                 return;
             }
+
+            if (UIEngine.s_InputSelectedFlag)
+            {
+                cc.input.x = 0;
+                cc.input.z = 0;
+                return;
+            }
+
             cc.input.x = m_onRest ? 0 : Input.GetAxis(horizontalInput);
             cc.input.z = m_onRest ? 0 : Input.GetAxis(verticallInput);
         }
