@@ -61,8 +61,11 @@ namespace Fordi.Core
 
             if (InteractablelUI.PointerOnUI || (!CameraControl.FreeHand && !Input.GetMouseButton(0)))
             {
-                cc.freeSpeed.rotateWithCamera = Input.GetAxis(horizontalInput) != 0;
-                tpCamera.RotateCamera(Input.GetAxis(horizontalInput), 0);
+                if (!UIEngine.s_InputSelectedFlag)
+                {
+                    cc.freeSpeed.rotateWithCamera = Input.GetAxis(horizontalInput) != 0;
+                    tpCamera.RotateCamera(Input.GetAxis(horizontalInput), 0);
+                }
                 return;
             }
 
