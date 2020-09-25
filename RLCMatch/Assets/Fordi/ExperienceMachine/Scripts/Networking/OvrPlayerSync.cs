@@ -36,6 +36,7 @@ namespace Fordi.Networking
         private INetwork m_network;
         private PhotonView m_photonView;
         private IAnimationEngine m_animationEngine = null;
+        private IWebInterface m_webInterface = null;
 
         public bool IsRemotePlayer { get; set; } = false;
 
@@ -48,6 +49,7 @@ namespace Fordi.Networking
             m_network = IOCCore.Resolve<INetwork>();
             m_photonView = GetComponent<PhotonView>();
             m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
             Debug.LogError("Subscribed: m_animationEngine.InteractionStateChange");
             m_animationEngine.InteractionStateChange += PlayerInteractionStateChange;
         }
@@ -122,7 +124,7 @@ namespace Fordi.Networking
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-          
+
         }
 
         public void PauseSync()
@@ -165,11 +167,11 @@ namespace Fordi.Networking
 
             items[1] = new MenuItemInfo()
             {
-                 CommandType = MenuCommandType.INVITE_FOR_SEX,
-                 Command = "Invite For Sex",
-                 Text = "Invite For Sex",
-                 Action = new MenuItemEvent(),
-                 Data = playerId
+                CommandType = MenuCommandType.INVITE_FOR_SEX,
+                Command = "Invite For Sex",
+                Text = "Invite For Sex",
+                Action = new MenuItemEvent(),
+                Data = playerId
             };
 
             items[1].Action.AddListener(OnContextItemClick);
@@ -210,36 +212,60 @@ namespace Fordi.Networking
             var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == senderId);
             var inviterName = targetPlayer == null ? senderId.ToString() : targetPlayer.NickName;
 
+            object userId = null;
+
+            if (targetPlayer != null)
+            {
+                var customProperties = targetPlayer.CustomProperties;
+                if (customProperties != null)
+                    customProperties.TryGetValue(Network.UserIdKey, out userId);
+            }
+
             m_uiEngine.Popup(new PopupInfo()
             {
-                 Title = "REQUEST",
-                 TimeInSeconds = 10,
-                 Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
-                 Action = (val) => 
-                 {
-                     if (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST)
-                     {
-                         m_uiEngine.CloseLastScreen();
-                         if (val == PopupInfo.PopupAction.ACCEPT)
-                         {
-                             var friend = new Friend()
-                             {
-                                 PlayerId = senderId,
-                                 Name = targetPlayer.NickName
-                             };
-                             WebInterface.s_friends.Add(friend);
-                         }
-                         m_photonView.RPC("RPC_InviteResponse", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, val == PopupInfo.PopupAction.ACCEPT);
-                     }
+                Title = "REQUEST",
+                TimeInSeconds = 10,
+                Content = (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST ? "Friend Request" : "Invite For Sex") + " by " + inviterName,
+                Action = (val) =>
+                {
+                    if (menuCommand == MenuCommandType.SEND_FRIEND_REQUEST)
+                    {
+                        if (val == PopupInfo.PopupAction.ACCEPT)
+                        {
 
-                     if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
-                     {
-                         m_uiEngine.CloseLastScreen();
-                         var roomName = Guid.NewGuid().ToString().Substring(0, 4);
-                         m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, roomName);
-                         m_network.EnterPrivateRoom(roomName, true);
-                     }
-                 }
+                            m_webInterface.AcceptFriendRequest((string)userId, (error, message) =>
+                            {
+                                Debug.LogError(message);
+                                var success = !error && message.Contains("\"success\": \"true\"");
+                                Debug.LogError(success);
+                                if (success)
+                                {
+                                    var friend = new Friend()
+                                    {
+                                        PlayerId = senderId,
+                                        Name = targetPlayer.NickName
+                                    };
+                                    WebInterface.s_friends.Add(friend);
+                                    m_uiEngine.CloseLastScreen();
+                                    m_photonView.RPC("RPC_InviteResponse", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, val == PopupInfo.PopupAction.ACCEPT);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            m_uiEngine.CloseLastScreen();
+                            m_photonView.RPC("RPC_InviteResponse", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, val == PopupInfo.PopupAction.ACCEPT);
+                        }
+                    }
+
+                    if (menuCommand == MenuCommandType.INVITE_FOR_SEX && val == PopupInfo.PopupAction.ACCEPT)
+                    {
+                        m_uiEngine.CloseLastScreen();
+                        var roomName = Guid.NewGuid().ToString().Substring(0, 4);
+                        m_photonView.RPC("RPC_PrivateRoom", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, roomName);
+                        m_network.EnterPrivateRoom(roomName, true);
+                    }
+                }
             });
 
         }
@@ -283,7 +309,7 @@ namespace Fordi.Networking
                 BackEnabled = false,
                 OkEnabled = true,
             });
-            
+
             Observable.TimerFrame(500).Subscribe(_ =>
             {
                 m_network.EnterPrivateRoom(roomName, false);
@@ -302,3 +328,4 @@ namespace Fordi.Networking
         }
     }
 }
+

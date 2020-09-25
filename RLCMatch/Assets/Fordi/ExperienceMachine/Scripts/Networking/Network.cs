@@ -48,6 +48,7 @@ namespace Fordi.Networking
         public const string LobbyRoom = "Lobby";
         public const string ActorNumberString = "ActorNumber";
         public const string GenderKey = "Gender";
+        public const string UserIdKey = "UserId";
         public const string OculusIDString = "OculusID";
         public const string PrivateMeetingLocation = "PrivateMeeting";
 
@@ -96,6 +97,7 @@ namespace Fordi.Networking
             ExitGames.Client.Photon.Hashtable playerCustomProperties = new ExitGames.Client.Photon.Hashtable();
             playerCustomProperties.Add(ActorNumberString, PhotonNetwork.LocalPlayer.ActorNumber);
             playerCustomProperties.Add(GenderKey, m_webInterface.UserInfo.gender);
+            playerCustomProperties.Add(UserIdKey, m_webInterface.UserInfo._id);
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProperties);
             PhotonNetwork.NickName = m_webInterface.UserInfo.name;
         }

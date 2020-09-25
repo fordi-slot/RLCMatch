@@ -22,6 +22,15 @@ using Fordi.Networking;
 
 namespace Cornea.Web
 {
+    public class UserFriend
+    {
+        public string _id;
+        public string displayName;
+        public int primaryMemberID;
+        public string email;
+        public string dob;
+    }
+
     public interface IWebInterface
     {
         string AccessToken { get; }
@@ -36,6 +45,9 @@ namespace Cornea.Web
         APIRequest RejectMeeting(int meetingId);
         APIRequest CancelMeeting(int meetingId);
         APIRequest ActivateUserLicense(string userName, string key);
+        APIRequest SendFriendRequest(string userId, OnCompleteAction done);
+        APIRequest AcceptFriendRequest(string userId, OnCompleteAction done);
+        APIRequest GetFriendsList(OnCompleteAction done);
         List<UserInfo> ParseUserListJson(string userListJson);
         List<MeetingInfo> ParseMeetingListJson(string meetingListJson, MeetingCategory category);
         ExperienceResource[] GetResource(ResourceType resourceType, string category);
@@ -502,6 +514,7 @@ namespace Cornea.Web
             request.Run(this).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
+                    Debug.LogError(message);
                     JsonData data = JsonMapper.ToObject(message);
                     SetUserData(data);
                     done?.Invoke(isNetworkError, message);
@@ -572,7 +585,7 @@ namespace Cornea.Web
 
         public APIRequest SendFriendRequest(string userId, OnCompleteAction done)
         {
-            var jsonString = "{\"user_id\":\"" + "5f646460decf0762a2890984" + "\"}";
+            var jsonString = "{\"user_id\":\"" + userId + "\"}";
             //var jsonString = "{\r\n  \"user_id\": \"5f64a96f48d58b115eab6dbf\"\r\n}";
             byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
@@ -604,7 +617,7 @@ namespace Cornea.Web
 
         public APIRequest AcceptFriendRequest(string userId, OnCompleteAction done)
         {
-            var jsonString = "{\"user_id\":\"" + "5f646460decf0762a2890984" + "\"}";
+            var jsonString = "{\"user_id\":\"" + userId + "\"}";
             byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
             Dictionary<string, string> headers = new Dictionary<string, string>
@@ -632,34 +645,20 @@ namespace Cornea.Web
             return request;
         }
 
-        public APIRequest GetFriendsList(string userName, string password, OnCompleteAction done)
+        public APIRequest GetFriendsList(OnCompleteAction done)
         {
-            var jsonString = "{\"password\":\"" + password + "\",\"email\":\"" + userName + "\",\"deviceId\":\"" + MacAddress + "\",\"platform\":\"" + "windows" + "\"}";
-            byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+            var url = rlcBaseUrl + getFriendsList;
 
-            Dictionary<string, string> headers = new Dictionary<string, string>
-            {
-                { "Content-Type", "application/json" }
-            };
-
-            APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
-            {
-                requestType = APIRequestType.Validate_User_Login,
-                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
-                downloadHandler = new DownloadHandlerBuffer()
-            };
+            APIRequest request = APIRequest.Prepare((WWWForm)null, url, UnityWebRequest.kHttpVerbGET, APIRequestType.getFriendsList);
             request.SetRequestHeader("Content-Type", "application/json");
-            //request.SetRequestHeader("Authorization", "Bearer " + access_token);
-            request.Run(this).OnRequestComplete(
+            request.SetRequestHeader("Authorization", access_token);
+            request.Run(this, false).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
                     Debug.LogError(message);
-                    JsonData result = JsonMapper.ToObject(message);
-                    SetUserData(result);
                     done?.Invoke(isNetworkError, message);
                 }
             );
-
             return request;
         }
 
@@ -923,7 +922,11 @@ namespace Cornea.Web
 
                 Debug.LogError(m_userInfo.gender.ToString());
 
-                SendFriendRequest("", null);
+                //Rhea id
+                //SendFriendRequest("5f64a96f48d58b115eab6dbf", null);
+                //Harsh id
+                //AcceptFriendRequest("5f646460decf0762a2890984", null);
+                GetFriendsList(null);
 
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
 
