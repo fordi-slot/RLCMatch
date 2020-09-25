@@ -237,8 +237,7 @@ namespace Fordi.Networking
                             m_webInterface.AcceptFriendRequest((string)userId, (error, message) =>
                             {
                                 var jsonObject = JsonMapper.ToObject(message);
-                                Debug.LogError(message);
-                                var success = !error && Convert.ToString(jsonObject["success"]) == "True";
+                                var success = !error && Convert.ToString(jsonObject["success"]) == "true";
                                 Debug.LogError(error + " " + success);
                                 if (success)
                                 {
