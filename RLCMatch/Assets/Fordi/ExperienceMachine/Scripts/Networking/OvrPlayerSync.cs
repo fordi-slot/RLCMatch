@@ -238,7 +238,7 @@ namespace Fordi.Networking
                             {
                                 var jsonObject = JsonMapper.ToObject(message);
                                 Debug.LogError(message);
-                                var success = !error && Convert.ToBoolean(jsonObject["success"]);
+                                var success = !error && Convert.ToString(jsonObject["success"]) == "True";
                                 Debug.LogError(error + " " + success);
                                 if (success)
                                 {
