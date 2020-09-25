@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using LitJson;
 
 namespace Fordi.Networking
 {
@@ -235,9 +236,10 @@ namespace Fordi.Networking
 
                             m_webInterface.AcceptFriendRequest((string)userId, (error, message) =>
                             {
+                                var jsonObject = JsonMapper.ToObject(message);
                                 Debug.LogError(message);
-                                var success = !error && message.Contains("\"success\": \"true\"");
-                                Debug.LogError(success);
+                                var success = !error && Convert.ToBoolean(jsonObject["success"]);
+                                Debug.LogError(error + " " + success);
                                 if (success)
                                 {
                                     var friend = new Friend()
