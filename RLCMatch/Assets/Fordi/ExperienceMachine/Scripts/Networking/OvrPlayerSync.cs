@@ -64,6 +64,8 @@ namespace Fordi.Networking
 
         private Renderer[] m_renderers = null;
 
+        private Photon.Realtime.Player m_player;
+
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
@@ -90,6 +92,9 @@ namespace Fordi.Networking
             {
                 Hide(true);
             }
+
+            yield return new WaitForSeconds(2);
+            m_player = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == playerId);
         }
 
         private void Hide(bool val)
@@ -172,6 +177,18 @@ namespace Fordi.Networking
             }
         }
 
+        private bool IsAFriend()
+        {
+            foreach (var item in WebInterface.s_friends)
+            {
+                if (item.displayName == m_player.NickName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         MenuItemInfo[] CreateContextMenu()
         {
             MenuItemInfo[] items = new MenuItemInfo[3];
@@ -182,7 +199,8 @@ namespace Fordi.Networking
                 Command = "Send Friend Request",
                 Text = "Send Friend Request",
                 Action = new MenuItemEvent(),
-                Data = playerId
+                Data = playerId,
+                IsValid = !IsAFriend()
             };
 
             items[0].Action.AddListener(OnContextItemClick);
