@@ -20,6 +20,27 @@ namespace Fordi.Networking
     public class Friend : ExperienceResource
     {
         public int PlayerId;
+        public string _id;
+        public string displayName;
+        public int primaryMemberID;
+        public string email;
+        public string dob;
+
+        public static explicit operator Friend(UserFriend surrogate)
+        {
+            if (surrogate == null)
+                return null;
+
+            return new Friend()
+            {
+                Name = surrogate.displayName,
+                displayName = surrogate.displayName,
+                primaryMemberID = surrogate.primaryMemberID,
+                email = surrogate.email,
+                dob = surrogate.dob
+            };
+
+        }
     }
 
 

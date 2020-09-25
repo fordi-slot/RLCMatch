@@ -656,10 +656,29 @@ namespace Cornea.Web
                 (isNetworkError, message) =>
                 {
                     Debug.LogError(message);
+                    CacheFriendList(JsonMapper.ToObject(message));
                     done?.Invoke(isNetworkError, message);
                 }
             );
             return request;
+        }
+
+        private void CacheFriendList(JsonData data)
+        {
+            var friendsCount = data["data"].Count;
+            for (int i = 0; i < friendsCount; i++)
+            {
+                var friend = new UserFriend()
+                {
+                    _id = Convert.ToString(data["data"][i]["_id"]),
+                    displayName = Convert.ToString(data["data"][i]["displayName"]),
+                    //primaryMemberID = Convert.ToInt32(data["data"][i]["primaryMemberID"]),
+                    email = Convert.ToString(data["data"][i]["email"]),
+                    dob = Convert.ToString(data["data"][i]["dob"]),
+                };
+                s_friends.Add((Friend)friend);
+            }
+            Debug.LogError(friendsCount);
         }
 
         public APIRequest GetUsersByOrganization()

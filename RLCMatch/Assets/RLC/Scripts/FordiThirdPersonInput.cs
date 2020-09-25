@@ -44,7 +44,7 @@ namespace Fordi.Core
                 cc.rotateTarget = cameraMain.transform;
             }
 
-            if (cameraMain)
+            if (cameraMain && !UIEngine.s_InputSelectedFlag)
             {
                 cc.UpdateMoveDirection(cameraMain.transform);
             }
