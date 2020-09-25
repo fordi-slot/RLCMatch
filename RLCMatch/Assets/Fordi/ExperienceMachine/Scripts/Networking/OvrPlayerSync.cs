@@ -194,15 +194,39 @@ namespace Fordi.Networking
 
         private void OnContextItemClick(MenuClickArgs arg0)
         {
-            Debug.LogError(playerId + " " + PhotonNetwork.LocalPlayer.ActorNumber + " " + arg0.CommandType.ToString());
             var targetPlayerId = (int)arg0.Data;
-            m_uiEngine.CloseLastScreen();
-
-            if (arg0.CommandType == MenuCommandType.OTHER)
-                return;
-
             var targetPlayer = Array.Find(PhotonNetwork.PlayerList, item => item.ActorNumber == targetPlayerId);
-            m_photonView.RPC("RPC_Request", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, (int)arg0.CommandType);
+            object userId = null;
+
+            if (targetPlayer != null)
+            {
+                var customProperties = targetPlayer.CustomProperties;
+                if (customProperties != null)
+                    customProperties.TryGetValue(Network.UserIdKey, out userId);
+            }
+
+            if (arg0.CommandType == MenuCommandType.SEND_FRIEND_REQUEST)
+            {
+                m_webInterface.SendFriendRequest((string)userId, (error, message) =>
+                {
+                    var jsonObject = JsonMapper.ToObject(message);
+                    var success = !error && Convert.ToString(jsonObject["success"]) == "true";
+                    if (success)
+                    {
+                        m_photonView.RPC("RPC_Request", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, (int)arg0.CommandType);
+                        m_uiEngine.CloseLastScreen();
+                    }
+                });
+            }
+            else
+            {
+
+                m_uiEngine.CloseLastScreen();
+
+                if (arg0.CommandType == MenuCommandType.OTHER)
+                    return;
+                m_photonView.RPC("RPC_Request", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, (int)arg0.CommandType);
+            }
         }
 
         [PunRPC]
