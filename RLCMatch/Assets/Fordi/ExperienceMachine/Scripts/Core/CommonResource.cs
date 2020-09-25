@@ -34,6 +34,7 @@ namespace Fordi.Core
     [Serializable]
     public class AnimationResource : ExperienceResource
     {
+        public string GroupName;
         public AnimationClip clip;
     }
 

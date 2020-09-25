@@ -13,15 +13,21 @@ namespace RLC.Animation
     public interface IAnimationSubject
     {
         string Key { get; }
-        void Begin();
+        void Begin(bool fade = true);
         void Stop();
+        string GroupName { get; }
     }
 
     public class Pose : MonoBehaviour, IAnimationSubject
     {
         [SerializeField]
         private string m_key;
+        [SerializeField]
+        private string m_groupName;
+
         public string Key { get { return m_key; } }
+
+        public string GroupName { get { return m_groupName; } }
 
         [SerializeField]
         private GameObject m_maleFade, m_femaleFade;
@@ -56,8 +62,19 @@ namespace RLC.Animation
             m_animationEngine.DeregisterSubject(this);
         }
 
-        public void Begin()
+        public void Begin(bool fade = true)
         {
+            if (!fade)
+            {
+                m_maleFade.SetActive(false);
+                m_femaleFade.SetActive(false);
+                m_maleRenderer.enabled = true;
+                m_femaleRenderer.enabled = true;
+                m_maleHead.SetActive(true);
+                m_femaleHead.SetActive(true);
+                return;
+            }
+
             gameObject.SetActive(true);
             m_maleFade.SetActive(true);
             m_femaleFade.SetActive(true);

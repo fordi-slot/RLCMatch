@@ -251,6 +251,31 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.20000012
       objectReference: {fileID: 0}
+    - target: {fileID: 4446021377404935994, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea,
+        type: 3}
+      propertyPath: m_groupName
+      value: doggy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446021378891748633, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea,
+        type: 3}
+      propertyPath: m_groupName
+      value: cowgirl
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446021379038076797, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea,
+        type: 3}
+      propertyPath: m_groupName
+      value: doggy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446021379297953304, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea,
+        type: 3}
+      propertyPath: m_groupName
+      value: cowgirl
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446021379506139519, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea,
+        type: 3}
+      propertyPath: m_groupName
+      value: doggy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f9ccbb1fd421b4ba775d6fd8e8ebea, type: 3}
 --- !u!1001 &1042084677
