@@ -100,7 +100,7 @@ namespace Fordi.Core
 
         public override void MoveInput()
         {
-            if (Input.GetAxis(horizontalInput) != 0)
+            if (Input.GetAxis(horizontalInput) != 0 || UIEngine.s_InputSelectedFlag || Selection.Location == Networking.Network.PrivateMeetingLocation)
             {
                 cc.input.x = 0;
                 cc.input.z = 0;
