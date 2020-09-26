@@ -179,7 +179,7 @@ namespace Fordi.Networking
 
         private bool IsAFriend()
         {
-            foreach (var item in WebInterface.s_friends)
+            foreach (var item in m_webInterface.Friends)
             {
                 if (item.displayName == m_player.NickName)
                 {
@@ -309,7 +309,7 @@ namespace Fordi.Networking
                                         PlayerId = senderId,
                                         Name = targetPlayer.NickName
                                     };
-                                    WebInterface.s_friends.Add(friend);
+                                    m_webInterface.AddFriend(friend);
                                     m_uiEngine.CloseLastScreen();
                                     m_photonView.RPC("RPC_InviteResponse", targetPlayer, PhotonNetwork.LocalPlayer.ActorNumber, val == PopupInfo.PopupAction.ACCEPT);
                                 }
@@ -348,7 +348,7 @@ namespace Fordi.Networking
                     PlayerId = senderId,
                     Name = targetPlayer.NickName
                 };
-                WebInterface.s_friends.Add(friend);
+                m_webInterface.AddFriend(friend);
             }
 
             m_uiEngine.DisplayMessage(new MessageArgs()

@@ -63,7 +63,7 @@ namespace RLC.UI
                     if (m_animationView != null)
                         m_animationView.Deactivate();
 
-                    MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
+                    MenuItemInfo[] items = Experience.ResourceToMenuItems(m_webInterface.Friends);
 
                     //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
 
@@ -80,7 +80,7 @@ namespace RLC.UI
                 if (m_animationView != null)
                     m_animationView.Deactivate();
 
-                MenuItemInfo[] items = Experience.ResourceToMenuItems(WebInterface.s_friends.ToArray());
+                MenuItemInfo[] items = Experience.ResourceToMenuItems(m_webInterface.Friends);
 
                 //Experience.ResourceToMenuItems(m_commonResource.GetResource(ResourceType.USER, ""));
 

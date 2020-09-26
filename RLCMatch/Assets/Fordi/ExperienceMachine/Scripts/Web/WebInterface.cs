@@ -37,6 +37,7 @@ namespace Cornea.Web
         //void ValidateUserLogin(string organization, string username, string password, OnCompleteAction action);
         void RegisterRequestFailure(string errorMessage, APIRequest req);
         void RemoveRequest(APIRequest req);
+        void AddFriend(Friend friend);
         APIRequest UserLogin(string username, string password, OnCompleteAction action);
         APIRequest UserSignup(string displayName, Gender gender, string password, string email, string dob, OnCompleteAction done);
         APIRequest ListAllMeetingDetails(MeetingFilter meetingFilter);
@@ -54,6 +55,7 @@ namespace Cornea.Web
         void GetCategories(ResourceType type, UnityAction<ResourceComponent[]> done, bool requireWebRefresh = false);
         UserInfo UserInfo { get; }
         EventHandler OnUserDataUpdate { get; set; }
+        Friend[] Friends { get; }
     }
 
     public enum APIRequestType
@@ -317,7 +319,7 @@ namespace Cornea.Web
         public UserGroup[] Users { get { return m_users.ToArray(); } }
 
         [Obsolete("Temp")]
-        public static HashSet<Friend> s_friends = new HashSet<Friend>();
+        private static HashSet<Friend> s_friends = new HashSet<Friend>();
 
         [HideInInspector]
         private static string access_token = "";
@@ -338,6 +340,8 @@ namespace Cornea.Web
         public UserInfo UserInfo { get { return m_userInfo; } }
 
         public EventHandler OnUserDataUpdate { get; set; }
+
+        public Friend[] Friends { get { return s_friends.ToArray(); } }
 
         private IUIEngine m_uiEngine = null;
 
@@ -388,7 +392,23 @@ namespace Cornea.Web
             return input;
         }
 
-#region API_REQUESTS
+        public void AddFriend(Friend friend)
+        {
+            bool alreadyExists = false;
+            foreach (var item in s_friends)
+            {
+                if (item.displayName == friend.displayName)
+                {
+                    alreadyExists = true;
+                    break;
+                }
+            }
+
+            if (!alreadyExists)
+                s_friends.Add(friend);
+        }
+
+        #region API_REQUESTS
 
         //public void TokenAuthenticate(string organization, string username, string password, OnCompleteAction onloginApiDone)
         //{
