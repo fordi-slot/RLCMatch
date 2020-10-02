@@ -43,11 +43,11 @@ namespace Fordi.Core
 
             if (args.CommandType == MenuCommandType.CREATE_MEETING)
             {
-                m_webInterace.GetCategories(ResourceType.USER, (users) =>
+                m_webInterface.GetCategories(ResourceType.USER, (users) =>
                 {
                     m_uiEngine.OpenMeetingForm(new FormArgs()
                     {
-                        Items = ResourceToMenuItems(m_webInterace.GetResource(ResourceType.USER, "").Where(item => ((UserResource)item).UserInfo.id != m_webInterace.UserInfo.id).ToArray()),
+                        Items = ResourceToMenuItems(m_webInterface.GetResource(ResourceType.USER, "").Where(item => ((UserResource)item).UserInfo.id != m_webInterface.UserInfo.id).ToArray()),
                     });
                 });
                
@@ -110,7 +110,7 @@ namespace Fordi.Core
                 if (resourceComponent.ResourceType == ResourceType.AUDIO)
                     Selection.MusicGroup = Array.Find(m_commonResource.AssetDb.AudioGroups, item => item.Name != null && item.Name.Equals(args.Command)).MusicGroupName;
                 var resourceType = resourceComponent.ResourceType;
-                var resources = resourceType == ResourceType.OBJECT ? m_commonResource.GetResource(resourceType, args.Command) : m_webInterace.GetResource(resourceType, args.Command);
+                var resources = resourceType == ResourceType.OBJECT ? m_commonResource.GetResource(resourceType, args.Command) : m_webInterface.GetResource(resourceType, args.Command);
                 m_uiEngine.OpenGridMenu(new GridArgs()
                 {
                     Items = ResourceToMenuItems(resources),
@@ -134,7 +134,7 @@ namespace Fordi.Core
             if (sequenceIndex < sequence.Count)
             {
                 var resourceType = sequence[sequenceIndex];
-                m_webInterace.GetCategories(resourceType, (categories) =>
+                m_webInterface.GetCategories(resourceType, (categories) =>
                 {
                     if (resourceType == ResourceType.COLOR || (categories.Length == 1 && string.IsNullOrEmpty(categories[0].Name)))
                     {
@@ -143,7 +143,7 @@ namespace Fordi.Core
                             m_uiEngine.OpenGridMenu(new GridArgs()
                             {
                                 AudioClip = m_commonResource.GetGuideClip(GetCommandType(resourceType)),
-                                Items = ResourceToMenuItems(m_webInterace.GetResource(sequence[sequenceIndex], "")),
+                                Items = ResourceToMenuItems(m_webInterface.GetResource(sequence[sequenceIndex], "")),
                                 Title = "SELECT " + sequence[sequenceIndex].ToString(),
                             });
                         }

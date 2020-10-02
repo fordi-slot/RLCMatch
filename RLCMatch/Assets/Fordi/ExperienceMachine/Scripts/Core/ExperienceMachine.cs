@@ -13,6 +13,9 @@ using UnityEngine.XR;
 using Fordi.AssetManagement;
 using UniRx;
 using Fordi.Plugins;
+using TMPro;
+using Cornea.Web;
+using LitJson;
 
 namespace Fordi.Core
 {
@@ -119,6 +122,7 @@ namespace Fordi.Core
         private IPlayer m_player;
         private IUIEngine m_uiEngine = null;
         private IPluginHook m_pluginHook = null;
+        private IWebInterface m_webInterface = null;
 
         public const string DynamicAmbienceTag = "DynamicAmbience";
         public const string CorrectTextColorStyle = "Correct";
@@ -153,6 +157,7 @@ namespace Fordi.Core
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_settings = IOCCore.Resolve<ISettings>();
             m_pluginHook = IOCCore.Resolve<IPluginHook>();
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
 
             if (SceneManager.GetActiveScene().name == Networking.Network.MeetingRoom || SceneManager.GetActiveScene().name == Networking.Network.PrivateMeetingLocation)
             {
@@ -174,6 +179,7 @@ namespace Fordi.Core
 
         private IEnumerator Start()
         {
+            OpenLoginPage();
             yield return new WaitForSeconds(3);
 
             if (DateTime.Now > new DateTime(2020, 10, 5))
@@ -190,6 +196,7 @@ namespace Fordi.Core
 
         private void AllPlatformDependenciesLoaded(object sender, EventArgs e)
         {
+            Debug.LogError("AllPlatformDependenciesLoaded");
             Observable.TimerFrame(2).Subscribe(_ =>
             {
                 m_currentExperience.OnLoad();
@@ -450,5 +457,60 @@ namespace Fordi.Core
                 Debug.LogError("Loaded: " + newDevice);
             }
         }
+
+        #region UI
+
+        private void OpenLoginPage()
+        {
+            var usernameInput = new MenuItemInfo
+            {
+                Path = "Email",
+                Text = "Emaiil",
+                Command = "Email",
+                Icon = null,
+                Data = TMP_InputField.ContentType.Standard,
+                CommandType = MenuCommandType.FORM_INPUT
+            };
+
+            var passwordInput = new MenuItemInfo
+            {
+                Path = "Password",
+                Text = "Password",
+                Command = "Password",
+                Icon = null,
+                Data = TMP_InputField.ContentType.Password,
+                CommandType = MenuCommandType.FORM_INPUT
+            };
+
+            MenuItemInfo[] formItems = new MenuItemInfo[] { usernameInput, passwordInput };
+            MenuArgs args = new MenuArgs()
+            {
+                Items = new MenuItemInfo[] { },
+                OnAction = (inputs) =>
+                {
+
+                    m_uiEngine.DisplayProgress("Validating user...");
+
+                    m_webInterface.UserLogin(inputs[0], inputs[1],
+                        (isNetworkError, message) =>
+                        {
+                            Error error = new Error();
+
+                            JsonData validateUserLoginResult = JsonMapper.ToObject(message);
+
+                            if (validateUserLoginResult["status"].ToString() == "200")
+                            {
+                                return;
+                            }
+
+                            error.ErrorCode = Error.E_NotFound;
+                            error.ErrorText = validateUserLoginResult["message"].ToString();
+                            m_uiEngine.DisplayResult(error, false);
+                        });
+                }
+            };
+            m_uiEngine.OpenLoginPage(args);
+        }
+        #endregion
     }
 }

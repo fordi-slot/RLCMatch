@@ -161,6 +161,58 @@ namespace Fordi.Core
             }
         }
 
+        private void OpenLoginPage()
+        {
+            var usernameInput = new MenuItemInfo
+            {
+                Path = "Email",
+                Text = "Emaiil",
+                Command = "Email",
+                Icon = null,
+                Data = TMP_InputField.ContentType.Standard,
+                CommandType = MenuCommandType.FORM_INPUT
+            };
+
+            var passwordInput = new MenuItemInfo
+            {
+                Path = "Password",
+                Text = "Password",
+                Command = "Password",
+                Icon = null,
+                Data = TMP_InputField.ContentType.Password,
+                CommandType = MenuCommandType.FORM_INPUT
+            };
+
+            MenuItemInfo[] formItems = new MenuItemInfo[] { usernameInput, passwordInput };
+            MenuArgs args = new MenuArgs()
+            {
+                Items = new MenuItemInfo[] { },
+                OnAction = (inputs) =>
+                {
+
+                    m_uiEngine.DisplayProgress("Validating user...");
+
+                    m_webInterface.UserLogin(inputs[0], inputs[1],
+                        (isNetworkError, message) =>
+                        {
+                            Error error = new Error();
+
+                            JsonData validateUserLoginResult = JsonMapper.ToObject(message);
+
+                            if (validateUserLoginResult["status"].ToString() == "200")
+                            {
+                                return;
+                            }
+
+                            error.ErrorCode = Error.E_NotFound;
+                            error.ErrorText = validateUserLoginResult["message"].ToString();
+                            m_uiEngine.DisplayResult(error, false);
+                        });
+                }
+            };
+            m_uiEngine.OpenLoginPage(args);
+        }
+
         private void GetNextMenu(string currentCommand)
         {
             
@@ -261,69 +313,18 @@ namespace Fordi.Core
 
         public override void OnLoad()
         {
+            Debug.LogError("OnLoad");
             Selection.VoiceOver = null;
             base.OnLoad();
-            Observable.TimerFrame(20).Subscribe(_ => OpenLoginPage());
+            Observable.TimerFrame(20).Subscribe(_ =>
+            {
+                Selection.Location = Networking.Network.MeetingRoom;
+                Selection.ExperienceType = ExperienceType.MEETING;
+                m_network.EnterMeeting();
+
+            });
             m_experienceMachine.Player.RequestHaltMovement(true);
         }
-
-
-        private void OpenLoginPage()
-        {
-            var usernameInput = new MenuItemInfo
-            {
-                Path = "Email",
-                Text = "Emaiil",
-                Command = "Email",
-                Icon = null,
-                Data = TMP_InputField.ContentType.Standard,
-                CommandType = MenuCommandType.FORM_INPUT
-            };
-
-            var passwordInput = new MenuItemInfo
-            {
-                Path = "Password",
-                Text = "Password",
-                Command = "Password",
-                Icon = null,
-                Data = TMP_InputField.ContentType.Password,
-                CommandType = MenuCommandType.FORM_INPUT
-            };
-
-            MenuItemInfo[] formItems = new MenuItemInfo[] { usernameInput, passwordInput };
-            MenuArgs args = new MenuArgs()
-            {
-                Items = new MenuItemInfo[] { },
-                OnAction = (inputs) => 
-                {
-
-                    m_uiEngine.DisplayProgress("Validating user...");
-
-                    m_webInterace.UserLogin(inputs[0], inputs[1],
-                        (isNetworkError, message) =>
-                        {
-                            Error error = new Error();
-
-                            JsonData validateUserLoginResult = JsonMapper.ToObject(message);
-
-                            if (validateUserLoginResult["status"].ToString() == "200")
-                            {
-                                //m_network.EnterMeeting();
-                                return;
-
-
-                            }
-
-                            error.ErrorCode = Error.E_NotFound;
-                            error.ErrorText = validateUserLoginResult["message"].ToString();
-                            m_uiEngine.DisplayResult(error, false);
-                        });
-                }
-            };
-            m_uiEngine.OpenLoginPage(args);
-        }
-
-
 
         private string TruncateString(string input)
         {
@@ -363,7 +364,7 @@ namespace Fordi.Core
             MenuItemInfo[] formItems = new MenuItemInfo[] { emailInput, keyInput };
             FormArgs args = new FormArgs(formItems, "ACTIVATE LICENSE", "Activate", (inputs) =>
             {
-                m_webInterace.ActivateUserLicense(inputs[0], inputs[1]).OnRequestComplete(
+                m_webInterface.ActivateUserLicense(inputs[0], inputs[1]).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
                     Debug.Log(message);

@@ -764,7 +764,12 @@ namespace Cornea.Web
                     if (m_uiEngine == null)
                         m_uiEngine = IOCCore.Resolve<IUIEngine>();
 
-                    m_uiEngine.DisplayMessage(new MessageArgs() {Text = "Checking for asset updates..." });
+                    m_uiEngine.DisplayMessage(new MessageArgs()
+                    {
+                        Text = "Checking for asset updates...",
+                        BackEnabled = false,
+                        Persist = false
+                    });
                     var jsonObject = JsonMapper.ToObject(message);
                     if (Convert.ToString(jsonObject["success"]) == "true")
                     {
@@ -1575,6 +1580,11 @@ namespace Cornea.Web
 
         private IEnumerator PostExtractConfiguration()
         {
+            Debug.LogError("PostExtractionConfiguration");
+            m_uiEngine.DisplayResult(new Error()
+            {
+                ErrorText = "Done"
+            });
             OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
             yield return null;
         }
@@ -1588,8 +1598,8 @@ namespace Cornea.Web
             if (res == 1)
             {
                 Debug.Log("multi-threaded ok");
-                //if (onCompleteAction != null)
-                //    Coordinator.instance.mainThreadDispatcher.Enqueue(onCompleteAction);
+                if (onCompleteAction != null)
+                    UnityMainThreadDispatcher.Instance().Enqueue(onCompleteAction);
                 Thread.CurrentThread.Abort();
             }
             else

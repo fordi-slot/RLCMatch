@@ -1,4 +1,5 @@
-﻿using Fordi.Common;
+﻿using Cornea.Web;
+using Fordi.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,8 +14,22 @@ namespace Fordi.AssetManagement
 
         public static EventHandler AllDependenciesLoaded;
 
-        protected override void Start()
+        private IWebInterface m_webInterface;
+
+        private void Awake()
         {
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
+            m_webInterface.OnAssetsLoaded += OnAssetsLoaded;
+        }
+
+        private void OnDestroy()
+        {
+            m_webInterface.OnAssetsLoaded -= OnAssetsLoaded;
+        }
+
+        private void OnAssetsLoaded(object sender, EventArgs e)
+        {
+            Debug.LogError("OnAssetsLoaded");
             foreach (var item in m_deps)
                 m_assetLoader.LoadAndSpawn<GameObject>(new AssetArgs(item.AssetReference.RuntimeKey.ToString(), item.UnloadOnDestroy), (result) =>
                 {

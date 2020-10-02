@@ -1,4 +1,5 @@
-﻿using Fordi.AssetManagement;
+﻿using Cornea.Web;
+using Fordi.AssetManagement;
 using Fordi.Common;
 using System;
 using System.Collections;
@@ -29,26 +30,32 @@ namespace Fordi.Plugins
 
         private IAssetLoader m_assetLoader = null;
 
+        private IWebInterface m_webInterface = null;
+
         private void Awake()
         {
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
+            m_webInterface.OnAssetsLoaded += AssetsLoaded;
             PlatformDeps.AllDependenciesLoaded += AllDependenciesLoaded;
         }
 
         private void OnDestroy()
         {
             PlatformDeps.AllDependenciesLoaded -= AllDependenciesLoaded;
+            m_webInterface.OnAssetsLoaded -= AssetsLoaded;
+        }
+
+
+        private void AssetsLoaded(object sender, EventArgs e)
+        {
+            m_assetLoader = IOCCore.Resolve<IAssetLoader>();
+            Compose();
+            Init();
         }
 
         private void AllDependenciesLoaded(object sender, EventArgs e)
         {
             AllPlatformDependenciesLoaded?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void Start()
-        {
-            m_assetLoader = IOCCore.Resolve<IAssetLoader>();
-            Compose();
-            Init();
         }
 
         private void Init()

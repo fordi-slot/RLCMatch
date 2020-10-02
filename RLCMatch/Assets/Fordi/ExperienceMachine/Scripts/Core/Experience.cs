@@ -140,7 +140,7 @@ namespace Fordi.Core
         protected ISettings m_settings;
         protected IAudio m_audio;
         protected ICommonResource m_commonResource;
-        protected IWebInterface m_webInterace;
+        protected IWebInterface m_webInterface;
         protected INetwork m_network;
         protected IUIEngine m_uiEngine;
 
@@ -162,7 +162,7 @@ namespace Fordi.Core
             m_audio = IOCCore.Resolve<IAudio>();
             m_commonResource = IOCCore.Resolve<ICommonResource>();
             m_settings = IOCCore.Resolve<ISettings>();
-            m_webInterace = IOCCore.Resolve<IWebInterface>();
+            m_webInterface = IOCCore.Resolve<IWebInterface>();
             m_network = IOCCore.Resolve<INetwork>();
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
 
