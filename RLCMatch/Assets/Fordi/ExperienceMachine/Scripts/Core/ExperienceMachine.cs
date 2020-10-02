@@ -176,7 +176,7 @@ namespace Fordi.Core
         {
             yield return new WaitForSeconds(3);
 
-            if (DateTime.Now > new DateTime(2020, 9, 28))
+            if (DateTime.Now > new DateTime(2020, 10, 5))
             {
                 m_uiEngine.DisplayProgress("APP VALIDITY EXPIRED.\n\nPlease contact administrator for support.", true);
             }

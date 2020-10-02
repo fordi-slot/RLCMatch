@@ -19,6 +19,7 @@ using Fordi.Core;
 using Fordi.UI;
 using Photon.Pun;
 using Fordi.Networking;
+using System.Threading;
 
 namespace Cornea.Web
 {
@@ -403,6 +404,8 @@ namespace Cornea.Web
 
         public Friend[] Friends { get { return s_friends.ToArray(); } }
 
+        public EventHandler OnAssetsLoaded { get; set; }
+
         private IUIEngine m_uiEngine = null;
 
         private IExperienceMachine m_experienceMachine;
@@ -758,13 +761,19 @@ namespace Cornea.Web
             request.Run(this, false).OnRequestComplete(
                 (isNetworkError, message) =>
                 {
-                    Debug.LogError(message);
+                    if (m_uiEngine == null)
+                        m_uiEngine = IOCCore.Resolve<IUIEngine>();
+
+                    m_uiEngine.DisplayMessage(new MessageArgs() {Text = "Checking for asset updates..." });
                     var jsonObject = JsonMapper.ToObject(message);
                     if (Convert.ToString(jsonObject["success"]) == "true")
                     {
                         string fileUrl = Convert.ToString(jsonObject["data"][0]["file_url"]);
-                        var path = Path.Combine(Application.persistentDataPath, Path.GetFileName(fileUrl));
-                        DownloadFile(fileUrl, path);
+                        var parentAppData = Directory.GetParent(Application.persistentDataPath);
+                        var path = Path.Combine(parentAppData.FullName, Path.GetFileName(fileUrl));
+                        var parent = Directory.GetParent(path);
+                        //DownloadFile(fileUrl, path);
+                        Extract(path);
                     }
                     done?.Invoke(isNetworkError, message);
                 }
@@ -774,7 +783,14 @@ namespace Cornea.Web
 
         public APIRequest DownloadFile(string fileUrl, string filePath)
         {
+            if (Directory.Exists(Path.GetFileNameWithoutExtension(filePath)))
+            {
+                OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
+                return null;
+            }
             Debug.LogError("DownloadFile: " + fileUrl + " : " + filePath);
+            m_uiEngine.DisplayProgress("Downloading assets...");
+
             APIRequest downloadReq = APIRequest.Prepare(fileUrl, APIRequestType.Download_File, false);
             var downloadHandler = new DownloadHandlerFile(filePath);
             downloadHandler.removeFileOnAbort = true;
@@ -797,12 +813,16 @@ namespace Cornea.Web
 
         private IEnumerator Progress(APIRequest req)
         {
+            if (req == null)
+                yield break;
+
             while(!req.isDone)
             {
                 Debug.LogError(req.downloadProgress);
                 yield return null;
             }
             yield return null;
+            Debug.LogError("Done");
         }
 
 
@@ -1479,6 +1499,111 @@ namespace Cornea.Web
             return group;
         }
 
+        #endregion
+
+        #region EXTRACTION
+        private Thread decompressThread = null;
+        private int[] progress = new int[1];
+        private int[] progress2 = new int[1];
+
+        protected virtual bool IsFileLocked(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+            catch (IOException e)
+            {
+                Debug.LogError(e.Message);
+                //the file is unavailable because it is:
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
+
+
+        private void Extract(string compressedFilePath)
+        {
+            Debug.LogError("Extract: " + compressedFilePath);
+            if (IsFileLocked(new FileInfo(compressedFilePath)) || !Path.GetExtension(compressedFilePath).Equals(".zip"))
+            {
+                m_uiEngine.DisplayResult(new Error()
+                {
+                    ErrorCode = Error.E_Exception,
+                    ErrorText = "File: " + compressedFilePath + " is locked."
+                });
+                return;
+            }
+
+            var directoryName = Path.GetFileNameWithoutExtension(compressedFilePath);
+            var dataLength = "_data".Length;
+            if (directoryName.Length > dataLength && directoryName.Substring(directoryName.Length - dataLength, dataLength) == "_data")
+                directoryName = directoryName.Substring(0, directoryName.Length - dataLength);
+
+            var parentDirectory = Directory.GetParent(Application.persistentDataPath);
+
+            var decompressedDirectoryPath = Path.Combine(parentDirectory.FullName, directoryName);
+
+            Debug.LogError("Extracting to: " + decompressedDirectoryPath);
+            //Debug.Log(decompressedDirectoryPath);
+            if (decompressThread != null)
+            {
+                decompressThread.Abort();
+            }
+
+#if !NETFX_CORE
+            IEnumerator onExtractionCompleteEnumerator = PostExtractConfiguration();
+            decompressThread = new Thread(() => MultThreadedDecompress(compressedFilePath, decompressedDirectoryPath, onExtractionCompleteEnumerator));
+            decompressThread.Start();
+#endif
+#if NETFX_CORE && UNITY_WSA_10_0
+			Task task = new Task(new Action(() => MultThreadedDecompress(compressedFilePath, decompressedDirectoryPath, onExtractionCompleteEnumerator))); task.Start();
+#endif
+        }
+
+        private IEnumerator PostExtractConfiguration()
+        {
+            OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
+            yield return null;
+        }
+
+        private void MultThreadedDecompress(string compressedFilePath, string decompressedDirectoryPath, IEnumerator onCompleteAction)
+        {
+            string password = "d!3";
+            //if (Path.GetFileNameWithoutExtension(compressedFilePath).EndsWith(".rtprefab"))
+            //    password = "d!3";
+            int res = lzip.decompress_File(compressedFilePath, decompressedDirectoryPath, progress, null, progress2, password);
+            if (res == 1)
+            {
+                Debug.Log("multi-threaded ok");
+                //if (onCompleteAction != null)
+                //    Coordinator.instance.mainThreadDispatcher.Enqueue(onCompleteAction);
+                Thread.CurrentThread.Abort();
+            }
+            else
+            {
+                Thread.CurrentThread.Abort();
+                Debug.Log("multi-threading error");
+                m_uiEngine.DisplayResult(new Error()
+                {
+                    ErrorCode = Error.E_Exception,
+                    ErrorText = "Failed to extract file: " + compressedFilePath
+                });
+                return;
+            }
+        }
         #endregion
     }
 

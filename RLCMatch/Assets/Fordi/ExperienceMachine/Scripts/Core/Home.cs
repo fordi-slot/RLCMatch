@@ -308,7 +308,7 @@ namespace Fordi.Core
 
                             if (validateUserLoginResult["status"].ToString() == "200")
                             {
-                                m_network.EnterMeeting();
+                                //m_network.EnterMeeting();
                                 return;
 
 
