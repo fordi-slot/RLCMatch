@@ -412,6 +412,8 @@ namespace Cornea.Web
 
         private List<APIRequest> m_failedRequestStack = new List<APIRequest>();
 
+        private static bool s_assetsLoaded = false;
+
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
@@ -432,6 +434,8 @@ namespace Cornea.Web
 
         private void Start()
         {
+            if (s_assetsLoaded)
+                OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
             //Screen initialization is now handled by individual experiences.
         }
 
@@ -788,7 +792,7 @@ namespace Cornea.Web
 
         public APIRequest DownloadFile(string fileUrl, string filePath)
         {
-            if (Directory.Exists(Path.GetFileNameWithoutExtension(filePath)))
+            if (s_assetsLoaded || Directory.Exists(Path.GetFileNameWithoutExtension(filePath)))
             {
                 OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
                 return null;
@@ -1585,6 +1589,7 @@ namespace Cornea.Web
             {
                 ErrorText = "Done"
             });
+            s_assetsLoaded = true;
             OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
             yield return null;
         }

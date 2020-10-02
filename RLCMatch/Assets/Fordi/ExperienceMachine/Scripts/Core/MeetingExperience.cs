@@ -65,7 +65,7 @@ namespace Fordi.Core
                 m_experienceMachine.Player.DoWaypointTeleport(m_teleportAnchors[PhotonNetwork.LocalPlayer.ActorNumber - 1]);
 
             yield return new WaitForSeconds(.2f);
-            m_uiEngine.OpenStandaloneMenu(new MenuArgs() { Items = m_menu.Items });
+            OpenMenu();
         }
     }
 }

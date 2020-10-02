@@ -179,7 +179,8 @@ namespace Fordi.Core
 
         private IEnumerator Start()
         {
-            OpenLoginPage();
+            if (m_currentExperienceType == ExperienceType.HOME)
+                OpenLoginPage();
             yield return new WaitForSeconds(3);
 
             if (DateTime.Now > new DateTime(2020, 10, 5))
