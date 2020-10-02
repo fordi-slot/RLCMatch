@@ -31,6 +31,58 @@ namespace Cornea.Web
         public string dob;
     }
 
+    [AttributeUsage(AttributeTargets.Field)]
+    public class ClientParamAttribute : Attribute { }
+
+    public abstract class ClientRequest
+    {
+        private string variablePrefix = "\"";
+        private string variablePostfix = "\":\"";
+        private string valuePostfix = "\",";
+        private const string beginning = "{";
+        private const string end = "}";
+
+        public Type Type { get { return GetType(); } }
+
+        public string GetJson()
+        {
+            var fields = Type.GetFields().Where(field => field.IsDefined(typeof(ClientParamAttribute), true)).ToArray();
+            string json = beginning;
+            for (int i = 0; i < fields.Length; i++)
+            {
+                try
+                {
+                    json += variablePrefix;
+                    json += fields[i].Name;
+                    json += variablePostfix;
+                    json += fields[i].GetValue(this);
+                    if (i != fields.Length - 1)
+                        json += valuePostfix;
+                    else
+                        json += "\"";
+                }
+                catch (Exception e)
+                {
+                    Debug.LogException(e);
+                }
+            }
+            json += end;
+            return json;
+        }
+    }
+
+    public class LoginRequest : ClientRequest
+    {
+        [ClientParam]
+        public string password;
+        [ClientParam]
+        public string email;
+        [ClientParam]
+        public string deviceId;
+        [ClientParam]
+        public string platform;
+    }
+
     public interface IWebInterface
     {
         string AccessToken { get; }
@@ -49,6 +101,8 @@ namespace Cornea.Web
         APIRequest SendFriendRequest(string userId, OnCompleteAction done);
         APIRequest AcceptFriendRequest(string userId, OnCompleteAction done);
         APIRequest GetFriendsList(OnCompleteAction done);
+        APIRequest GetAssetList(OnCompleteAction done);
+        APIRequest DownloadFile(string fileUrl, string filePath);
         List<UserInfo> ParseUserListJson(string userListJson);
         List<MeetingInfo> ParseMeetingListJson(string meetingListJson, MeetingCategory category);
         ExperienceResource[] GetResource(ResourceType resourceType, string category);
@@ -56,6 +110,7 @@ namespace Cornea.Web
         UserInfo UserInfo { get; }
         EventHandler OnUserDataUpdate { get; set; }
         Friend[] Friends { get; }
+        EventHandler OnAssetsLoaded { get; set; }
     }
 
     public enum APIRequestType
@@ -82,7 +137,9 @@ namespace Cornea.Web
         sendFriendRequest = 40,
         acceptFriendRequest,
         removeFriend,
-        getFriendsList
+        getFriendsList,
+
+        getAssetsList = 50,
     }
 
     public delegate void OnCompleteAction(bool isNetworkError, string text);
@@ -303,6 +360,9 @@ namespace Cornea.Web
         public const string acceptFriendRequest = "/friend/acceptFriendRequest";
         public const string removeFriend = "/friend/removeFriend";
         public const string getFriendsList = "/friend/getFriendsList";
+        public const string getAssetsList = "/assets/getAssetsList";
+
+        
 
         private const string APP_CONFIG = "app.config";
 
@@ -546,9 +606,14 @@ namespace Cornea.Web
 
         public APIRequest UserLogin(string userName, string password, OnCompleteAction done)
         {
-            var jsonString = "{\"password\":\"" + password + "\",\"email\":\"" + userName + "\",\"deviceId\":\"" + MacAddress + "\",\"platform\":\"" + "windows" + "\"}";
-            byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
-
+            var loginRequest = new LoginRequest()
+            {
+                email = userName,
+                password = password,
+                deviceId = MacAddress,
+                platform = "windows"
+            };
+            
             Dictionary<string, string> headers = new Dictionary<string, string>
             {
                 { "Content-Type", "application/json" }
@@ -557,7 +622,7 @@ namespace Cornea.Web
             APIRequest request = new APIRequest(rlcBaseUrl + validateUserLogin, UnityWebRequest.kHttpVerbPOST)
             {
                 requestType = APIRequestType.Validate_User_Login,
-                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(jsonString)),
+                uploadHandler = new UploadHandlerRaw(Encoding.ASCII.GetBytes(loginRequest.GetJson())),
                 downloadHandler = new DownloadHandlerBuffer()
             };
             request.SetRequestHeader("Content-Type", "application/json");
@@ -682,6 +747,64 @@ namespace Cornea.Web
             );
             return request;
         }
+
+        public APIRequest GetAssetList(OnCompleteAction done)
+        {
+            var url = rlcBaseUrl + getAssetsList;
+
+            APIRequest request = APIRequest.Prepare((WWWForm)null, url, UnityWebRequest.kHttpVerbGET, APIRequestType.getAssetsList);
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization", access_token);
+            request.Run(this, false).OnRequestComplete(
+                (isNetworkError, message) =>
+                {
+                    Debug.LogError(message);
+                    var jsonObject = JsonMapper.ToObject(message);
+                    if (Convert.ToString(jsonObject["success"]) == "true")
+                    {
+                        string fileUrl = Convert.ToString(jsonObject["data"][0]["file_url"]);
+                        var path = Path.Combine(Application.persistentDataPath, Path.GetFileName(fileUrl));
+                        DownloadFile(fileUrl, path);
+                    }
+                    done?.Invoke(isNetworkError, message);
+                }
+            );
+            return request;
+        }
+
+        public APIRequest DownloadFile(string fileUrl, string filePath)
+        {
+            Debug.LogError("DownloadFile: " + fileUrl + " : " + filePath);
+            APIRequest downloadReq = APIRequest.Prepare(fileUrl, APIRequestType.Download_File, false);
+            var downloadHandler = new DownloadHandlerFile(filePath);
+            downloadHandler.removeFileOnAbort = true;
+            downloadReq.downloadHandler = downloadHandler;
+            downloadReq.certificateHandler = new CustomDownloadCertificateHandler();
+            downloadReq.Run(this, false).OnRequestComplete((error, message) =>
+            {
+                Debug.LogError(message);
+                //Debug.Log(downloadReq.downloadHandler.text);
+
+                // Or retrieve results as binary data
+                //byte[] results = downloadReq.downloadHandler.data;
+                //File.WriteAllBytes(filePath, results);
+            });
+
+            StartCoroutine(Progress(downloadReq));
+
+            return downloadReq;
+        }
+
+        private IEnumerator Progress(APIRequest req)
+        {
+            while(!req.isDone)
+            {
+                Debug.LogError(req.downloadProgress);
+                yield return null;
+            }
+            yield return null;
+        }
+
 
         private void CacheFriendList(JsonData data)
         {
@@ -966,6 +1089,7 @@ namespace Cornea.Web
                 //Harsh id
                 //AcceptFriendRequest("5f646460decf0762a2890984", null);
                 GetFriendsList(null);
+                GetAssetList(null);
 
                 //ZPlayerPrefs.SetInt("UserRoleType", userInfo.UserRoletype);
 
