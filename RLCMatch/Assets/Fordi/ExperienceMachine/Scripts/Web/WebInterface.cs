@@ -781,8 +781,7 @@ namespace Cornea.Web
                         var parentAppData = Directory.GetParent(Application.persistentDataPath);
                         var path = Path.Combine(parentAppData.FullName, Path.GetFileName(fileUrl));
                         var parent = Directory.GetParent(path);
-                        //DownloadFile(fileUrl, path);
-                        Extract(path);
+                        DownloadFile(fileUrl, path);
                     }
                     done?.Invoke(isNetworkError, message);
                 }
@@ -808,6 +807,8 @@ namespace Cornea.Web
             downloadReq.Run(this, false).OnRequestComplete((error, message) =>
             {
                 Debug.LogError(message);
+
+                Extract(filePath);
                 //Debug.Log(downloadReq.downloadHandler.text);
 
                 // Or retrieve results as binary data
@@ -1564,6 +1565,7 @@ namespace Cornea.Web
             var parentDirectory = Directory.GetParent(Application.persistentDataPath);
 
             var decompressedDirectoryPath = Path.Combine(parentDirectory.FullName, directoryName);
+            decompressedDirectoryPath = parentDirectory.FullName;
 
             Debug.LogError("Extracting to: " + decompressedDirectoryPath);
             //Debug.Log(decompressedDirectoryPath);
