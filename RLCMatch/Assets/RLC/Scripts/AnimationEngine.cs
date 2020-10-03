@@ -56,6 +56,8 @@ namespace RLC.Animation
             m_cameraControl = IOCCore.Resolve<ICameraControl>();
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_photonView = GetComponent<PhotonView>();
+            foreach (var item in m_animationPoses)
+                m_posesDictionary[item.Key] = item;
         }
 
         public void RegisterSubject(IAnimationSubject subject)
@@ -76,6 +78,12 @@ namespace RLC.Animation
             Debug.LogError("FiringStateChange: Active");
             State = PlayerState.ACTIVE;
             InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
+
+#if LOCAL_TEST
+            ChangeState(state);
+            return;
+#endif
+
             m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
         }
 

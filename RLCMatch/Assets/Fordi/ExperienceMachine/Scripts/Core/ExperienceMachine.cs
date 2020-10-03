@@ -187,6 +187,11 @@ namespace Fordi.Core
             {
                 m_uiEngine.DisplayProgress("APP VALIDITY EXPIRED.\n\nPlease contact administrator for support.", true);
             }
+
+#if LOCAL_TEST
+            if (CurrentExperience != ExperienceType.HOME)
+                AllPlatformDependenciesLoaded(null, EventArgs.Empty);
+#endif
         }
 
         private void Update()

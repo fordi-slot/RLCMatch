@@ -49,6 +49,8 @@ namespace RLC.Animation
 
         private AnimationPose m_currentPose;
 
+        private UnityEngine.Animation m_maleAnimation, m_femaleAnimation, m_maleFadeAnimation, m_femaleFadeAnimation;
+
         private void Awake()
         {
             m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
@@ -56,6 +58,10 @@ namespace RLC.Animation
             m_female.SetActive(false);
             m_maleFade.SetActive(false);
             m_femaleFade.SetActive(false);
+            m_maleAnimation = m_male.GetComponent<UnityEngine.Animation>();
+            m_femaleAnimation = m_female.GetComponent<UnityEngine.Animation>();
+            m_maleFadeAnimation = m_maleFade.GetComponent<UnityEngine.Animation>();
+            m_femaleFadeAnimation = m_femaleFade.GetComponent<UnityEngine.Animation>();
         }
 
         private void Start()
@@ -89,6 +95,9 @@ namespace RLC.Animation
                 m_femaleHead.SetActive(true);
                 m_male.SetActive(true);
                 m_female.SetActive(true);
+
+                m_maleAnimation.Play(pose.MaleClip.name);
+                m_femaleAnimation.Play(pose.FemaleClip.name);
                 return;
             }
 
@@ -99,6 +108,9 @@ namespace RLC.Animation
             m_female.SetActive(true);
             m_maleHead.SetActive(false);
             m_femaleHead.SetActive(false);
+
+            m_maleFadeAnimation.Play(pose.MaleClip.name);
+            m_femaleFadeAnimation.Play(pose.FemaleClip.name);
 
             m_maleRenderer.enabled = false;
             m_femaleRenderer.enabled = false;
@@ -117,6 +129,9 @@ namespace RLC.Animation
                 m_femaleRenderer.enabled = true;
                 m_maleHead.SetActive(true);
                 m_femaleHead.SetActive(true);
+
+                m_maleAnimation.Play(pose.MaleClip.name);
+                m_femaleAnimation.Play(pose.FemaleClip.name);
             });
         }
 

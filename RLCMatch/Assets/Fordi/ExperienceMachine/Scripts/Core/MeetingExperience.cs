@@ -44,6 +44,7 @@ namespace Fordi.Core
         public override void OnLoad()
         {
             base.OnLoad();
+            Debug.LogError("OnLoad");
             StartCoroutine(TakeASeat());
         }
 
@@ -54,6 +55,12 @@ namespace Fordi.Core
             yield return null;
             yield return null;
             yield return null;
+
+#if LOCAL_TEST
+            OpenMenu();
+            yield break;
+#endif
+
             //Debug.LogError(PhotonNetwork.LocalPlayer.ActorNumber);
             if (PhotonNetwork.LocalPlayer.ActorNumber < 1)
             {
@@ -65,6 +72,7 @@ namespace Fordi.Core
                 m_experienceMachine.Player.DoWaypointTeleport(m_teleportAnchors[PhotonNetwork.LocalPlayer.ActorNumber - 1]);
 
             yield return new WaitForSeconds(.2f);
+
             OpenMenu();
         }
     }
