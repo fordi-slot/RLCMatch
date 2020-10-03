@@ -8,10 +8,15 @@ using UnityEngine.UI;
 using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI.MenuControl;
-
+using Cornea.Web;
 
 namespace Fordi.UI
 {
+    public interface IMessageScreen : IScreen
+    {
+        void HookProgress(APIRequest request);
+    }
+
     public class MessageArgs : MenuArgs
     {
         public bool OkEnabled = false;
@@ -19,7 +24,7 @@ namespace Fordi.UI
         public string Text;
     }
 
-    public class MessageScreen : MonoBehaviour, IScreen
+    public class MessageScreen : MonoBehaviour, IMessageScreen
     {
         [SerializeField]
         private TextMeshProUGUI m_text;
@@ -41,6 +46,9 @@ namespace Fordi.UI
 
         [SerializeField]
         private GameObject m_okButton = null;
+
+        [SerializeField]
+        private Slider m_slider;
 
         public bool Blocked { get; private set; }
 
@@ -182,6 +190,33 @@ namespace Fordi.UI
 
             if (Pair != null)
                 Pair.DisplayProgress(text);
+        }
+
+        private IEnumerator m_coProgressSilder = null;
+        private IEnumerator CoProgressSlider(APIRequest request)
+        {
+            m_slider.gameObject.SetActive(true);
+            while(!request.isDone)
+            {
+                yield return null;
+                m_slider.value = request.downloadProgress;
+            }
+        }
+
+        public void HookProgress(APIRequest request)
+        {
+            if (m_slider == null)
+                return;
+
+            if (m_coProgressSilder != null)
+                StopCoroutine(m_coProgressSilder);
+
+            if (request != null && request.downloadHandler != null)
+            {
+                m_coProgressSilder = CoProgressSlider(request);
+                m_slider.gameObject.SetActive(true);
+                StartCoroutine(m_coProgressSilder);
+            }
         }
     }
 }

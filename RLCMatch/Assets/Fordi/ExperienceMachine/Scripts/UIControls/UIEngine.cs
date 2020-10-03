@@ -42,7 +42,7 @@ namespace Fordi.UI
         Canvas GetRootCanvas(Platform platform);
 
         void DisplayResult(Error error, bool freshScreen = false);
-        void DisplayProgress(string text, bool freshScreen = false);
+        IScreen[] DisplayProgress(string text, bool freshScreen = false);
 
         void SwitchToDesktopOnlyMode();
         void RefreshDesktopMode();
@@ -324,10 +324,11 @@ namespace Fordi.UI
             m_vrInterface?.DisplayResult(error, freshScreen);
         }
 
-        public void DisplayProgress(string text, bool freshScreen = false)
+        public IScreen[] DisplayProgress(string text, bool freshScreen = false)
         {
-            m_standaloneInterface.DisplayProgress(text, freshScreen);
-            m_vrInterface?.DisplayProgress(text, freshScreen);
+            var desktopScreen = m_standaloneInterface.DisplayProgress(text, freshScreen);
+            var vrScreen = m_vrInterface?.DisplayProgress(text, freshScreen);
+            return new IScreen[] { desktopScreen, vrScreen };
         }
 
         public void CloseLastScreen()
