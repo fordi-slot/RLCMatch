@@ -105,7 +105,7 @@ namespace RLC.Animation
                     var newPose = m_posesDictionary[state];
                     m_pose.Stop();
 
-                    if (newPose != null)
+                    if (newPose.GroupName != null)
                         Debug.LogError(newPose.GroupName);
 
                     bool fade = newPose.GroupName == null || newPose.GroupName != m_pose.GroupName;

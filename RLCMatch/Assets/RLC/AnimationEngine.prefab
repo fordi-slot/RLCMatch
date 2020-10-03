@@ -4747,23 +4747,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animationPoses:
   - Key: Cowgirl1
-    GroupName: 
+    GroupName: Cowgirl
     MaleClip: {fileID: 7400000, guid: 01af3d51256433c4992d5cf6dc4141f3, type: 2}
     FemaleClip: {fileID: 7400000, guid: 6be5e4c984daf174aaaff9666bcf56f5, type: 2}
   - Key: Cowgirl2
-    GroupName: 
+    GroupName: Cowgirl
     MaleClip: {fileID: 7400000, guid: 67c26a193ae58ba4c8cfaf8f1af7098d, type: 2}
     FemaleClip: {fileID: 7400000, guid: 68fad457fc7091148913db685b9a27ec, type: 2}
   - Key: DoggyAnal0
-    GroupName: 
+    GroupName: Doggy
     MaleClip: {fileID: 7400000, guid: a0fdd2ea38e98e741b5485711dc6eb14, type: 2}
     FemaleClip: {fileID: 7400000, guid: 7dd407ad02ea12047bf1df6d33c80700, type: 2}
   - Key: DoggyAnal1
-    GroupName: 
+    GroupName: Doggy
     MaleClip: {fileID: 7400000, guid: 390dc95e09e2b1f46aa038c3c165578b, type: 2}
     FemaleClip: {fileID: 7400000, guid: 601d38dcc537c254685b0e5121f85c48, type: 2}
   - Key: DoggyAnal2
-    GroupName: 
+    GroupName: Doggy
     MaleClip: {fileID: 7400000, guid: ca60f9f23c58d5c4180c36a270e3d3fd, type: 2}
     FemaleClip: {fileID: 7400000, guid: 2c6ff8ec03d04e849a055a74290aa2cf, type: 2}
   m_pose: {fileID: 7084427813970532673}

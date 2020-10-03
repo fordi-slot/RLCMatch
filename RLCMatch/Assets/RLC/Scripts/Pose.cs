@@ -75,6 +75,7 @@ namespace RLC.Animation
 
         public void Begin(AnimationPose pose, bool fade = true)
         {
+            m_currentPose = pose;
             if (m_fadeMats == null)
             {
                 m_fadeMats = new List<Material>();
