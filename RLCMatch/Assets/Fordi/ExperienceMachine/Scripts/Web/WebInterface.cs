@@ -791,7 +791,8 @@ namespace Cornea.Web
 
         public APIRequest DownloadFile(string fileUrl, string filePath)
         {
-            if (s_assetsLoaded || Directory.Exists(Path.GetFileNameWithoutExtension(filePath)))
+            Debug.LogError(Path.GetFileNameWithoutExtension(filePath));
+            if (s_assetsLoaded || Directory.Exists(GetDecompressedDirectoryPath(filePath)))
             {
                 OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
                 return null;
@@ -1543,6 +1544,20 @@ namespace Cornea.Web
             return false;
         }
 
+        private string GetDecompressedDirectoryPath(string compressedFilePath)
+        {
+            var directoryName = Path.GetFileNameWithoutExtension(compressedFilePath);
+            var dataLength = "_data".Length;
+            if (directoryName.Length > dataLength && directoryName.Substring(directoryName.Length - dataLength, dataLength) == "_data")
+                directoryName = directoryName.Substring(0, directoryName.Length - dataLength);
+
+            var parentDirectory = Directory.GetParent(Application.persistentDataPath);
+
+            var decompressedDirectoryPath = Path.Combine(parentDirectory.FullName, directoryName);
+            decompressedDirectoryPath = parentDirectory.FullName;
+            return decompressedDirectoryPath;
+        }
+
 
         private void Extract(string compressedFilePath)
         {
@@ -1557,15 +1572,7 @@ namespace Cornea.Web
                 return;
             }
 
-            var directoryName = Path.GetFileNameWithoutExtension(compressedFilePath);
-            var dataLength = "_data".Length;
-            if (directoryName.Length > dataLength && directoryName.Substring(directoryName.Length - dataLength, dataLength) == "_data")
-                directoryName = directoryName.Substring(0, directoryName.Length - dataLength);
-
-            var parentDirectory = Directory.GetParent(Application.persistentDataPath);
-
-            var decompressedDirectoryPath = Path.Combine(parentDirectory.FullName, directoryName);
-            decompressedDirectoryPath = parentDirectory.FullName;
+            var decompressedDirectoryPath = GetDecompressedDirectoryPath(compressedFilePath);
 
             Debug.LogError("Extracting to: " + decompressedDirectoryPath);
             //Debug.Log(decompressedDirectoryPath);
