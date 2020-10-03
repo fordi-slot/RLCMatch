@@ -75,7 +75,6 @@ namespace RLC.Animation
 
         public void SwitchToState(string state)
         {
-            Debug.LogError("FiringStateChange: Active");
             State = PlayerState.ACTIVE;
             InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
 
@@ -104,9 +103,6 @@ namespace RLC.Animation
                     //m_cameraControl.SwitchMode(CameraMode.INDEPENDENT);
                     var newPose = m_posesDictionary[state];
                     m_pose.Stop();
-
-                    if (newPose.GroupName != null)
-                        Debug.LogError(newPose.GroupName);
 
                     bool fade = newPose.GroupName == null || newPose.GroupName != m_pose.GroupName;
                     m_pose.Begin(newPose, fade);
