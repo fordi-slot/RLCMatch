@@ -9,11 +9,10 @@ using UnityEngine;
 
 namespace RLC.Animation
 {
-
     public interface IAnimationSubject
     {
         string Key { get; }
-        void Begin(bool fade = true);
+        void Begin(AnimationPose pose, bool fade = true);
         void Stop();
         string GroupName { get; }
     }
@@ -22,12 +21,18 @@ namespace RLC.Animation
     {
         [SerializeField]
         private string m_key;
-        [SerializeField]
-        private string m_groupName;
 
         public string Key { get { return m_key; } }
 
-        public string GroupName { get { return m_groupName; } }
+        public string GroupName {
+            get
+            {
+                if (m_currentPose != null)
+                    return m_currentPose.GroupName;
+                else
+                    return null;
+            }
+        }
 
         [SerializeField]
         private GameObject m_maleFade, m_femaleFade;
@@ -42,10 +47,11 @@ namespace RLC.Animation
 
         private SkinnedMeshRenderer m_maleRenderer, m_femaleRenderer;
 
+        private AnimationPose m_currentPose;
+
         private void Awake()
         {
             m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
-            m_animationEngine.RegisterSubject(this);
             m_male.SetActive(false);
             m_female.SetActive(false);
             m_maleFade.SetActive(false);
@@ -59,10 +65,9 @@ namespace RLC.Animation
 
         private void OnDestroy()
         {
-            m_animationEngine.DeregisterSubject(this);
         }
 
-        public void Begin(bool fade = true)
+        public void Begin(AnimationPose pose, bool fade = true)
         {
             if (m_fadeMats == null)
             {

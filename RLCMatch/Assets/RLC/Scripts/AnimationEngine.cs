@@ -14,10 +14,17 @@ namespace RLC.Animation
     {
         PlayerState State { get; }
         EventHandler<PlayerState> InteractionStateChange { get; set; }
-        void RegisterSubject(IAnimationSubject subject);
-        void DeregisterSubject(IAnimationSubject subject);
         void SwitchToState(string state);
         void StopAll();
+    }
+
+    [Serializable]
+    public class AnimationPose
+    {
+        public string Key;
+        public string GroupName;
+        public AnimationClip MaleClip;
+        public AnimationClip FemaleClip;
     }
 
     public enum PlayerState
@@ -29,14 +36,18 @@ namespace RLC.Animation
 
     public class AnimationEngine : MonoBehaviour, IAnimationEngine
     {
-        private Dictionary<string, IAnimationSubject> m_poses = new Dictionary<string, IAnimationSubject>();
+        [SerializeField]
+        private List<AnimationPose> m_animationPoses;
+        [SerializeField]
+        private Pose m_pose;
 
-        private IAnimationSubject m_currentSubject = null;
         private ICameraControl m_cameraControl;
         private IUIEngine m_uiEngine;
         private PhotonView m_photonView;
 
         public EventHandler<PlayerState> InteractionStateChange { get; set; }
+
+        private Dictionary<string, AnimationPose> m_posesDictionary = new Dictionary<string, AnimationPose>();
 
         public PlayerState State { get; private set; }
 
@@ -49,13 +60,11 @@ namespace RLC.Animation
 
         public void RegisterSubject(IAnimationSubject subject)
         {
-            m_poses[subject.Key] = subject;
         }
 
         public void DeregisterSubject(IAnimationSubject subject)
         {
-            if (m_poses.ContainsKey(subject.Key))
-                m_poses.Remove(subject.Key);
+            
         }
 
         private IObservable<long> m_observable = null;
@@ -80,23 +89,19 @@ namespace RLC.Animation
             if (m_observable != null)
                 return;
 
-            if (m_poses.ContainsKey(state))
+            if (m_posesDictionary.ContainsKey(state))
             {
                 var observable = Observable.TimerFrame(20).Subscribe(_ =>
                 {
                     //m_cameraControl.SwitchMode(CameraMode.INDEPENDENT);
-                    var subject = m_poses[state];
-                    if (m_currentSubject != null)
-                        m_currentSubject.Stop();
+                    var newPose = m_posesDictionary[state];
+                    m_pose.Stop();
 
-                    if (m_currentSubject != null)
-                        Debug.LogError(m_currentSubject.GroupName);
-                    if (subject != null)
-                        Debug.LogError(subject.GroupName);
+                    if (newPose != null)
+                        Debug.LogError(newPose.GroupName);
 
-                    bool fade = m_currentSubject == null || subject.GroupName != m_currentSubject.GroupName;
-                    m_currentSubject = subject;
-                    m_currentSubject.Begin(fade);
+                    bool fade = newPose.GroupName == null || newPose.GroupName != m_pose.GroupName;
+                    m_pose.Begin(newPose, fade);
                     m_observable = null;
                 });
                 //m_uiEngine.Fade();
@@ -106,9 +111,7 @@ namespace RLC.Animation
         public void StopAll()
         {
             State = PlayerState.IDLE;
-            if (m_currentSubject != null)
-                m_currentSubject.Stop();
-            m_currentSubject = null;
+            m_pose.Stop();
             InteractionStateChange?.Invoke(this, PlayerState.IDLE);
             //m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
         }
