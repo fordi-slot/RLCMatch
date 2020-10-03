@@ -794,6 +794,7 @@ namespace Cornea.Web
             Debug.LogError(Path.GetFileNameWithoutExtension(filePath));
             if (s_assetsLoaded || Directory.Exists(GetDecompressedDirectoryPath(filePath)))
             {
+                s_assetsLoaded = true;
                 OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
                 return null;
             }
