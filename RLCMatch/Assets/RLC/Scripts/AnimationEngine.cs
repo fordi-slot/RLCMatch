@@ -21,8 +21,8 @@ namespace RLC.Animation
     [Serializable]
     public class AnimationPose
     {
-        public string Key;
         public string GroupName;
+        public string Key;
         public AnimationClip MaleClip;
         public AnimationClip FemaleClip;
     }
@@ -36,8 +36,7 @@ namespace RLC.Animation
 
     public class AnimationEngine : MonoBehaviour, IAnimationEngine
     {
-        [SerializeField]
-        private List<AnimationPose> m_animationPoses;
+        public List<AnimationPose> AnimationPoses;
         [SerializeField]
         private Pose m_pose;
 
@@ -51,12 +50,15 @@ namespace RLC.Animation
 
         public PlayerState State { get; private set; }
 
+        public List<AnimationClip> ValidFemaleClips = new List<AnimationClip>();
+        public List<AnimationClip> ValidMaleClips = new List<AnimationClip>();
+
         private void Awake()
         {
             m_cameraControl = IOCCore.Resolve<ICameraControl>();
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_photonView = GetComponent<PhotonView>();
-            foreach (var item in m_animationPoses)
+            foreach (var item in AnimationPoses)
                 m_posesDictionary[item.Key] = item;
         }
 
