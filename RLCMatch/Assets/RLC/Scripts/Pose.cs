@@ -97,8 +97,8 @@ namespace RLC.Animation
                 m_male.SetActive(true);
                 m_female.SetActive(true);
 
-                m_maleAnimation.Play(pose.MaleClip.name);
-                m_femaleAnimation.Play(pose.FemaleClip.name);
+                PlayClip(m_maleAnimation, pose.MaleClip);
+                PlayClip(m_femaleAnimation, pose.FemaleClip);
                 return;
             }
 
@@ -110,8 +110,8 @@ namespace RLC.Animation
             m_maleHead.SetActive(false);
             m_femaleHead.SetActive(false);
 
-            m_maleFadeAnimation.Play(pose.MaleClip.name);
-            m_femaleFadeAnimation.Play(pose.FemaleClip.name);
+            PlayClip(m_maleFadeAnimation, pose.MaleClip);
+            PlayClip(m_femaleFadeAnimation, pose.FemaleClip);
 
             m_maleRenderer.enabled = false;
             m_femaleRenderer.enabled = false;
@@ -131,9 +131,19 @@ namespace RLC.Animation
                 m_maleHead.SetActive(true);
                 m_femaleHead.SetActive(true);
 
-                m_maleAnimation.Play(pose.MaleClip.name);
-                m_femaleAnimation.Play(pose.FemaleClip.name);
+                PlayClip(m_maleAnimation, pose.MaleClip);
+                PlayClip(m_femaleAnimation, pose.FemaleClip);
             });
+        }
+
+        private void PlayClip(UnityEngine.Animation animation, AnimationClip clip)
+        {
+            clip.legacy = true;
+            clip.wrapMode = WrapMode.Loop;
+            if (animation.GetClip(clip.name) == null)
+                animation.AddClip(clip, clip.name);
+            //Debug.LogError("Playing: " + clip.name);
+            animation.Play(clip.name);
         }
 
         public void Stop()
