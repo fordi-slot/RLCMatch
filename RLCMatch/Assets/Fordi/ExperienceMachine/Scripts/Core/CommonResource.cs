@@ -34,7 +34,7 @@ namespace Fordi.Core
     [Serializable]
     public class AnimationResource : ExperienceResource
     {
-        public AnimationClip clip;
+        public AnimationClip MaleClip, FemaleClip;
     }
 
     [Serializable]

@@ -50,7 +50,9 @@ namespace RLC.Animation
 
         public PlayerState State { get; private set; }
 
+        [HideInInspector]
         public List<AnimationClip> ValidFemaleClips = new List<AnimationClip>();
+        [HideInInspector]
         public List<AnimationClip> ValidMaleClips = new List<AnimationClip>();
 
         private void Awake()

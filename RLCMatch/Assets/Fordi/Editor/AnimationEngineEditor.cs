@@ -1,4 +1,5 @@
-﻿using RLC.Animation;
+﻿using Fordi.Core;
+using RLC.Animation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,6 +88,44 @@ namespace RLC.UnityEditor
                     {
                         Debug.LogError(item.name + " " + e.Message);
                     }
+                }
+
+                var dbGuids = AssetDatabase.FindAssets("t: AssetDB", null);
+                List<AssetDB> databases = new List<AssetDB>();
+                foreach (var item in dbGuids)
+                {
+                    databases.Add(AssetDatabase.LoadAssetAtPath<AssetDB>(AssetDatabase.GUIDToAssetPath(item)));
+                }
+
+                var database = databases[0];
+
+                Dictionary<string, List<AnimationResource>> animations = new Dictionary<string, List<AnimationResource>>();
+
+                foreach (var item in animationEngine.AnimationPoses)
+                {
+                    if (!animations.ContainsKey(item.GroupName))
+                        animations[item.GroupName] = new List<AnimationResource>();
+                    animations[item.GroupName].Add(new AnimationResource()
+                    {
+                        MaleClip = item.MaleClip,
+                        FemaleClip = item.FemaleClip,
+                        Name = item.Key,
+                        ResourceType = ResourceType.ANIMATION,
+                    });
+                }
+
+                database.Animations = new AnimationGroup[animations.Count];
+
+                int index = 0;
+                foreach (var item in animations)
+                {
+                    database.Animations[index] = new AnimationGroup()
+                    {
+                         ResourceType = ResourceType.ANIMATION,
+                         Name = item.Key,
+                         Resources = item.Value.ToArray()
+                    };
+                    index++;
                 }
             }
         }
