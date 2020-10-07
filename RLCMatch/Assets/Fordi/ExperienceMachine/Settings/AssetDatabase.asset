@@ -907,52 +907,683 @@ MonoBehaviour:
     SpecialCommand: 
     Resources: []
   Animations:
-  - Name: CowGirl
+  - Name: anal
     Description: 
     ResourceType: 13
     Preview: {fileID: 0}
     LargePreview: {fileID: 0}
     SpecialCommand: 
     Resources:
-    - Name: Cowgirl1
+    - Name: anal_stroke0
       Description: 
       ResourceType: 13
       Preview: {fileID: 0}
       LargePreview: {fileID: 0}
       SpecialCommand: 
-      clip: {fileID: 0}
-    - Name: Cowgirl2
+      MaleClip: {fileID: 7400000, guid: 96b8decd7c4b414429e18c428dff337d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 7b23c86845a0f7c4a83d3070d08f758c, type: 2}
+    - Name: anal_stroke1
       Description: 
       ResourceType: 13
       Preview: {fileID: 0}
       LargePreview: {fileID: 0}
       SpecialCommand: 
-      clip: {fileID: 0}
-  - Name: Doggy Anal
+      MaleClip: {fileID: 7400000, guid: 5732afe7393255c469c208ba90c3950c, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 2677dbf8f3c7d3a4b8bd57eb5d1832d9, type: 2}
+    - Name: anal_stroke2
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 53d5e9df585a0204eb92bf7e0232de63, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 0cbdfdc5a3634d0438a3be7ad1e9d5dd, type: 2}
+    - Name: anal_stroke3
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 95c31c6c7c3368d4d8f6204c0dd3a020, type: 2}
+      FemaleClip: {fileID: 7400000, guid: b07683b61bcd8914db90805f4275ff7b, type: 2}
+    - Name: anal_stroke4
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 2d59f6229e7e9e2499367d9e6668e141, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 67f4d779bbb9d3d479c9505c80491bf6, type: 2}
+    - Name: anal_stroke5
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 1cd5108c52e68e34e9ae714b31d57286, type: 2}
+      FemaleClip: {fileID: 7400000, guid: c8704bd53799ee84a8c85c043d931c60, type: 2}
+    - Name: anal_stroke6
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: c58fd3a9ae751d944b09d5080a426901, type: 2}
+      FemaleClip: {fileID: 7400000, guid: f4b2f93162eecde4890cffbea1d49b93, type: 2}
+    - Name: anal_stroke7
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 24c402a8f592e9846a9678360b83ca1e, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 20e89a8850be714419c6bf7b7d32d86d, type: 2}
+  - Name: begin0
     Description: 
     ResourceType: 13
     Preview: {fileID: 0}
     LargePreview: {fileID: 0}
     SpecialCommand: 
     Resources:
-    - Name: DoggyAnal0
+    - Name: begin0
       Description: 
       ResourceType: 13
       Preview: {fileID: 0}
       LargePreview: {fileID: 0}
       SpecialCommand: 
-      clip: {fileID: 0}
-    - Name: DoggyAnal1
+      MaleClip: {fileID: 7400000, guid: d9292eefba8a18f4588e158faba200b0, type: 2}
+      FemaleClip: {fileID: 7400000, guid: dd66da2c3e183aa4ba16f028685556e0, type: 2}
+  - Name: begin1
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: begin1
       Description: 
       ResourceType: 13
       Preview: {fileID: 0}
       LargePreview: {fileID: 0}
       SpecialCommand: 
-      clip: {fileID: 0}
-    - Name: DoggyAnal2
+      MaleClip: {fileID: 7400000, guid: e4018e29c2e951648a0dd0a879b5a5fb, type: 2}
+      FemaleClip: {fileID: 7400000, guid: b3b02d94f4e89f14890a1f11ec22bf68, type: 2}
+  - Name: begin2
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: begin2
       Description: 
       ResourceType: 13
       Preview: {fileID: 0}
       LargePreview: {fileID: 0}
       SpecialCommand: 
-      clip: {fileID: 0}
+      MaleClip: {fileID: 7400000, guid: 6ea085bd3a2041d41a853a308da58b4d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 7f6b1fbba3e42764c98b30999091a8c5, type: 2}
+  - Name: CowgirlBegin0
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: CowgirlBegin0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 365f3c7ae03815740b86ac1f6a05475a, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 02327a313d5dc1a4584464ab22ada42d, type: 2}
+    - Name: CowgirlBegin0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: aa5c3528faa12b04fb757d08e2ab408d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 02327a313d5dc1a4584464ab22ada42d, type: 2}
+  - Name: Cowgirl
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Cowgirl_OrgasmFemale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 8d8ba27bd50bc45478deea398579993d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: a9ee03054897efa458d34b4cd1723433, type: 2}
+    - Name: Cowgirl_OrgasmMale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 06972bb5621099446bb54662d5408315, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 084eb2c1117f31e47a94b6a112bf182f, type: 2}
+    - Name: Cowgirl_Stroke01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 1c81139e3fd7c1b448538118daaa5726, type: 2}
+      FemaleClip: {fileID: 7400000, guid: f5f4408a8d00a4740837ddc955c4ba8c, type: 2}
+    - Name: Cowgirl_Stroke02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 5074038308febee4eac8eb5cef2513e1, type: 2}
+      FemaleClip: {fileID: 7400000, guid: f5e5e72a784bb9d4db638507d553c4ec, type: 2}
+    - Name: Cowgirl_Stroke03
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 877f542c6df8b1b4ea546d7988bfb89d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: f08d8381c8097594093e8e792990c5f8, type: 2}
+    - Name: Cowgirl_Stroke04
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 037284879bcf8b84ba635e63ea525907, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 33a6f20e877b8a14c87dc06684032c08, type: 2}
+    - Name: Cowgirl_Stroke05
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 33098412d4a8fe749b29b6845a1f9328, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 17a053205b36ac545bef9e9f16eb2923, type: 2}
+    - Name: Cowgirl_Stroke06
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 6f2f422ac1835fa449280d14b31cc3f7, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 298300e5aaf2bcb499a4a735b7519647, type: 2}
+  - Name: orgasm
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: orgasm_female0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: e82bb044860b14540b99b800525e7092, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 52d0e02650eeed84782cf0785a618a35, type: 2}
+    - Name: orgasm_male0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 598c2e1c2870ec249a38fae839f0c0b4, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 5f5ff28b811ee4b4f9ed0f09d083e9ff, type: 2}
+  - Name: StandBehind_Anal
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: StandBehind_Anal_Stroke0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 9f0c02335a236a1459e9a2d5e5bd79ff, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 25625ca5f5fe45b45b491e8e24744d65, type: 2}
+    - Name: StandBehind_Anal_Stroke01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 51971786662742541a86a8ad8d78c9e9, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 4aa61e82da8381d4b8ded469bb8d7cb9, type: 2}
+    - Name: StandBehind_Anal_Stroke02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 2c842200c7a03d844b8cb56cfb6d0c54, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 4539559bbe8fbe547a28bc52a34293f2, type: 2}
+    - Name: StandBehind_Anal_Stroke03
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 5fcef2ed953082d458e6ba603e9d77d2, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 08729b9269dfd2745bdaa476c265c091, type: 2}
+    - Name: StandBehind_Anal_Stroke04
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 7c733553acdba4143bb6d64cb741091e, type: 2}
+      FemaleClip: {fileID: 7400000, guid: a931c10126e32b44e980aa2668a58731, type: 2}
+    - Name: StandBehind_Anal_Stroke05
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: ffb3c7e93fc5e1d4a9ee741fa3759ab3, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 2b2a99a423a4b9d4f87f0b9a93c21238, type: 2}
+    - Name: StandBehind_Anal_Stroke06
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 80d119fb9b9c5dc41b0536bd98ef9704, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 4e7172a792603684cbf450535e083e9b, type: 2}
+    - Name: StandBehind_Anal_Stroke07
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: d7084dae8e756714d9bbfb95b16efd59, type: 2}
+      FemaleClip: {fileID: 7400000, guid: a968a7cd797fd9a46a58f3f8596115ba, type: 2}
+  - Name: StandBehind
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: StandBehind_Begin0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: c1cfc97d41e8d124fb972945ce1f2e01, type: 2}
+      FemaleClip: {fileID: 7400000, guid: d0ce1f668590b024aaf181c4d43344a6, type: 2}
+    - Name: StandBehind_Begin01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: bbfb1c8be59dc9743ad012cbfd94ceec, type: 2}
+      FemaleClip: {fileID: 7400000, guid: cf2c6126e5efeb44b85238a31b793bca, type: 2}
+    - Name: StandBehind_Begin02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 1ecec37204ebd91478aba73edd72bc1f, type: 2}
+      FemaleClip: {fileID: 7400000, guid: b1d17c71c067751459bb1ebd11976bcd, type: 2}
+    - Name: StandBehind_Begin03
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 4b104fde720e0e54ba7f602a984d19a8, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 7ed4d6ff6e7a14544bc48d887ae5bc69, type: 2}
+    - Name: StandBehind_OrgasmFemale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 5cec3dbd584aee14585c13b9218f4699, type: 2}
+      FemaleClip: {fileID: 7400000, guid: a4bf60ac17817b140b40b24ec6105616, type: 2}
+    - Name: StandBehind_OrgasmMale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: d5b9293bcb14f2a4da06eab168b43ce7, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 5ab9897a8ec55094fbb88750b94d7fae, type: 2}
+    - Name: StandBehind_Stroke0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: c14587d578ece9e4e9c95235290b8860, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 790e42c949ebf4c4d852528cdbc3efee, type: 2}
+    - Name: StandBehind_Stroke01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 5693732141fdf36459a10759178347d3, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 34213f97c56f64746883cf0e67b920f6, type: 2}
+    - Name: StandBehind_Stroke02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: d1048781acf866840abec2ed5143e3b2, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 5714d13ef5d0f8f4cb8e85176d5c0c88, type: 2}
+    - Name: StandBehind_Stroke03
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 0415326546ef7034192f1993765cf139, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 11d44d873f347634483aaddcb6db799d, type: 2}
+    - Name: StandBehind_Stroke04
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 14171540de423974fbd662e345501c01, type: 2}
+      FemaleClip: {fileID: 7400000, guid: e86eb829a54a76c4999cb5a0af515a61, type: 2}
+    - Name: StandBehind_Stroke05
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: cedd28fb7fdf03a48ae956b2c61d23af, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 6796eb9acda0a55489e17c4b021d0258, type: 2}
+  - Name: stroke0
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: dea5cd2f5cbd5cd49b9c0b594b199215, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 13690d25422923f48a04ea6d71e22d58, type: 2}
+  - Name: stroke1
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke1
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: d394fea90b274bf4f994eab0f0cf063d, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 6dfce3b615cd0184d8d2a146729fa2f1, type: 2}
+  - Name: stroke2
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke2
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: e92af9dbc486ad749bc218624a0e002c, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 9690dc7718e773c4f844d7af13580689, type: 2}
+  - Name: stroke3
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke3
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: dd18a79f90c08dc4bbd579696ce6842b, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 240c87e336311de419451b82d7c8e2ab, type: 2}
+  - Name: stroke4
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke4
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 6ad42fe1797e95243943b43ba08c9bdc, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 83aba59258464ff4299ceb32e22e8579, type: 2}
+  - Name: stroke5
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke5
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 8124039be2c1af54180a07d30bbd7963, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 2d2cd7e1da0b67b4ea4aa1ae491d657a, type: 2}
+  - Name: stroke6
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke6
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 8a656f12e073c9c40b12eea206be3a19, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 764cee6da76deeb468065da23341484e, type: 2}
+  - Name: stroke7
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: stroke7
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 274ce30cfb40ca446b5f0902225db4cf, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 0cbc8efbcf640964c8d45c07ed8edcc8, type: 2}
+  - Name: Cowgirl0
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Cowgirl0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 770af881d3c57a24c94399102f322bf8, type: 2}
+      FemaleClip: {fileID: 7400000, guid: d522730fa765fa247bf2637221091277, type: 2}
+  - Name: Cowgirl01
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Cowgirl01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: d90e44e1ab871a14db83659d2f5a2b75, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 484e3d297d6a6dd4c9ea803adc90c988, type: 2}
+  - Name: CowgirlOrgasmFemale
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: CowgirlOrgasmFemale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 242b40ed6897db84ca65839f990e7559, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 9a99d9e4b8db2324d92c2d2e844901a3, type: 2}
+  - Name: CowgirlOrgasmMale
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: CowgirlOrgasmMale
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 85e321758d0f4714680e38e8c85b4980, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 86311a0ad0abe2f44bde23030c6af404, type: 2}
+  - Name: Doggy_anal
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Doggy_anal_begin00
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 483143cf7c57e8a429f18251c727d019, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 264ed45e7e587c842880b3f386fa21e4, type: 2}
+    - Name: Doggy_anal_begin01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: a9ef7dfeada2d0745b083704430d0464, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 8f9bd6e11e7eb79459e35dcbc5245270, type: 2}
+    - Name: Doggy_anal_stroke01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: b294bc4cd215572478aa8bae23eaa4f2, type: 2}
+      FemaleClip: {fileID: 7400000, guid: df33057cef367ff478140b0688b85b51, type: 2}
+    - Name: Doggy_anal_stroke02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: ea6114ed6a9cb6b42bdafae6c9a22dbd, type: 2}
+      FemaleClip: {fileID: 7400000, guid: f26a61199aeb4db4489f2b8b6ee4b53d, type: 2}
+  - Name: Doggy
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Doggy_stroke00
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: b865f8c937b46ba43af87c6b23072ec9, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 9772720ac69dd0b4b9c3a5c3594ff754, type: 2}
+    - Name: Doggy_stroke04
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 5fed61008c002c1478d732bd382c1f3e, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 18d1c6cd4d7e067488fc7213f8706361, type: 2}
+  - Name: Stand_Behind_Anal
+    Description: 
+    ResourceType: 13
+    Preview: {fileID: 0}
+    LargePreview: {fileID: 0}
+    SpecialCommand: 
+    Resources:
+    - Name: Stand_Behind_Anal_Stroke0
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 18f8199038745cc4b909fc70127917c6, type: 2}
+      FemaleClip: {fileID: 7400000, guid: 1cf77714e3b42f44f8144f862ef9ad47, type: 2}
+    - Name: Stand_Behind_Anal_Stroke01
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: 1bb55793f34fbb74e9bb487e90008025, type: 2}
+      FemaleClip: {fileID: 7400000, guid: ef368d48d75cf1a44bbab23b80588322, type: 2}
+    - Name: Stand_Behind_Anal_Stroke02
+      Description: 
+      ResourceType: 13
+      Preview: {fileID: 0}
+      LargePreview: {fileID: 0}
+      SpecialCommand: 
+      MaleClip: {fileID: 7400000, guid: e574dd06023e3de43bfede196749dc66, type: 2}
+      FemaleClip: {fileID: 7400000, guid: ac352ff05e7ac5143b839501b4269058, type: 2}
