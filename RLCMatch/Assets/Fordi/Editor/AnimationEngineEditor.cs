@@ -34,8 +34,11 @@ namespace RLC.UnityEditor
                     {
                         if (clip.name.Substring(0, 2) != "hf")
                         {
-                            clip.name = "hf" + clip.name.Substring(2, clip.name.Length - 2);
-                            Debug.LogError("Name changed to: " + clip.name);
+                            var message = AssetDatabase.RenameAsset(AssetDatabase.GUIDToAssetPath(item), "hf" + clip.name.Substring(2, clip.name.Length - 2));
+                            if (string.IsNullOrEmpty(message))
+                            {
+                                Debug.LogError("Renamed to " + clip.name);
+                            }
                         }
 
                         femaleClips.Add(clip);
@@ -49,7 +52,13 @@ namespace RLC.UnityEditor
                     if (clip.name.Length > 0 && clip.name.ToLower().Substring(0, 2) == "hm")
                     {
                         if (clip.name.Substring(0, 2) != "hm")
-                            clip.name = "hm" + clip.name.Substring(2, clip.name.Length - 2);
+                        {
+                            var message = AssetDatabase.RenameAsset(AssetDatabase.GUIDToAssetPath(item), "hm" + clip.name.Substring(2, clip.name.Length - 2));
+                            if (string.IsNullOrEmpty(message))
+                            {
+                                Debug.LogError("Renamed to " + clip.name);
+                            }
+                        }
 
                         maleClips.Add(clip);
                     }
