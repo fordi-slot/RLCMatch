@@ -30,6 +30,7 @@ MonoBehaviour:
   m_offImage: {fileID: 0}
   m_page: {fileID: 0}
   m_description: {fileID: 0}
+  m_canvas: {fileID: 0}
   m_subTabs: []
   m_menuItem: {fileID: 6138554965584585728, guid: 5235780a4b5eabf4eabaa147ca820859,
     type: 3}
@@ -226,6 +227,11 @@ PrefabInstance:
     - target: {fileID: 3128378590984369852, guid: 1d175742cda26ae4abc16b11ff0aab23,
         type: 3}
       propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128378590984369852, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: m_overflowMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,

@@ -127,22 +127,6 @@ PrefabInstance:
       propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
-        type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 4803836337220213879}
-    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
-        type: 3}
-      propertyPath: m_skin
-      value: 
-      objectReference: {fileID: 11400000, guid: b6f00ac3b66a31c4cbe46b6afc205a5c,
-        type: 2}
-    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
-        type: 3}
-      propertyPath: selection
-      value: 
-      objectReference: {fileID: 4803836337162783272}
     - target: {fileID: 3128378590984369853, guid: 1d175742cda26ae4abc16b11ff0aab23,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -194,6 +178,27 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3128378590984369852, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 4803836337220213879}
+    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: m_skin
+      value: 
+      objectReference: {fileID: 11400000, guid: b6f00ac3b66a31c4cbe46b6afc205a5c,
+        type: 2}
+    - target: {fileID: 4391039620732784331, guid: 1d175742cda26ae4abc16b11ff0aab23,
+        type: 3}
+      propertyPath: selection
+      value: 
+      objectReference: {fileID: 4803836337162783272}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d175742cda26ae4abc16b11ff0aab23, type: 3}
 --- !u!114 &4803836337162783272 stripped
