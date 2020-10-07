@@ -524,7 +524,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 600}
+  m_SizeDelta: {x: 600, y: 400}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &7998619624417040230
 CanvasRenderer:
@@ -1802,7 +1802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7699337711304597297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2024,7 +2024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5564403796185862080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2215,6 +2215,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5962577781153714164}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExternallyCloseChat
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4725502513665775120, guid: 500e40a1747a7b440b233cfb80e3f476,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2320,26 +2335,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4725502513063568545, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5962577781153714164}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExternallyCloseChat
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4725502513665775127, guid: 500e40a1747a7b440b233cfb80e3f476,
         type: 3}
       propertyPath: m_Color.r
@@ -2363,6 +2358,11 @@ PrefabInstance:
     - target: {fileID: 4725502513665775127, guid: 500e40a1747a7b440b233cfb80e3f476,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725502513063568545, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2566,6 +2566,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5962577781153714164}
+    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickSend
+      objectReference: {fileID: 0}
     - target: {fileID: 4725502513665775120, guid: 500e40a1747a7b440b233cfb80e3f476,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2670,21 +2685,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5962577781153714164}
-    - target: {fileID: 4725502513665775126, guid: 500e40a1747a7b440b233cfb80e3f476,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickSend
       objectReference: {fileID: 0}
     - target: {fileID: 4725502513063568551, guid: 500e40a1747a7b440b233cfb80e3f476,
         type: 3}

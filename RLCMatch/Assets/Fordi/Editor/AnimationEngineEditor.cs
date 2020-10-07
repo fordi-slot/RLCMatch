@@ -29,12 +29,30 @@ namespace RLC.UnityEditor
 
                 foreach (var item in femaleClipGuids)
                 {
-                    femaleClips.Add(AssetDatabase.LoadAssetAtPath<AnimationClip>(AssetDatabase.GUIDToAssetPath(item)));
+                    var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(AssetDatabase.GUIDToAssetPath(item));
+                    if (clip.name.Length > 0 && clip.name.ToLower().Substring(0, 2) == "hf")
+                    {
+                        if (clip.name.Substring(0, 2) != "hf")
+                        {
+                            clip.name = "hf" + clip.name.Substring(2, clip.name.Length - 2);
+                            Debug.LogError("Name changed to: " + clip.name);
+                        }
+
+                        femaleClips.Add(clip);
+                    }
                 }
 
                 foreach (var item in maleClipGuids)
                 {
-                    maleClips.Add(AssetDatabase.LoadAssetAtPath<AnimationClip>(AssetDatabase.GUIDToAssetPath(item)));
+                    var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(AssetDatabase.GUIDToAssetPath(item));
+
+                    if (clip.name.Length > 0 && clip.name.ToLower().Substring(0, 2) == "hm")
+                    {
+                        if (clip.name.Substring(0, 2) != "hm")
+                            clip.name = "hm" + clip.name.Substring(2, clip.name.Length - 2);
+
+                        maleClips.Add(clip);
+                    }
                 }
 
                 animationEngine.ValidFemaleClips = femaleClips;
@@ -57,10 +75,7 @@ namespace RLC.UnityEditor
                         groupName = item.name.Substring(3, delimitterIndex - 3);
                         femaleClipName = "hf_" + item.name.Substring(3, item.name.Length - 3);
                         femaleClip = femaleClips.Find(clip => clip.name == femaleClipName);
-                        if (delimitterIndex == item.name.Length)
-                            key = item.name.Substring(3, item.name.Length - 3);
-                        else
-                            key = item.name.Substring(delimitterIndex + 1, item.name.Length - delimitterIndex - 1);
+                        key = item.name.Substring(3, item.name.Length - 3);
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
@@ -69,7 +84,10 @@ namespace RLC.UnityEditor
                     }
 
                     if (femaleClip == null)
-                            continue;
+                    {
+                        Debug.LogError("FemaleClip " + femaleClipName + " not found");
+                        continue;
+                    }
 
                     //Debug.LogError(groupName + " : " + femaleClipName + ":" + item.name);
 

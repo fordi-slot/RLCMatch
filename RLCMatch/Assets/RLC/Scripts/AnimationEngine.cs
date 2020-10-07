@@ -104,25 +104,19 @@ namespace RLC.Animation
             {
                 var observable = Observable.TimerFrame(20).Subscribe(_ =>
                 {
-                    foreach (var item in m_posesDictionary)
-                    {
-                        Debug.LogError(item.Value.GroupName);
-                    }
                     //m_cameraControl.SwitchMode(CameraMode.INDEPENDENT);
                     var newPose = m_posesDictionary[state];
                     m_pose.Stop();
 
                     bool fade = m_pose.GroupName == null || newPose.GroupName != m_pose.GroupName;
 
-                    if (m_pose.GroupName == null)
-                        Debug.LogError("m_pose.GroupName null");
-                    else
-                        Debug.LogError(m_pose.GroupName + " "  + newPose.Key + newPose.GroupName + " " + fade);
                     m_pose.Begin(newPose, fade);
                     m_observable = null;
                 });
                 //m_uiEngine.Fade();
             }
+            else
+                Debug.LogError("Key not found");
         }
 
         public void StopAll()
@@ -130,7 +124,6 @@ namespace RLC.Animation
             State = PlayerState.IDLE;
             m_pose.Stop();
             InteractionStateChange?.Invoke(this, PlayerState.IDLE);
-            //m_cameraControl.SwitchMode(CameraMode.FIRST_PERSON);
         }
 
         #region NETWORK_EVENTS
