@@ -103,7 +103,7 @@ Material:
     - _PSkinGlossiness: 0.728
     - _PSkinMicroSkinTiling: 10
     - _PSkinOcclusionLevel: 0.244
-    - _PSkinTranslucencyLevel: 1
+    - _PSkinTranslucencyLevel: 0.1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
