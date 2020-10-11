@@ -75,7 +75,6 @@ namespace RLC.Animation
 
         public void Begin(AnimationPose pose, bool fade = true)
         {
-            Debug.LogError("Begin: " + pose.Key);
             m_currentPose = pose;
             if (m_fadeMats == null)
             {
