@@ -16,6 +16,7 @@ namespace RLC.Animation
         EventHandler<PlayerState> InteractionStateChange { get; set; }
         void SwitchToState(string state);
         void StopAll();
+        void Cum();
     }
 
     [Serializable]
@@ -39,6 +40,8 @@ namespace RLC.Animation
         public List<AnimationPose> AnimationPoses;
         [SerializeField]
         private Pose m_pose;
+
+        private const string ORGASM_POSE = "orgasm_male0";
 
         private ICameraControl m_cameraControl;
         private IUIEngine m_uiEngine;
@@ -124,6 +127,11 @@ namespace RLC.Animation
             State = PlayerState.IDLE;
             m_pose.Stop();
             InteractionStateChange?.Invoke(this, PlayerState.IDLE);
+        }
+
+        public void Cum()
+        {
+            SwitchToState(ORGASM_POSE);
         }
 
         #region NETWORK_EVENTS

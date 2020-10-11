@@ -140,7 +140,10 @@ namespace RLC.Animation
         private void PlayClip(UnityEngine.Animation animation, AnimationClip clip)
         {
             clip.legacy = true;
-            clip.wrapMode = WrapMode.Loop;
+            if (clip.name.ToLower().Contains("begin"))
+                clip.wrapMode = WrapMode.Once;
+
+            //clip.wrapMode = WrapMode.Loop;
             if (animation.GetClip(clip.name) == null)
                 animation.AddClip(clip, clip.name);
             //Debug.LogError("Playing: " + clip.name);

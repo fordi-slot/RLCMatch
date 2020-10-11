@@ -73,19 +73,9 @@ namespace RLC.UI
 
         public void Cum()
         {
-            var activeTab = m_toggleGroup.ActiveToggles().FirstOrDefault();
-            if (activeTab != null)
-                activeTab.isOn = false;
-            m_animationEngine.StopAll();
-        }
-
-        public void Quit()
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
-#else
-            Application.Quit();
-#endif
+            foreach (var item in m_toggleGroup.ActiveToggles())
+                item.isOn = false;
+            m_animationEngine.Cum();
         }
     }
 }

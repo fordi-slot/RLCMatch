@@ -36,6 +36,9 @@ namespace Fordi.Core
 
             if (args.CommandType == MenuCommandType.CATEGORY_SELECTION)
             {
+                if (args.Data == null)
+                    return;
+
                 var resourceType = ((ResourceComponent)args.Data).ResourceType;
                 Debug.LogError(resourceType.ToString());
                 m_uiEngine.OpenGridMenu(new GridArgs()
