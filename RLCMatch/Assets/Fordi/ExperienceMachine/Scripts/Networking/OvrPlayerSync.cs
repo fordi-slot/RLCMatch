@@ -139,8 +139,8 @@ namespace Fordi.Networking
         {
             if (mode == PlayerState.ACTIVE)
                 Hide(true);
-            else
-                Hide(false);
+            //else
+            //    Hide(false);
         }
 
         [PunRPC]
