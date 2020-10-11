@@ -179,6 +179,12 @@ namespace Fordi.Core
 
         private IEnumerator Start()
         {
+            yield return null;
+            MinimumWindowSize.Set(1472, 828);
+            if (m_currentExperienceType == ExperienceType.HOME)
+                Screen.SetResolution(1472, 828, FullScreenMode.Windowed);
+            yield return null;
+
             if (m_currentExperienceType == ExperienceType.HOME)
                 OpenLoginPage();
             yield return new WaitForSeconds(3);
