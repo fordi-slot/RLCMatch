@@ -2,9 +2,11 @@
 using Fordi.UI;
 using Photon.Pun;
 using RLC.Core;
+using RLC.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -13,7 +15,8 @@ namespace RLC.Animation
     public interface IAnimationEngine
     {
         PlayerState State { get; }
-        EventHandler<PlayerState> InteractionStateChange { get; set; }
+        EventHandler<AnimationPose> InteractionStateChange { get; set; }
+        AnimationPose CurrentPose { get; }
         void SwitchToState(string state);
         void StopAll();
         void Cum();
@@ -47,7 +50,7 @@ namespace RLC.Animation
         private IUIEngine m_uiEngine;
         private PhotonView m_photonView;
 
-        public EventHandler<PlayerState> InteractionStateChange { get; set; }
+        public EventHandler<AnimationPose> InteractionStateChange { get; set; }
 
         private Dictionary<string, AnimationPose> m_posesDictionary = new Dictionary<string, AnimationPose>();
 
@@ -58,6 +61,8 @@ namespace RLC.Animation
         [HideInInspector]
         public List<AnimationClip> ValidMaleClips = new List<AnimationClip>();
 
+        public AnimationPose CurrentPose { get { return m_pose.CurrentPose; } }
+
         private void Awake()
         {
             m_cameraControl = IOCCore.Resolve<ICameraControl>();
@@ -65,6 +70,19 @@ namespace RLC.Animation
             m_photonView = GetComponent<PhotonView>();
             foreach (var item in AnimationPoses)
                 m_posesDictionary[item.Key] = item;
+        }
+
+        private void Update()
+        {
+#if LOCAL_TEST
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                var keysArray = m_posesDictionary.Keys.ToArray();
+                var key = keysArray[UnityEngine.Random.Range(0, m_posesDictionary.Values.Count)];
+                var pose = m_posesDictionary[key];
+                SwitchToState(pose.Key);
+            }
+#endif
         }
 
         public void RegisterSubject(IAnimationSubject subject)
@@ -82,15 +100,16 @@ namespace RLC.Animation
 
         public void SwitchToState(string state)
         {
-            State = PlayerState.ACTIVE;
-            InteractionStateChange?.Invoke(this, PlayerState.ACTIVE);
+            if (PoseSelectionView.s_passiveFlag)
+                return;
 
 #if LOCAL_TEST
             ChangeState(state);
+            State = PlayerState.ACTIVE;
             return;
 #endif
-
             m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
+            State = PlayerState.ACTIVE;
         }
 
         private void ChangeState(string state)
@@ -112,8 +131,8 @@ namespace RLC.Animation
                     m_pose.Stop();
 
                     bool fade = m_pose.GroupName == null || newPose.GroupName != m_pose.GroupName;
-
                     m_pose.Begin(newPose, fade);
+                    InteractionStateChange?.Invoke(this, m_pose.CurrentPose);
                     m_observable = null;
                 });
                 //m_uiEngine.Fade();
@@ -126,7 +145,7 @@ namespace RLC.Animation
         {
             State = PlayerState.IDLE;
             m_pose.Stop();
-            InteractionStateChange?.Invoke(this, PlayerState.IDLE);
+            InteractionStateChange?.Invoke(this, null);
         }
 
         public void Cum()

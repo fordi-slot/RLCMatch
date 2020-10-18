@@ -15,6 +15,7 @@ namespace RLC.Animation
         void Begin(AnimationPose pose, bool fade = true);
         void Stop();
         string GroupName { get; }
+        AnimationPose CurrentPose { get; }
     }
 
     public class Pose : MonoBehaviour, IAnimationSubject
@@ -33,6 +34,8 @@ namespace RLC.Animation
                     return null;
             }
         }
+
+        public AnimationPose CurrentPose { get { return m_currentPose; } }
 
         [SerializeField]
         private GameObject m_maleFade, m_femaleFade;

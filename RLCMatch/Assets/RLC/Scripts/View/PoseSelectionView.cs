@@ -11,6 +11,7 @@ using Fordi.Core;
 using Fordi.Networking;
 using Photon.Pun;
 using Fordi.UI;
+using System;
 
 namespace RLC.UI
 {
@@ -23,20 +24,38 @@ namespace RLC.UI
 
         private bool m_expanded = true;
 
+        public static bool s_passiveFlag = false;
+
         private IAnimationEngine m_animationEngine;
 
         protected override void AwakeOverride()
         {
             base.AwakeOverride();
             m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
+            m_animationEngine.InteractionStateChange += StateChange;
+        }
+
+        protected override void OnDestroyOverride()
+        {
+            base.OnDestroyOverride();
+            m_animationEngine.InteractionStateChange -= StateChange;
+        }
+
+        private void StateChange(object sender, AnimationPose e)
+        {
+            s_passiveFlag = true;
+            var target = m_menuItems.Find(item => item.Item.Text == e.GroupName);
+            ((Toggle)target.Selectable).isOn = true;
+            ((IExpandableTabItem)target).SelectItem(e.Key);
+            s_passiveFlag = false;
         }
 
         public override void OpenMenu(IUserInterface userInterface, MenuArgs args)
         {
-            foreach (var item in args.Items)
-            {
-                item.IsValid = !PhotonNetwork.IsMasterClient;
-            }
+            //foreach (var item in args.Items)
+            //{
+            //    item.IsValid = !PhotonNetwork.IsMasterClient;
+            //}
 
             base.OpenMenu(userInterface, args);
             if (args.Items.Length == 0)

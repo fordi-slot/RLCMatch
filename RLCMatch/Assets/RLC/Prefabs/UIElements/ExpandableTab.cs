@@ -10,7 +10,13 @@ using UnityEngine.UI;
 
 namespace Fordi.UI.MenuControl
 {
-    public class ExpandableTab : TabInteraction
+
+    public interface IExpandableTabItem : ITabItem
+    {
+        void SelectItem(string key);
+    }
+
+    public class ExpandableTab : TabInteraction, IExpandableTabItem
     {
         [SerializeField]
         private MenuItemInfo[] m_subTabs;
@@ -38,6 +44,13 @@ namespace Fordi.UI.MenuControl
                 m_contentRoot = transform.parent;
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
             m_userInterface = m_uiEngine.GetInterface();
+        }
+
+        public void SelectItem(string key)
+        {
+            var target = m_menuItems.Find(item => item.Item.Path == key);
+            if (target != null)
+                ((Toggle)target.Selectable).isOn = true;
         }
 
         public override void DataBind(IUserInterface userInterface, MenuItemInfo item)
