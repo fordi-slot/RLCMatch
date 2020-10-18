@@ -468,7 +468,8 @@ namespace Fordi.ChatEngine
             {
                 if (!m_firstMessageFlag)
                 {
-                    this.chatClient.PublishMessage(channel, "says 'hi'."); // you don't HAVE to send a msg on join but you could.
+                    //this.chatClient.PublishMessage(channel, "says 'hi'.");
+                    // you don't HAVE to send a msg on join but you could.
                     m_firstMessageFlag = true;
                 }
 
