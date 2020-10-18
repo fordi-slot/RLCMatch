@@ -55,6 +55,8 @@ namespace Fordi.Core
             if (!InteractablelUI.PointerOnUI)
             {
                 m_zoomAmount += -m_zoomSpeed * Input.GetAxis(ZoomInput);
+                //if (Selection.Location == Networking.Network.PrivateMeetingLocation)
+                //    m_zoomAmount += -m_zoomSpeed * Input.GetAxis(verticallInput);
                 m_zoomAmount = Mathf.Clamp(m_zoomAmount, m_minimumZoom, m_maximumZoom);
                 tpCamera.defaultDistance = m_zoomAmount;
             }
