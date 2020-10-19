@@ -160,6 +160,7 @@ namespace RLC.UI
         #region IN_ROOM_CALLBACK
         public void OnPlayerEnteredRoom(Player newPlayer)
         {
+            Debug.LogError("OnPlayerEnteredRoom " + newPlayer.NickName);
             if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && m_animationView != null)
                 OpenAnimationsList();
         }
