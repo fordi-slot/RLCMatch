@@ -1,9 +1,11 @@
 ﻿using Cornea.Web;
+using ExitGames.Client.Photon;
 using Fordi.ChatEngine;
 using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ using UnityEngine.SceneManagement;
 
 namespace RLC.UI
 {
-    public class RLCMenu : MenuScreen
+    public class RLCMenu : MenuScreen, IInRoomCallbacks
     {
         [Header("View Prefabs")]
         [SerializeField]
@@ -41,9 +43,6 @@ namespace RLC.UI
             m_userInterface = userInterface;
             Blocked = args.Block;
             Persist = args.Persist;
-
-            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation)
-                OpenAnimationsList();
             ToggleChat(true);
         }
 
@@ -148,5 +147,31 @@ namespace RLC.UI
 
             return menu;
         }
+
+        #region IN_ROOM_CALLBACK
+        public void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation)
+                OpenAnimationsList();
+        }
+
+        public void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            if (m_animationView != null)
+                m_animationView.Close();
+        }
+
+        public void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+        {
+        }
+
+        public void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+        {
+        }
+
+        public void OnMasterClientSwitched(Player newMasterClient)
+        {
+        }
+        #endregion
     }
 }
