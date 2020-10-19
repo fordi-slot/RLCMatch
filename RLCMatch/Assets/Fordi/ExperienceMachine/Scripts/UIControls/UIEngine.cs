@@ -320,6 +320,7 @@ namespace Fordi.UI
 
         public void DisplayResult(Error error, bool freshScreen = false)
         {
+            Debug.LogError("DisplayResult: " + error.ErrorText);
             m_standaloneInterface.DisplayResult(error, freshScreen);
             m_vrInterface?.DisplayResult(error, freshScreen);
         }

@@ -146,10 +146,8 @@ namespace Fordi.Networking
         public void EnterMeeting()
         {
             m_roomStatus = RoomStatus.PUBLIC;
-            if (PhotonNetwork.CountOfRooms > 0)
-            {
+            if (m_rooms.Find(item => item.Name == "Lobby") != null)
                 JoinRoom("Lobby");
-            }
             else
                 CreateRoom("Lobby");
         }
