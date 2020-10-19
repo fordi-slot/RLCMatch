@@ -51,6 +51,8 @@ namespace RLC.UI
             Blocked = args.Block;
             Persist = args.Persist;
             ToggleChat(true);
+            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && PhotonNetwork.PlayerList.Length > 1)
+                OpenAnimationsList();
         }
 
         public void ToggleFriendsListView()
@@ -158,8 +160,7 @@ namespace RLC.UI
         #region IN_ROOM_CALLBACK
         public void OnPlayerEnteredRoom(Player newPlayer)
         {
-            Debug.LogError("PlayerEnteredRoom");
-            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation)
+            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && m_animationView != null)
                 OpenAnimationsList();
         }
 
