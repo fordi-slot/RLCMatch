@@ -161,7 +161,7 @@ namespace RLC.UI
         public void OnPlayerEnteredRoom(Player newPlayer)
         {
             Debug.LogError("OnPlayerEnteredRoom " + newPlayer.NickName);
-            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && m_animationView != null)
+            if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && m_animationView == null)
                 OpenAnimationsList();
         }
 
