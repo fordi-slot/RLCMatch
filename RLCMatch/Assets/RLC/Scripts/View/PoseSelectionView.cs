@@ -43,6 +43,13 @@ namespace RLC.UI
 
         private void StateChange(object sender, AnimationPose e)
         {
+            if (e == null)
+            {
+                foreach (var item in m_toggleGroup.ActiveToggles())
+                    item.isOn = false;
+                return;
+            }
+
             s_passiveFlag = true;
             var target = m_menuItems.Find(item => item.Item.Text == e.GroupName);
             ((Toggle)target.Selectable).isOn = true;
