@@ -7,6 +7,7 @@ using Fordi.UI;
 using Fordi.UI.MenuControl;
 using Photon.Pun;
 using Photon.Realtime;
+using RLC.Animation;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace RLC.UI
         Chat m_chatPrefab;
 
         private ICommonResource m_commonResource = null;
+        private IAnimationEngine m_animationEngine = null;
 
         private Stack<IScreen> m_screensStack = new Stack<IScreen>();
 
@@ -36,6 +38,7 @@ namespace RLC.UI
         {
             base.AwakeOverride();
             m_commonResource = IOCCore.Resolve<ICommonResource>();
+            m_animationEngine = IOCCore.Resolve<IAnimationEngine>();
             PhotonNetwork.AddCallbackTarget(this);
         }
 
@@ -167,6 +170,7 @@ namespace RLC.UI
 
         public void OnPlayerLeftRoom(Player otherPlayer)
         {
+            m_animationEngine.StopAll();
             if (m_animationView != null)
                 m_animationView.Close();
         }
