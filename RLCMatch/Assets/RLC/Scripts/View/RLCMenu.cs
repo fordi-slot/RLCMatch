@@ -5,6 +5,7 @@ using Fordi.Common;
 using Fordi.Core;
 using Fordi.UI;
 using Fordi.UI.MenuControl;
+using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,8 +36,14 @@ namespace RLC.UI
         {
             base.AwakeOverride();
             m_commonResource = IOCCore.Resolve<ICommonResource>();
+            PhotonNetwork.AddCallbackTarget(this);
         }
 
+        protected override void OnDestroyOverride()
+        {
+            base.OnDestroyOverride();
+            PhotonNetwork.RemoveCallbackTarget(this);
+        }
 
         public override void OpenMenu(IUserInterface userInterface, MenuArgs args)
         {
