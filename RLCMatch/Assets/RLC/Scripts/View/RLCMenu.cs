@@ -54,6 +54,11 @@ namespace RLC.UI
             Blocked = args.Block;
             Persist = args.Persist;
             ToggleChat(true);
+
+#if LOCAL_TEST
+            OpenAnimationsList();
+            return;
+#endif
             if (SceneManager.GetActiveScene().name == Fordi.Networking.Network.PrivateMeetingLocation && PhotonNetwork.PlayerList.Length > 1)
                 OpenAnimationsList();
         }
@@ -160,7 +165,7 @@ namespace RLC.UI
             return menu;
         }
 
-        #region IN_ROOM_CALLBACK
+#region IN_ROOM_CALLBACK
         public void OnPlayerEnteredRoom(Player newPlayer)
         {
             Debug.LogError("OnPlayerEnteredRoom " + newPlayer.NickName);
@@ -186,6 +191,6 @@ namespace RLC.UI
         public void OnMasterClientSwitched(Player newMasterClient)
         {
         }
-        #endregion
+#endregion
     }
 }
