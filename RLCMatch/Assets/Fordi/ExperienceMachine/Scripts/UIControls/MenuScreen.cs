@@ -413,11 +413,24 @@ namespace Fordi.UI.MenuControl
 
         public void Quit()
         {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
-            #else
-                Application.Quit();
-            #endif
+            m_uiEngine.ConfirmationPopup(new PopupInfo()
+            {
+                Content = "ARE YOU SURE?",
+                Block = true,
+                Persist = false,
+                Action = action =>
+                {
+                    if (action == PopupInfo.PopupAction.ACCEPT)
+                    {
+#if UNITY_EDITOR
+                        UnityEditor.EditorApplication.ExecuteMenuItem("Edit/Play");
+#else
+                        Application.Quit();
+#endif
+                    }
+                },
+            });
+           
         }
 
     }

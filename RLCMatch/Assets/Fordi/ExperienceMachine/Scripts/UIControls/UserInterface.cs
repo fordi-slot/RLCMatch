@@ -74,6 +74,7 @@ namespace Fordi.UI
         IScreen Popup(PopupInfo popupInfo);
         IScreen OpenForm(FormArgs args);
         IScreen DisplayMessage(MessageArgs args);
+        IScreen ConfirmationPopup(PopupInfo args);
         IScreen DisplayResult(Error error, bool freshScreen = false);
         IScreen DisplayProgress(string text, bool freshScreen = false);
         IScreen Block(string message, bool includeRoot = false);
@@ -118,6 +119,8 @@ namespace Fordi.UI
         protected Transform m_screensRoot;
         [SerializeField]
         protected Popup m_popupPrefab;
+        [SerializeField]
+        protected Popup m_confirmationPopupPrefab;
         [SerializeField]
         protected Popup m_popup;
         [SerializeField]
@@ -226,6 +229,14 @@ namespace Fordi.UI
             return menu;
         }
 
+
+        public IScreen ConfirmationPopup(PopupInfo args)
+        {
+            var popup = (Popup)SpawnScreen(m_confirmationPopupPrefab);
+            popup.Show(args);
+            return popup;
+        }
+
         public virtual IScreen OpenAnnotationInterface(GridArgs args)
         {
             var menu = (MenuScreen)SpawnScreen(m_annotationInterface);
@@ -252,7 +263,7 @@ namespace Fordi.UI
         public virtual IScreen Popup(PopupInfo popupInfo)
         {
             var popup = (Popup)SpawnScreen(m_popupPrefab);
-            popup.Show(popupInfo, null);
+            popup.Show(popupInfo);
             return popup;
         }
 
@@ -464,40 +475,6 @@ namespace Fordi.UI
             m_screenStack.Peek().Reopen();
         }
 
-        #region SOCIAL_MEDIA
-        public void OpenYoutube()
-        {
-            OpenLinkPopup(YOUTUBE_PAGE);
-        }
-
-
-        public void OpenWebsite()
-        {
-            OpenLinkPopup(WEBSITE);
-        }
-
-        public void OpenFacebookPage()
-        {
-            OpenLinkPopup(FACEBOOK_PAGE);
-        }
-
-        public void OpenInstagramPage()
-        {
-            OpenLinkPopup(INSTAGRAM_PAGE);
-        }
-
-        private void OpenLinkPopup(string link)
-        {
-            var popup = Instantiate(m_popup, m_screensRoot);
-            popup.transform.SetParent(m_screensRoot.parent);
-            var popupInfo = new PopupInfo
-            {
-                Content = "Open <#FF004D>" + link + "</color> in browser?"
-            };
-            popup.Show(popupInfo, () => System.Diagnostics.Process.Start(link));
-        }
-        #endregion
-
         public IScreen DisplayResult(Error error, bool freshScreen = false)
         {
             if (!freshScreen && m_screenStack.Count > 0)
@@ -590,7 +567,5 @@ namespace Fordi.UI
                 return menu;
             }
         }
-
-      
     }
 }

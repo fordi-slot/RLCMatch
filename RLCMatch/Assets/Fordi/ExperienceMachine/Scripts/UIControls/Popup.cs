@@ -41,7 +41,7 @@ namespace Fordi.UI
         public bool Persist { get; private set; }
 
         private Action m_closed = null;
-        private Action m_ok = null;
+        private Action<PopupInfo.PopupAction> m_action = null;
 
         public GameObject Gameobject { get { return gameObject; } }
 
@@ -71,12 +71,12 @@ namespace Fordi.UI
             }
         }
 
-        public void Show(PopupInfo popupInfo, Action Ok  = null)
+        public void Show(PopupInfo popupInfo)
         {
             m_info = popupInfo;
             m_onPopupClck = popupInfo.Action;
             gameObject.SetActive(true);
-            m_ok = Ok;
+            m_action = popupInfo.Action;
 
             Blocked = popupInfo.Block;
             Persist = popupInfo.Persist;
@@ -114,6 +114,7 @@ namespace Fordi.UI
 
         public void Close()
         {
+            m_action?.Invoke(PopupInfo.PopupAction.CANCEL);
             m_closed?.Invoke();
             Destroy(gameObject);
         }
@@ -141,7 +142,7 @@ namespace Fordi.UI
 
         public void OkClick()
         {
-            m_ok?.Invoke();
+            m_action?.Invoke(PopupInfo.PopupAction.ACCEPT);
             Destroy(gameObject);
         }
 

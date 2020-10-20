@@ -79,6 +79,8 @@ MonoBehaviour:
   m_screensRoot: {fileID: 1850772631684991804}
   m_popupPrefab: {fileID: 2694407041289517880, guid: 0a24109cc0de1d74a98a5028d29a0c29,
     type: 3}
+  m_confirmationPopupPrefab: {fileID: 6159104590475705281, guid: b4454ec469b7cc5428940da0ee3e2a1f,
+    type: 3}
   m_popup: {fileID: -3279790470852022401, guid: 43bf18bcd53eaa647a48b69c7fed1a31,
     type: 3}
   m_rootCanvas: {fileID: 1850772632602514210}
@@ -341,14 +343,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3340611439428060766, guid: 4cbc943bfcfd3a64a89369209a080873,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5370893327149152715, guid: 4cbc943bfcfd3a64a89369209a080873,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340611439428060766, guid: 4cbc943bfcfd3a64a89369209a080873,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

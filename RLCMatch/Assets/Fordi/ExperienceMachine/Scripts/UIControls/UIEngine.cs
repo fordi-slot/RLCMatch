@@ -36,6 +36,8 @@ namespace Fordi.UI
         void Popup(PopupInfo popupInfo);
         void OpenForm(FormArgs args);
         void DisplayMessage(MessageArgs args);
+        void ConfirmationPopup(PopupInfo args);
+
         void DeactivateUI();
         void ShowUI();
 
@@ -303,6 +305,12 @@ namespace Fordi.UI
         {
             m_standaloneInterface.OpenContextUI(args);
             m_vrInterface?.OpenContextUI(args);
+        }
+
+        public void ConfirmationPopup(PopupInfo args)
+        {
+            m_standaloneInterface.ConfirmationPopup(args);
+            m_vrInterface?.ConfirmationPopup(args);
         }
 
         public void DeactivateUI()
