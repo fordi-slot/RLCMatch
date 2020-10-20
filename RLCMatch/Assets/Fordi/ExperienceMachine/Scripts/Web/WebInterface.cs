@@ -103,7 +103,7 @@ namespace Cornea.Web
 		APIRequest AcceptFriendRequest(string userId, OnCompleteAction done);
 		APIRequest GetFriendsList(OnCompleteAction done);
 		APIRequest GetAssetList(OnCompleteAction done);
-		APIRequest DownloadFile(string fileUrl, string filePath);
+		APIRequest DownloadFile(string fileUrl, string filePath, string version);
 		List<UserInfo> ParseUserListJson(string userListJson);
 		List<MeetingInfo> ParseMeetingListJson(string meetingListJson, MeetingCategory category);
 		ExperienceResource[] GetResource(ResourceType resourceType, string category);
@@ -366,8 +366,9 @@ namespace Cornea.Web
 		
 
 		private const string APP_CONFIG = "app.config";
+        private string VERSION_KEY = "version";
 
-		[SerializeField]
+        [SerializeField]
 		private Button meetingButton;
 
 		private static UserInfo m_userInfo = new UserInfo();
@@ -777,11 +778,18 @@ namespace Cornea.Web
 					var jsonObject = JsonMapper.ToObject(message);
 					if (Convert.ToString(jsonObject["success"]) == "true")
 					{
-						string fileUrl = Convert.ToString(jsonObject["data"][0]["file_url"]);
-						var parentAppData = Directory.GetParent(Application.persistentDataPath);
+                        if (jsonObject["data"].Count == 0)
+                            throw new FileNotFoundException("No asset available on server.");
+
+                        var file = jsonObject["data"][jsonObject["data"].Count - 1];
+
+                        string fileUrl = Convert.ToString(file["file_url"]);
+                        var version = Convert.ToString(file["version"]);
+
+                        var parentAppData = Directory.GetParent(Application.persistentDataPath);
 						var path = Path.Combine(parentAppData.FullName, Path.GetFileName(fileUrl));
 						var parent = Directory.GetParent(path);
-						DownloadFile(fileUrl, path);
+						DownloadFile(fileUrl, path, version);
 					}
 					done?.Invoke(isNetworkError, message);
 				}
@@ -789,16 +797,48 @@ namespace Cornea.Web
 			return request;
 		}
 
-		public APIRequest DownloadFile(string fileUrl, string filePath)
+        private void CleanOldAssets(string assetDirectory)
+        {
+            if (Directory.Exists(assetDirectory))
+            {
+                DirectoryInfo di = new DirectoryInfo(assetDirectory);
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo dir in di.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
+            }
+        }
+
+		public APIRequest DownloadFile(string fileUrl, string filePath, string newVersion)
 		{
             var assetDirectory = Application.persistentDataPath + "/Assets/VR";
             Debug.LogError(Application.persistentDataPath);
-			if (s_assetsLoaded || Directory.Exists(assetDirectory))
+			if (s_assetsLoaded || (Directory.Exists(assetDirectory) && PlayerPrefs.HasKey(VERSION_KEY) && PlayerPrefs.GetString(VERSION_KEY) == newVersion))
 			{
 				s_assetsLoaded = true;
 				OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
 				return null;
 			}
+
+            try
+            {
+                CleanOldAssets(assetDirectory);
+            }
+            catch
+            {
+                m_uiEngine.DisplayResult(new Error()
+                {
+                    ErrorCode = Error.E_AlreadyExist,
+                    ErrorText = "Old asset files inside: " + assetDirectory + " locked. Please clean the directory and restart the app."
+                });
+                return null;
+            }
+
 			Debug.LogError("DownloadFile: " + fileUrl + " : " + filePath);
 			var progressScreens = m_uiEngine.DisplayProgress("Downloading assets...");
 			
@@ -1526,7 +1566,7 @@ namespace Cornea.Web
 		private int[] progress = new int[1];
 		private int[] progress2 = new int[1];
 
-		protected virtual bool IsFileLocked(FileInfo file)
+        protected virtual bool IsFileLocked(FileInfo file)
 		{
 			FileStream stream = null;
 
