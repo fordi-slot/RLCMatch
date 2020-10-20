@@ -387,8 +387,9 @@ namespace Cornea.Web
 		private static string access_token = "";
 
 		private bool m_requireMeetingListRefresh = true;
+        private string m_assetVersion;
 
-		private string MacAddress {
+        private string MacAddress {
 			get
 			{
 				//return "6dc53fb71be5e6b9762a4053e49fa0f28b3f54a4";
@@ -784,12 +785,12 @@ namespace Cornea.Web
                         var file = jsonObject["data"][jsonObject["data"].Count - 1];
 
                         string fileUrl = Convert.ToString(file["file_url"]);
-                        var version = Convert.ToString(file["version"]);
+                        m_assetVersion = Convert.ToString(file["version"]);
 
                         var parentAppData = Directory.GetParent(Application.persistentDataPath);
 						var path = Path.Combine(parentAppData.FullName, Path.GetFileName(fileUrl));
 						var parent = Directory.GetParent(path);
-						DownloadFile(fileUrl, path, version);
+						DownloadFile(fileUrl, path, m_assetVersion);
 					}
 					done?.Invoke(isNetworkError, message);
 				}
@@ -1648,6 +1649,7 @@ namespace Cornea.Web
 				ErrorText = "Done"
 			});
 			s_assetsLoaded = true;
+            PlayerPrefs.SetString(VERSION_KEY, m_assetVersion);
 			OnAssetsLoaded?.Invoke(this, EventArgs.Empty);
 			yield return null;
 		}

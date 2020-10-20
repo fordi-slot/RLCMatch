@@ -368,7 +368,7 @@ namespace Fordi.Core
 
         public void SetQualityLevel(GraphicsQuality quality)
         {
-            QualitySettings.SetQualityLevel((int)quality, false);
+            //QualitySettings.SetQualityLevel((int)quality, false);
         }
 
         public void Click(object sender, PointerEventData eventData)
