@@ -59,6 +59,8 @@ namespace Fordi.UI
 
         private PopupInfo m_info;
 
+        private PopupInfo.PopupAction m_selectedAction = PopupInfo.PopupAction.ACCEPT; 
+
         private void Awake()
         {
             m_uiEngine = IOCCore.Resolve<IUIEngine>();
@@ -98,10 +100,17 @@ namespace Fordi.UI
             else if(m_icon != null)
                 m_icon.transform.parent.gameObject.SetActive(false);
             if (m_okButton != null)
-                m_okButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
+                m_okButton.onClick.AddListener(() =>
+                {
+                    m_selectedAction = PopupInfo.PopupAction.ACCEPT;
+                    m_uiEngine.CloseLastScreen();
+                });
             if (m_closeButton != null)
-                m_closeButton.onClick.AddListener(() => m_uiEngine.CloseLastScreen());
-
+                m_closeButton.onClick.AddListener(() =>
+                {
+                    m_selectedAction = PopupInfo.PopupAction.CANCEL;
+                    m_uiEngine.CloseLastScreen();
+                });
             if (m_info.TimeInSeconds.HasValue)
             {
                 Observable.Timer(new TimeSpan(0, 0, m_info.TimeInSeconds.Value)).Subscribe(_ =>
@@ -114,7 +123,7 @@ namespace Fordi.UI
 
         public void Close()
         {
-            m_action?.Invoke(PopupInfo.PopupAction.CANCEL);
+            m_action?.Invoke(m_selectedAction);
             m_closed?.Invoke();
             Destroy(gameObject);
         }

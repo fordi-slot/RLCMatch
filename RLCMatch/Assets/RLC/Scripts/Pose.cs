@@ -47,7 +47,6 @@ namespace RLC.Animation
 
                 if (m_maleAnimation.clip.wrapMode == WrapMode.Loop)
                 {
-                    Debug.LogError((DateTime.Now - m_poseBeginTime).TotalSeconds);
                     var done = (DateTime.Now - m_poseBeginTime).TotalSeconds > 15;
                     if (done)
                         m_poseBeginTime = DateTime.Now;

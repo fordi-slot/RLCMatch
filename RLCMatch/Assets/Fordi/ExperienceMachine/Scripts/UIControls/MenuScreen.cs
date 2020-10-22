@@ -420,6 +420,7 @@ namespace Fordi.UI.MenuControl
                 Persist = false,
                 Action = action =>
                 {
+                    Debug.LogError(action.ToString());
                     if (action == PopupInfo.PopupAction.ACCEPT)
                     {
 #if UNITY_EDITOR
