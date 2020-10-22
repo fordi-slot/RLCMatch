@@ -138,7 +138,7 @@ namespace RLC.Animation
                 //m_uiEngine.Fade();
             }
             else
-                Debug.LogError("Key not found");
+                Debug.LogError("Key not found: " + state);
         }
 
         public void StopAll()
