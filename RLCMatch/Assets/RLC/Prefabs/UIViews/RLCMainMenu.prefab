@@ -533,6 +533,32 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2620235837700645751, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756538866529696158, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756538866529696158, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235837700645750, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620235837700645736, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8bf01192c2d991a469e831050f4b534b,
+        type: 3}
     - target: {fileID: 2620235838304347551, guid: 0e7f97c620bcc7a48a248625cb4c2562,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -563,6 +589,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 220078722216589574, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b901dcc2540d3f145b591b99e93e2957,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e7f97c620bcc7a48a248625cb4c2562, type: 3}
 --- !u!224 &5607468846128165697 stripped
