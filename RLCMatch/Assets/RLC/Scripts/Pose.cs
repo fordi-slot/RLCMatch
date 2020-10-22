@@ -144,6 +144,8 @@ namespace RLC.Animation
             clip.legacy = true;
             if (clip.name.ToLower().Contains("begin"))
                 clip.wrapMode = WrapMode.Once;
+            else
+                clip.wrapMode = WrapMode.Loop;
 
             //clip.wrapMode = WrapMode.Loop;
             if (animation.GetClip(clip.name) == null)
