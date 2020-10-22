@@ -120,6 +120,7 @@ namespace RLC.UI
                 Items = items
             };
             m_animationView = SpawnPage(m_poseSelectionViewPrefab, poseMenu);
+            m_animationEngine.StartSexRoutine();
         }
 
         public void ToggleChat(bool val)

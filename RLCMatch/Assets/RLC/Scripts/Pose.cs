@@ -16,6 +16,7 @@ namespace RLC.Animation
         void Stop();
         string GroupName { get; }
         AnimationPose CurrentPose { get; }
+        bool IsDoneYet { get; }
     }
 
     public class Pose : MonoBehaviour, IAnimationSubject
@@ -36,6 +37,28 @@ namespace RLC.Animation
         }
 
         public AnimationPose CurrentPose { get { return m_currentPose; } }
+
+        public bool IsDoneYet
+        {
+            get
+            {
+                if (!m_maleAnimation.isPlaying)
+                    return true;
+
+                if (m_maleAnimation.clip.wrapMode == WrapMode.Loop)
+                {
+                    Debug.LogError((DateTime.Now - m_poseBeginTime).TotalSeconds);
+                    var done = (DateTime.Now - m_poseBeginTime).TotalSeconds > 15;
+                    if (done)
+                        m_poseBeginTime = DateTime.Now;
+                    return done;
+                }
+                else
+                    return !m_maleAnimation.isPlaying;
+            }
+        }
+
+        private DateTime m_poseBeginTime;
 
         [SerializeField]
         private GameObject m_maleFade, m_femaleFade;
@@ -136,6 +159,8 @@ namespace RLC.Animation
 
                 PlayClip(m_maleAnimation, pose.MaleClip);
                 PlayClip(m_femaleAnimation, pose.FemaleClip);
+
+                m_poseBeginTime = DateTime.Now;
             });
         }
 

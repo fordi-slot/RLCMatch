@@ -20,6 +20,7 @@ namespace RLC.Animation
         void SwitchToState(string state);
         void StopAll();
         void Cum();
+        void StartSexRoutine();
     }
 
     [Serializable]
@@ -62,6 +63,8 @@ namespace RLC.Animation
         public List<AnimationClip> ValidMaleClips = new List<AnimationClip>();
 
         public AnimationPose CurrentPose { get { return m_pose.CurrentPose; } }
+
+        private IEnumerator m_sexRoutine = null;
 
         private void Awake()
         {
@@ -110,6 +113,25 @@ namespace RLC.Animation
 #endif
             m_photonView.RPC("RPC_SwitchToState", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber, state);
             State = PlayerState.ACTIVE;
+        }
+
+        public void StartSexRoutine()
+        {
+            if (m_sexRoutine != null)
+                StopCoroutine(m_sexRoutine);
+            m_sexRoutine = CoSexRoutine();
+            StartCoroutine(m_sexRoutine);
+        }
+
+        private IEnumerator CoSexRoutine()
+        {
+            yield return null;
+            foreach (var item in m_posesDictionary.Keys)
+            {
+                yield return new WaitUntil(() => m_pose.IsDoneYet);
+                SwitchToState(item);
+                yield return new WaitForSeconds(2);
+            }
         }
 
         private void ChangeState(string state)
