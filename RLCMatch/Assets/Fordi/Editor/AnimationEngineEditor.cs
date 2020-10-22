@@ -21,8 +21,8 @@ namespace RLC.UnityEditor
                 animationEngine.AnimationPoses.Clear();
 
                 // Find all Texture2Ds that have 'co' in their filename, that are labelled with 'architecture' and are placed in 'MyAwesomeProps' folder
-                string[] femaleClipGuids = AssetDatabase.FindAssets("hf_ t:AnimationClip", null);
-                string[] maleClipGuids = AssetDatabase.FindAssets("hm_ t:AnimationClip", null);
+                string[] femaleClipGuids = AssetDatabase.FindAssets("hf_ t:AnimationClip", new string[] { "Assets/Artwork/Animations" });
+                string[] maleClipGuids = AssetDatabase.FindAssets("hm_ t:AnimationClip", new string[] { "Assets/Artwork/Animations" });
 
                 var femaleClips = new List<AnimationClip>();
                 var maleClips = new List<AnimationClip>();
