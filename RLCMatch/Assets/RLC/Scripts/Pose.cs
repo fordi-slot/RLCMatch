@@ -165,11 +165,11 @@ namespace RLC.Animation
 
         private void PlayClip(UnityEngine.Animation animation, AnimationClip clip)
         {
-            clip.legacy = true;
-            if (clip.name.ToLower().Contains("begin") || clip.name.ToLower().Contains("orgasm"))
-                clip.wrapMode = WrapMode.Once;
-            else
-                clip.wrapMode = WrapMode.Loop;
+            //clip.legacy = true;
+            //if (clip.name.ToLower().Contains("begin") || clip.name.ToLower().Contains("orgasm"))
+            //    clip.wrapMode = WrapMode.Once;
+            //else
+            //    clip.wrapMode = WrapMode.Loop;
 
             //clip.wrapMode = WrapMode.Loop;
             if (animation.GetClip(clip.name) == null)
