@@ -117,10 +117,10 @@ namespace RLC.Animation
 
         public void StartSexRoutine()
         {
-            if (m_sexRoutine != null)
-                StopCoroutine(m_sexRoutine);
-            m_sexRoutine = CoSexRoutine();
-            StartCoroutine(m_sexRoutine);
+            //if (m_sexRoutine != null)
+            //    StopCoroutine(m_sexRoutine);
+            //m_sexRoutine = CoSexRoutine();
+            //StartCoroutine(m_sexRoutine);
         }
 
         private IEnumerator CoSexRoutine()

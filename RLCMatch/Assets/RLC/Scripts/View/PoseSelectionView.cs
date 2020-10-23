@@ -71,10 +71,10 @@ namespace RLC.UI
                 m_quitButton.gameObject.SetActive(false);
             }
 
-            //if (m_menuItems.Count > 0)
-            //{
-            //    ((Toggle)m_menuItems[0].Selectable).isOn = true;
-            //}
+            if (m_menuItems.Count > 0)
+            {
+                ((Toggle)m_menuItems[0].Selectable).isOn = true;
+            }
         }
 
         public void Expand()
