@@ -154,6 +154,9 @@ MonoBehaviour:
     type: 3}
   m_chatPrefab: {fileID: 5962577781153714164, guid: dd8b232454063734fad21ec38b9273d0,
     type: 3}
+  m_avatarImage: {fileID: 5607468845822068490}
+  m_maleSprite: {fileID: 21300000, guid: 3a1f0b4c66f5afa419aa0be47203c576, type: 3}
+  m_femaleSprite: {fileID: 21300000, guid: 8bf01192c2d991a469e831050f4b534b, type: 3}
 --- !u!1001 &251453849518805241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -603,3 +606,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7605816332569699426}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5607468845822068490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2620235837700645736, guid: 0e7f97c620bcc7a48a248625cb4c2562,
+    type: 3}
+  m_PrefabInstance: {fileID: 7605816332569699426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

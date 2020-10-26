@@ -189,7 +189,7 @@ namespace Fordi.Core
                 OpenLoginPage();
             yield return new WaitForSeconds(3);
 
-            if (DateTime.Now > new DateTime(2020, 10, 25))
+            if (DateTime.Now > new DateTime(2020, 10, 29))
             {
                 m_uiEngine.DisplayProgress("APP VALIDITY EXPIRED.\n\nPlease contact administrator for support.", true);
             }

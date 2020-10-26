@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace RLC.UI
 {
@@ -24,7 +25,12 @@ namespace RLC.UI
         [SerializeField]
         private MenuScreen m_friendsListPrefab;
         [SerializeField]
-        Chat m_chatPrefab;
+        private Chat m_chatPrefab;
+        [SerializeField]
+        private Image m_avatarImage;
+
+        [SerializeField]
+        private Sprite m_maleSprite, m_femaleSprite;
 
         private ICommonResource m_commonResource = null;
         private IAnimationEngine m_animationEngine = null;
@@ -53,6 +59,8 @@ namespace RLC.UI
             m_userInterface = userInterface;
             Blocked = args.Block;
             Persist = args.Persist;
+            m_avatarImage.sprite = m_webInterface.UserInfo.gender == Gender.MALE ? m_maleSprite : m_femaleSprite;
+
             ToggleChat(true);
 
 #if LOCAL_TEST
