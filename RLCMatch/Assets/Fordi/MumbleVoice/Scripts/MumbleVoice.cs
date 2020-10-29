@@ -30,11 +30,11 @@ namespace Fordi.MumbleVoice
         private string Password = "Mumble-Verse-2020";
         private string ChannelToJoin = "test";
 
-        private IWebInterface m_webInterface;
+        //private IWebInterface m_webInterface;
 
         private void Awake()
         {
-            m_webInterface = IOCCore.Resolve<IWebInterface>();
+            //m_webInterface = IOCCore.Resolve<IWebInterface>();
         }
 
         void Start()
@@ -57,7 +57,7 @@ namespace Fordi.MumbleVoice
                 StartCoroutine(ConnectAsync());
             else
             {
-                _mumbleClient.Connect(m_webInterface.UserInfo.userName, Password);
+                _mumbleClient.Connect(Guid.NewGuid().ToString().Substring(0, 4), Password);
                 if (MyMumbleMic != null)
                 {
                     _mumbleClient.AddMumbleMic(MyMumbleMic);
