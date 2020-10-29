@@ -111,7 +111,7 @@ namespace Fordi.MumbleVoice
             while (!_mumbleClient.ReadyToConnect)
                 yield return null;
             Debug.Log("Will now connect");
-            _mumbleClient.Connect(m_webInterface.UserInfo.userName, Password);
+            _mumbleClient.Connect(Guid.NewGuid().ToString().Substring(0, 4), Password);
             yield return null;
             if (MyMumbleMic != null)
             {
@@ -172,7 +172,7 @@ namespace Fordi.MumbleVoice
                 yield return new WaitForSeconds(2f);
             }
         }
-        
+
         IEnumerator UpdateEditorGraph()
         {
             long numPacketsReceived = 0;
